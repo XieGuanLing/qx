@@ -1,4 +1,7 @@
+
+momo
 ******************************
+
 索引
 ----
 * 下行接口
@@ -21,9 +24,8 @@
 	*	[发布私信](#发布私信)
 	*	[更改头像](#更改头像)
 	*	[更改昵称](#更改昵称)
-	*	[邀请好友](#邀请好友)
 	*	[退出](#退出)
-	*	[单向加好友](#单向加好友)
+	*	[单向加关注](#单向加关注)
 
 接口说明
 --------
@@ -71,7 +73,7 @@
 
 
 	
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>全站动态列表接口</h2>
 域名/capi/space.php?do=feed&page=0&perpage=10&view=quiz&queryop=down&dateline=13234834
@@ -108,7 +110,7 @@
 
 
 
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>通知列表接口</h2>
 域名/capi/space.php?do=notice&page=0&prepage=2&uid=1&type=quizinvalid&dateline=324234&queryop=up&m_auth=55dalDuJy
@@ -144,7 +146,7 @@
 
 
 
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>私信列表接口</h2>
 域名/capi/space.php?do=pm&page=0&prepage=2&uid=1&filter=newpm&dateline=0&queryop=up&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
@@ -203,8 +205,8 @@
 					"fromappid": "1",
 					"daterange": 5,
 					"touid": "1",
-					"msgfromavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 1
@@ -212,7 +214,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>私信详情</h2>
 域名/capi/space.php?do=pm&subop=view&pmid=2&touid=12&daterange=10&page=1&perpage=10&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
@@ -266,8 +268,8 @@
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "8",
@@ -283,8 +285,8 @@
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "9",
@@ -300,8 +302,8 @@
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 3
@@ -309,7 +311,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>好友排行榜接口</h2> 
 域名/capi/space.php?uid=5&do=friend&m_auth=54f8qnt8HxbRz8NWomy0e4k2gKvVvc6oil8qDY9upUERswmzj
@@ -534,7 +536,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 
 <h2>我的个人信息</h2>
@@ -696,7 +698,7 @@
 				"addfriend": "0",
 				"flag": "0",
 				"newpm": "0",
-				"avatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/05_avatar_small.jpg",
+				"avatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
 				"regip": "127.0.0.1",
 				"ip": "127000000",
 				"mood": "0",
@@ -714,7 +716,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 
 
@@ -940,7 +942,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 
 
@@ -977,7 +979,7 @@
 	}
 
 
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>用户登陆状态</h2>
 
@@ -1008,7 +1010,7 @@
 	}
 
 
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>好友申请列表</h2>
 域名/capi/cp.php?ac=friend&op=request&page=0&perpage=1&m_auth=8616qvbrwntFdXONEB
@@ -1095,7 +1097,7 @@
 					"addfriend": "0",
 					"flag": "0",
 					"newpm": "0",
-					"avatar": "http://localhost:8080/betit/center/images/noavatar_small.gif",
+					"avatar": "http://localhost:8080/momo/center/images/noavatar_small.gif",
 					"regip": "127.0.0.1",
 					"ip": "127000000",
 					"mood": "0",
@@ -1121,7 +1123,7 @@
 		"action": "rest_success"
 	}
 
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>我的好友列表</h2> 
 域名/capi/space.php?uid=5&do=friend&isinsert=true&m_auth=54f8qnt8HxbRz8NWomy0e4k2gKvVvc6oil8qDY9upUERswmzj
@@ -1344,7 +1346,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>我的留言</h2>
 域名/capi/do.php?ac=ajax&op=getcomment&id=24&idtype=uid&page=0&prepage=1&dateline=234234&queryop=up&m_auth=af9cCEMpQlfFTifZltugadwhG
@@ -1395,7 +1397,7 @@
                 "dateline": "1344407149",
                 "message": "234234",
                 "magicflicker": "0",
-                "avatar": "http://localhost:8080/betit/center/data/avatar/000/00/00/01_avatar_small.jpg"
+                "avatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
             }
         ],
         "count": 1
@@ -1403,7 +1405,7 @@
     "msg": "数据获取成功",
     "action": "rest_success"
 }
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>有奖任务列表</h2>
 域名/capi/cp.php?ac=task&m_auth=8616qvbrwntFdXONEB4DnzmNpOGgu%2ByUsAPkcDTJW1JP6iiZv33GnxQBwxeXp
@@ -1569,7 +1571,7 @@
 		"action": "do_success"
 	}
 
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 
 
@@ -1590,7 +1592,7 @@
 #### 样例
 	{"code":0,"data":{"seccode_auth":"1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta","seccode":"CQ7T"},
 	"msg":"数据获取成功","action":"rest_success"}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>注册</h2>
 /capi/do.php?ac=register&registersubmit=true&username=test4&password=123&password2=123&seccode=cQ7T&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
@@ -1628,7 +1630,7 @@
 		* avatar -- 个人头像
 
 #### 样例
-	{"code":0,"data":{"space":{"uid":"11","sex":"0","email":"test6@betit.cn","newemail":"","emailcheck":"0",
+	{"code":0,"data":{"space":{"uid":"11","sex":"0","email":"test6@momo.cn","newemail":"","emailcheck":"0",
 	"mobile":"","qq":"","msn":"","msnrobot":"","msncstatus":"0","videopic":"","birthyear":"0","birthmonth":"0",
 	"birthday":"0","blood":"","marry":"0","birthprovince":"","birthcity":"","resideprovince":"","residecity":"",
 	"note":"","spacenote":"","authstr":"","theme":"","nocss":"0","menunum":"0","css":"",
@@ -1645,7 +1647,7 @@
 	"avatar":"0","regip":"127.0.0.1","ip":"127000000","mood":"0","voternum":"0","self":1,"friends":[],"allnotenum":0},
 	"m_auth":"cf7chDvDIcnUVeupGp4utLftIQEP%2B1rP8eGrGWydH3ITmly6DURpvHCvByCJlE0hEus%2F5Ji%2FqVUrfnd3dHn6%2BA"},
 	"msg":"注册成功了，进入个人空间","action":"registered"}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 	
 <h2>登录</h2>
 域名/capi/do.php?ac=login&username=summit&password=likeyou&loginsubmit=true&longtitude=23°27′30"&latitude=23°27′30"
@@ -1736,7 +1738,7 @@
 		"msg": "登录成功了，现在引导您进入登录前页面 \\1",
 		"action": "login_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>上传图片</h2>
 #### 注意:采用POST上传
@@ -1785,7 +1787,7 @@
 	{"code":0,"data":{"pic":{"albumid":0,"uid":"1","username":"test6","dateline":"1344415852","filename":"qq提醒.png","postip":"127.0.0.1","title":"",
 	"type":"image\/png","size":165056,"filepath":"1_1344415852h77H.png","thumb":1,"remote":0,"topicid":0,"picid":80,"pic":"attachment\/1_1344415852h77H.png.thumb.jpg"}},
 	"msg":"进行的操作完成了","action":"do_success"}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 
 
@@ -1817,7 +1819,7 @@
 		"msg": "数据获取成功",
 		"action": "rest_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>发布私信</h2>
 域名/capi/cp.php?ac=pm&op=send&touid=0&pmid=0&username=test6&message=你好!summit&pmsubmit=true&m_auth=af9cCEMpQlfFTifZltugadwh
@@ -1835,7 +1837,7 @@
 
 #### 样例
 	{"code":0,"data":[],"msg":"进行的操作完成了","action":"do_success"}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>更改头像</h2>
 #### 注意:采用POST上传
@@ -1872,9 +1874,9 @@
 		* date[dateline]: 操作更新的时间
 
 #### 样例
-	{"code":0,"data":{"url":{"big":"http:\/\/localhost:8080\/betit\/center\/data\/avatar\/000\/00\/00\/00_avatar_big.jpg","middle":"http:\/\/localhost:8080\/betit\/center\/data\/avatar\/000\/00\/00\/00_avatar_middle.jpg","small":"http:\/\/localhost:8080\/betit\/center\/data\/avatar\/000\/00\/00\/00_avatar_small.jpg"},"msg":"",
+	{"code":0,"data":{"url":{"big":"http:\/\/localhost:8080\/momo\/center\/data\/avatar\/000\/00\/00\/00_avatar_big.jpg","middle":"http:\/\/localhost:8080\/momo\/center\/data\/avatar\/000\/00\/00\/00_avatar_middle.jpg","small":"http:\/\/localhost:8080\/momo\/center\/data\/avatar\/000\/00\/00\/00_avatar_small.jpg"},"msg":"",
 	"reward":{"credit":0,"experience":0},"dateline":"1344421976"},"msg":"\u8fdb\u884c\u7684\u64cd\u4f5c\u5b8c\u6210\u4e86","action":"do_success"}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
 <h2>更改昵称</h2>
 域名/capi/cp.php?ac=profile&op=name&name=summit&m_auth=af9cCEMpQlfFTifZltu
@@ -1901,5 +1903,36 @@
 		"msg": "进行的操作完成了",
 		"action": "do_success"
 	}
-[↑返回顶部](#betit)
+[↑返回顶部](#momo)
 
+<h2>单向加关注</h2>
+域名/capi/cp.php?ac=friend&op=add&uid=4&gid=0&addsubmit=true&m_auth=0ff76%2B%2F
+
+#### 请求参数
+	* 操作类型（固定搭配） -- ac:friend , op:add, addsubmit=true
+	* 加为关注的用户id -- uid
+	* 好友组别 -- gid
+	    * 0 -- 其他
+	    * 1 -- 通过本站认识
+	    * 2 -- 通过活动认识
+	    * 3 -- 通过朋友认识
+	    * 4 -- 亲人
+	    * 5 -- 同事
+	    * 6 -- 同学
+	    * 7 -- 不认识
+	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
+
+#### 返回参数
+	* 错误码 -- code, 0:代表成功， 1:代表失败
+	* 错误类型 -- action, request_has_been_sent:代表成功
+	* 错误信息 -- msg, 详细参见附录
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	        "test8"
+	    ],
+	    "msg": "您和 晓林 成为好友了",
+	    "action": "friends_add"
+	}
+[↑返回顶部](#momo)
