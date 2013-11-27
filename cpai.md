@@ -30,11 +30,110 @@ momo
 	*	[发表博客](#发表博客)
 	*	[查看自己的全部博客](#查看自己的全部博客)
 	*       [查看自己某篇博客的具体内容](#查看自己某篇博客的具体内容)
+	*       [删除自己的某篇博客](#删除自己的某篇博客)
 	*	[查看某个关注人的全部博客](#查看某个关注人的全部博客)
 	*	[查看整个站点的博客](#查看整个站点的博客)
 
 接口说明
 --------
+
+<h2>查看自己的全部博客</h2>
+域名/capi/space.php?do=blog&view=me&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
+
+#### 请求参数
+	* 当前用户id -- uid
+
+#### 返回字段
+	* 错误码 -- code, 0:代表成功， 1:代表失败
+	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
+	* 错误信息 -- msg, 详细参见附录
+	* blogid --  博客id
+	* subject -- 博客标题
+	* classid -- 博客分类
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "blogs": [
+	            {
+	                "blogid": "12",
+	                "topicid": "0",
+	                "uid": "8",
+	                "username": "",
+	                "subject": "我是test08",
+	                "classid": "0",
+	                "viewnum": "0",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1385554217",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            },
+	            {
+	                "blogid": "13",
+	                "topicid": "0",
+	                "uid": "8",
+	                "username": "",
+	                "subject": "我发表博客了",
+	                "classid": "0",
+	                "viewnum": "0",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1385557303",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            }
+	        ]
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+	
+
+[↑返回顶部](#momo)
+
+<h2>删除自己的某篇博客</h2>
+域名/capi/cp.php?ac=blog&blogid=1&op=delete&deletesubmit=true&auth=c847%2FE%2FpaiQ4h7oYd%2F2ppsnHuquqghTBaumzvqnegQ
+
+#### 请求参数
+	* 固定搭配-- ac=blog&op=delete&deletesubmit=true
+	* blogid -- 所要删除的自己的博客的id
+
+#### 返回字段
+	* 错误码 -- code, 0:代表成功， 1:代表失败
+	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	       
+	    ],
+	    "msg": "操作成功了",
+	    "action": "rest_success"
+	}
+
+
+[↑返回顶部](#momo)
+
+
 <h2>查看自己某篇博客的具体内容</h2>
 域名/capi/space.php?do=blog&view=me&id=12&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
 
