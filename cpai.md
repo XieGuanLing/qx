@@ -26,9 +26,155 @@ momo
 	*	[更改昵称](#更改昵称)
 	*	[退出](#退出)
 	*	[单向加关注](#单向加关注)
+	*	
+	*	[发表博客](#发表博客)
+	*	[查看自己的全部博客](#查看自己的全部博客)
+	*       [查看自己某篇博客的具体内容](#查看自己某篇博客的具体内容)
+	*	[查看某个关注人的全部博客](#查看某个关注人的全部博客)
+	*	[查看整个站点的博客](#查看整个站点的博客)
 
 接口说明
 --------
+<h2>查看自己某篇博客的具体内容</h2>
+域名/capi/space.php?do=blog&view=me&id=12&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
+
+#### 请求参数
+	* 固定搭配 do=blog view=me 
+	* id -- 要查看的博客的id
+	* API密钥 auth -- 登录后返回的值
+	
+
+#### 返回字段
+	* 错误码 -- code, 0:代表成功， 1:代表失败
+	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
+	* 错误信息 -- msg, 详细参见附录
+	    blogid: 博客id
+            uid: 用户id
+            tag: 标记
+            message: 博客内容
+            postip: 提交的ip
+            related: 相关
+            relatedtime:
+            target_ids:
+            hotuser:
+            magiccolor: 
+            magicpaper: 
+            magiccall: 
+            topicid:
+            username: 
+            subject: 博客标题
+            classid: 博客分类
+            viewnum:
+            replynum: 
+            hot: 
+            dateline: 
+            pic: 
+            picflag: 
+            noreply: 
+            friend: 
+            password: 
+            click_1: 表态“路过"
+            click_2: 表态"雷人"
+            click_3: 表态"握手"
+            click_4: 表态"鲜花"
+            click_5: 表态"鸡蛋"
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "blog": {
+	            "blogid": "12",
+	            "uid": "8",
+	            "tag": [],
+	            "message": "希望你好,真心祝福你。",
+	            "postip": "127.0.0.1",
+	            "related": [],
+	            "relatedtime": "0",
+	            "target_ids": "",
+	            "hotuser": "",
+	            "magiccolor": "0",
+	            "magicpaper": "0",
+	            "magiccall": "0",
+	            "topicid": "0",
+	            "username": "",
+	            "subject": "我是test08",
+	            "classid": "0",
+	            "viewnum": "0",
+	            "replynum": "0",
+	            "hot": "0",
+	            "dateline": "1385554217",
+	            "pic": "",
+	            "picflag": "0",
+	            "noreply": "0",
+	            "friend": "0",
+	            "password": "",
+	            "click_1": "0",
+	            "click_2": "0",
+	            "click_3": "0",
+	            "click_4": "0",
+	            "click_5": "0"
+	        },
+	        "topic": [],
+	        "clicks": {
+	            "1": {
+	                "clickid": 1,
+	                "name": "路过",
+	                "icon": "luguo.gif",
+	                "idtype": "blogid",
+	                "displayorder": "0",
+	                "clicknum": "0",
+	                "classid": 3
+	            },
+	            "2": {
+	                "clickid": 2,
+	                "name": "雷人",
+	                "icon": "leiren.gif",
+	                "idtype": "blogid",
+	                "displayorder": "0",
+	                "clicknum": "0",
+	                "classid": 1
+	            },
+	            "3": {
+	                "clickid": 3,
+	                "name": "握手",
+	                "icon": "woshou.gif",
+	                "idtype": "blogid",
+	                "displayorder": "0",
+	                "clicknum": "0",
+	                "classid": 1
+	            },
+	            "4": {
+	                "clickid": 4,
+	                "name": "鲜花",
+	                "icon": "xianhua.gif",
+	                "idtype": "blogid",
+	                "displayorder": "0",
+	                "clicknum": "0",
+	                "classid": 4
+	            },
+	            "5": {
+	                "clickid": 5,
+	                "name": "鸡蛋",
+	                "icon": "jidan.gif",
+	                "idtype": "blogid",
+	                "displayorder": "0",
+	                "clicknum": "0",
+	                "classid": 3
+	            }
+	        },
+	        "clickuserlist": []
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+
+
+
+[↑返回顶部](#momo)
+
+
 
 <h2>好友动态列表接口</h2>
 域名/capi/space.php?do=feed&uid=1&page=0&perpage=10&view=friend&dateline=1343793316&queryop=down&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
@@ -69,10 +215,6 @@ momo
 
 
 
-
-
-
-	
 [↑返回顶部](#momo)
 
 <h2>全站动态列表接口</h2>
@@ -578,10 +720,6 @@ momo
 			* 头像 -- avatar
 			* 登录的ip -- ip
 			* 附件大小 -- attachsize
-			* 发布的打赌数 -- quiznum
-			* 赢的次数 -- winnum
-			* 输的次数 -- lostnum
-			* 参与打赌数 -- voternum
 			* 好友列表id -- friends
 
 			
@@ -1407,170 +1545,27 @@ momo
 }
 [↑返回顶部](#momo)
 
-<h2>有奖任务列表</h2>
-域名/capi/cp.php?ac=task&m_auth=8616qvbrwntFdXONEB4DnzmNpOGgu%2ByUsAPkcDTJW1JP6iiZv33GnxQBwxeXp
+<h2>发表博客</h2>
+域名/capi/cp.php?ac=blog&blogid=0&blogsubmit=true&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
+
 
 #### 请求参数
-	* 操作类型 -- ac, 必须为task
+	* 操作类型 -- ac为blog,blogid为0，blogsubmit为true
 	* 查询参数 -- 若传入 view=done， 则查询已完成任务
 	* API密钥 -- m_auth, 由登录后返回
+	*用post方式提交以下参数
+		*subject  --- 博客标题
+		*message  --- 博客内容
+		*classid  --- 博客分类
 
 #### 返回字段
 	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[tasks],评论列表，具体内容如下
-			* 任务id -- taskid
-			* 是否完成 -- done, 0代表未完成, 1代表完成
-			* 任务名称 -- name
-			* 任务描述 -- note
-			* 任务图片 -- image
-			* 任务完成次数 -- num
-			* 最大完成次数 -- maxnum
-			* 任务开始时间 -- starttime
-			* 任务结束时间 -- endtime
-			* 下次开始时间 -- nexttime
-			* 开始类型 -- nexttype
-			* 任务完成增加金币 -- credit
-			* 是否进行中 -- available, 1代表进行中, 0代表过期
-			* 优先级 -- displayorder
-		* data[count], 返回列表条目数, 便用遍历
-
-
-
-#### 样例
-
 	{
-		"code": 0,
-		"data": {
-			"task": [
-				{
-					"taskid": "2",
-					"available": "1",
-					"name": "将个人资料补充完整",
-					"note": "把自己的个人资料填写完整吧。 这样您会被更多的朋友找到的，系统也会帮您找到朋友。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/profile.gif",
-					"filename": "profile.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "2",
-					"credit": "20",
-					"displayorder": "0",
-					"done": 0
-				},
-				{
-					"taskid": "1",
-					"available": "1",
-					"name": "更新一下自己的头像",
-					"note": "头像就是你在这里的个人形象。 设置自己的头像后，会让更多的朋友记住您。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/avatar.gif",
-					"filename": "avatar.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "",
-					"credit": "20",
-					"displayorder": "1",
-					"done": 0
-				},
-				{
-					"taskid": "3",
-					"available": "1",
-					"name": "发表自己的第一篇日志",
-					"note": "现在，就写下自己的第一篇日志吧。 与大家一起分享自己的生活感悟。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/blog.gif",
-					"filename": "blog.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "",
-					"credit": "5",
-					"displayorder": "3",
-					"done": 0
-				},
-				{
-					"taskid": "4",
-					"available": "1",
-					"name": "寻找并添加五位好友",
-					"note": "有了好友，您发的日志、图片等会被好友及时看到并传播出去； 您也会在首页方便及时的看到好友的最新动态。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/friend.gif",
-					"filename": "friend.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "",
-					"credit": "50",
-					"displayorder": "4",
-					"done": 0
-				},
-				{
-					"taskid": "5",
-					"available": "1",
-					"name": "验证激活自己的邮箱",
-					"note": "填写自己真实的邮箱地址并验证通过。 您可以在忘记密码的时候使用该邮箱取回自己的密码； 还可以及时接受站内的好友通知等等。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/email.gif",
-					"filename": "email.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "",
-					"credit": "10",
-					"displayorder": "5",
-					"done": 0
-				},
-				{
-					"taskid": "6",
-					"available": "1",
-					"name": "邀请10个新朋友加入",
-					"note": "邀请一下自己的QQ好友或者邮箱联系人，让亲朋好友一起来加入我们吧。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/friend.gif",
-					"filename": "invite.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "",
-					"credit": "100",
-					"displayorder": "6",
-					"done": 0
-				},
-				{
-					"taskid": "7",
-					"available": "1",
-					"name": "领取每日访问大礼包",
-					"note": "每天登录访问自己的主页，就可领取大礼包。",
-					"num": "0",
-					"maxnum": "0",
-					"image": "image/task/gift.gif",
-					"filename": "gift.php",
-					"starttime": "0",
-					"endtime": "0",
-					"nexttime": "0",
-					"nexttype": "day",
-					"credit": "5",
-					"displayorder": "99",
-					"done": 0
-				}
-			],
-			"count": 7
-		},
-		"msg": "进行的操作完成了",
-		"action": "do_success"
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
 	}
-
 [↑返回顶部](#momo)
 
 
