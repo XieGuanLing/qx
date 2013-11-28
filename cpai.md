@@ -6,14 +6,9 @@ momo
 ----
 * 下行接口
 	*	[好友动态列表接口](#好友动态列表接口)
-	*	[通知列表接口](#通知列表接口)
 	*	[私信列表接口](#私信列表接口)
 	*	[私信详情](#私信详情)
-	*	[好友排行榜接口](#好友排行榜接口)
-	*	[我的个人信息](#我的个人信息)
-	*   	[系统未读信息计数器](#系统未读信息计数器)
-	*	[用户登陆状态](#用户登陆状态)
-	*	[好友申请列表](#好友申请列表)
+
 
 * 上行接口
 	*	[获取注册验证码](#获取注册验证码)
@@ -275,119 +270,6 @@ momo
 
 
 
-<h2>好友动态列表接口</h2>
-域名/capi/space.php?do=feed&uid=1&page=0&perpage=10&view=friend&dateline=1343793316&queryop=down&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
-#### 请求参数
-	* 当前用户id -- uid
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* 查询参数 -- view, 值为we代表好友动态列表
-	* API密钥 -- m_auth, 由登录后返回
-	* 时间点 -- dateline
-	* 查询方式 -- queryop, 取值可以是up, down
-		* up 代表上拉，取比dateline新的动态
-		* down 代表到底，取紧接着dateline之后的动态
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[feeds]，feed列表， 条目字段如下
-			* title_template -- feed的标题
-			* body_template -- feed的内容
-			* dateline -- feed的时间
-			* uid -- 发布feed的用户id
-			* username -- 发布feed用户
-			* body_data -- feed的内容，当前仅有打赌、表态、评论、加为好友				
-			* icon -- feed类型
-				* quiz -- 打赌
-				* do -- 心情
-				* pic -- 图片
-				* profile -- 更新资料
-				* click -- 表太空
-				* comment -- 评论
-				* friend -- 成为好友
-
-		* data[count], 返回列表条目数, 便用遍历
-#### 样例
-
-
-
-
-[↑返回顶部](#momo)
-
-<h2>全站动态列表接口</h2>
-域名/capi/space.php?do=feed&page=0&perpage=10&view=quiz&queryop=down&dateline=13234834
-#### 请求参数
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* 查询参数 -- view, 值为quiz代表全站打赌动态列表
-	* 时间点 -- dateline
-	* 查询方式 -- queryop, 取值可以是up, down
-		* up 代表上拉，取比dateline新的动态
-		* down 代表到底，取紧接着dateline之后的动态
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[feeds]，feed列表， 条目字段如下
-			* title_template -- feed的标题
-			* body_template -- feed的内容
-			* dateline -- feed的时间
-			* uid -- 发布feed的用户id
-			* username -- 发布feed用户
-			* body_data -- feed的内容，当前仅有打赌有意义
-			* icon -- feed类型
-				* quiz -- 打赌
-				* do -- 心情
-				* pic -- 图片
-				* profile -- 更新资料
-
-		* data[count], 返回列表条目数, 便用遍历
-#### 样例
-	
-
-
-
-
-[↑返回顶部](#momo)
-
-<h2>通知列表接口</h2>
-域名/capi/space.php?do=notice&page=0&prepage=2&uid=1&type=quizinvalid&dateline=324234&queryop=up&m_auth=55dalDuJy
-#### 请求参数
-	* 当前用户id -- uid
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* 通知类型 -- type
-	* API密钥 -- m_auth, 由登录后返回
-	* 时间点 -- dateline
-	* 查询方式 -- queryop, 取值可以是up, down
-		* up 代表上拉，取比dateline新的动态
-		* down 代表到底，取紧接着dateline之后的动态
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[notices]，通知列表， 条目字段如下
-			* id -- 通知id
-			* uid -- 接收通知的用户
-			* type -- 通知类型（取值含义见请求参数）
-			* authorid -- 发送通知的用户
-			* authorid -- 发送通知的用户
-			* note -- 通知的内容
-			* isfriend -- 接收和发送方是否好友
-			* dateline -- 时间
-			* avatar -- 通知头像
-		* data[count], 返回列表条目数, 便用遍历
-#### 样例
-	
-
-
-
-
-[↑返回顶部](#momo)
 
 <h2>私信列表接口</h2>
 域名/capi/space.php?do=pm&page=0&prepage=2&uid=1&filter=newpm&dateline=0&queryop=up&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
@@ -554,1095 +436,8 @@ momo
 	}
 [↑返回顶部](#momo)
 
-<h2>好友排行榜接口</h2> 
-域名/capi/space.php?uid=5&do=friend&m_auth=54f8qnt8HxbRz8NWomy0e4k2gKvVvc6oil8qDY9upUERswmzj
-#### 请求参数
-	* 当前用户id -- uid
-	* API密钥 -- m_auth, 由登录后返回
-
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[friends]，好友列表， 条目字段如下(类似于[登录](#登录)返回的空间信息
-			* groupid -- 所在用户组（级别）
-			* credit -- 金币
-			* experience -- 经验
-			* username -- 用户名
-			* name -- 实名
-			* namestatus -- 是否实名
-			* videostatus -- 是否视频认证
-			* friendnum -- 好友数
-			* viewnum -- 浏览次数
-			* notenum -- 通知数
-			* addfriendnum -- 关注数
-			* doingnum -- 心情数
-			* spacenote -- 心情
-			* lastpost -- 最新提交时间
-			* lastlogin -- 最新登录时间
-			* attachsize -- 空间大小
-			* flag -- 是否被禁
-			* newpm -- 是否有新通知
-			* avatar -- 个人头像
-			* quiznum -- 发布的打赌数
-			* voternum -- 参加打赌的次数
-			* creditrank -- 金币排行
-			* experiencerank -- 经验排行
-			
-		* data[count], 返回列表条目数, 便用遍历
-
-#### 样例
-	{
-		"code": 0,
-		"data": {
-			"friends": [
-				{
-					"uid": "5",
-					"groupid": "11",
-					"credit": "1040",
-					"experience": "1004",
-					"username": "summit",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "10",
-					"viewnum": "20",
-					"notenum": "22",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "0",
-					"doingnum": "0",
-					"blognum": "0",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1343726668",
-					"updatetime": "1343726701",
-					"lastsearch": "0",
-					"lastpost": "1343726701",
-					"lastlogin": "1344936333",
-					"lastsend": "0",
-					"attachsize": "0",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "113.111.115.181",
-					"ip": "74125184",
-					"mood": "0",
-					"quiznum": "0",
-					"winnum": "1",
-					"lostnum": "0",
-					"voternum": "1",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "5",
-					"creditrank": "4",
-					"experiencerank": "3",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				},
-				{
-					"uid": "1",
-					"groupid": "5",
-					"credit": "152",
-					"experience": "45",
-					"username": "admin",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "8",
-					"viewnum": "7",
-					"notenum": "1",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "1",
-					"doingnum": "0",
-					"blognum": "1",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1343725030",
-					"updatetime": "1343873852",
-					"lastsearch": "0",
-					"lastpost": "1343873852",
-					"lastlogin": "1346209918",
-					"lastsend": "0",
-					"attachsize": "2155640",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "127.0.0.1",
-					"ip": "113111119",
-					"mood": "0",
-					"quiznum": "2",
-					"winnum": "0",
-					"lostnum": "1",
-					"voternum": "2",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "1",
-					"creditrank": "4",
-					"experiencerank": "3",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				},
-				{
-					"uid": "14",
-					"groupid": "5",
-					"credit": "79",
-					"experience": "14",
-					"username": "lin",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "5",
-					"viewnum": "3",
-					"notenum": "0",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "2",
-					"doingnum": "0",
-					"blognum": "0",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1344825403",
-					"updatetime": "0",
-					"lastsearch": "0",
-					"lastpost": "0",
-					"lastlogin": "1345707145",
-					"lastsend": "0",
-					"attachsize": "0",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "113.111.133.144",
-					"ip": "113111117",
-					"mood": "0",
-					"quiznum": "0",
-					"winnum": "0",
-					"lostnum": "0",
-					"voternum": "2",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "0",
-					"creditrank": "4",
-					"experiencerank": "3",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				}
-			],
-			"count": 3
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-[↑返回顶部](#momo)
 
 
-<h2>我的个人信息</h2>
-域名/capi/cp.php?ac=profile&m_auth=65e8JkX8RscU2y2pYZEVdcZrja2YOr2QXuhbPBCHzLAw
-#### 请求参数
-	* API密钥 -- m_auth, 由登录后返回
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回一个数据
-		* data[space], 当前登录用户的信息，具体内容如下
-			* 用户id -- uid
-			* 性别 -- sex, 男取值0， 女取值1
-			* 用户邮箱 -- email
-			* 手机 -- mobile
-			* qq帐号 -- qq
-			* msn帐号 -- msn
-			* weibo帐号 -- weibo
-			* 隐私数组 -- privacy, 由类型区分0代表全站可见
-			* 动态数组 -- feed, 由类型区分
-			* 好友数 -- friend
-			* 动态好友数 -- feedfriend
-			* 金币 -- credit
-			* 信用 -- experience
-			* 用户名 -- username
-			* 实名 -- name
-			* 是否实名 -- namestatus, 1是, 0否
-			* 心情数 -- doingnum
-			* 分享数 -- sharenum
-			* 最近活跃时间 -- dateline
-			* 最近更新时间 -- updatetime
-			* 最近一次搜索时间 -- lastsearch
-			* 最近一次发布时间 -- lastpost
-			* 最近一次登录时间 -- lastlogin
-			* 最近一次发送消息时间 -- lastsend
-			* 是否禁用 -- flag
-			* 是否有新通知 -- newpm
-			* 头像 -- avatar
-			* 登录的ip -- ip
-			* 附件大小 -- attachsize
-			* 好友列表id -- friends
-
-			
-#### 样例
-	{
-		"code": 0,
-		"data": {
-			"space": {
-				"uid": "5",
-				"sex": "0",
-				"email": "summit_mail@qq.com",
-				"newemail": "",
-				"emailcheck": "0",
-				"mobile": "",
-				"qq": "",
-				"msn": "",
-				"msnrobot": "",
-				"msncstatus": "0",
-				"videopic": "",
-				"birthyear": "0",
-				"birthmonth": "0",
-				"birthday": "0",
-				"blood": "",
-				"marry": "0",
-				"birthprovince": "",
-				"birthcity": "",
-				"resideprovince": "",
-				"residecity": "",
-				"note": "",
-				"spacenote": "",
-				"authstr": "",
-				"theme": "",
-				"nocss": "0",
-				"menunum": "0",
-				"css": "",
-				"privacy": {
-					"view": {
-						"index": "0",
-						"friend": "0",
-						"wall": "0",
-						"feed": "0",
-						"mtag": "0",
-						"event": "0",
-						"doing": "0",
-						"blog": "0",
-						"quiz": "0",
-						"album": "0",
-						"share": "0",
-						"poll": "0"
-					},
-					"feed": {
-						"doing": 1,
-						"blog": 1,
-						"quiz": 1,
-						"joinquiz": 1,
-						"upload": 1,
-						"share": 1,
-						"poll": 1,
-						"joinpoll": 1,
-						"thread": 1,
-						"post": 1,
-						"mtag": 1,
-						"event": 1,
-						"join": 1,
-						"friend": 1,
-						"comment": 1,
-						"show": 1,
-						"credit": 1,
-						"spaceopen": 1,
-						"invite": 1,
-						"task": 1,
-						"profile": 1,
-						"click": 1
-					}
-				},
-				"friend": "7",
-				"feedfriend": "7",
-				"sendmail": "",
-				"magicstar": "0",
-				"magicexpire": "0",
-				"timeoffset": "",
-				"weibo": "",
-				"groupid": "11",
-				"credit": "2048",
-				"experience": "2108",
-				"username": "summit",
-				"name": "",
-				"namestatus": "0",
-				"videostatus": "0",
-				"domain": "",
-				"friendnum": "1",
-				"viewnum": "17",
-				"notenum": "0",
-				"addfriendnum": "0",
-				"mtaginvitenum": "0",
-				"eventinvitenum": "0",
-				"myinvitenum": "0",
-				"pokenum": "0",
-				"doingnum": "0",
-				"blognum": "2",
-				"albumnum": "0",
-				"threadnum": "0",
-				"pollnum": "0",
-				"eventnum": "0",
-				"sharenum": "0",
-				"dateline": "1343789930",
-				"updatetime": "1344932295",
-				"lastsearch": "0",
-				"lastpost": "1344932295",
-				"lastlogin": "1345359730",
-				"lastsend": "0",
-				"attachsize": "0",
-				"addsize": "0",
-				"addfriend": "0",
-				"flag": "0",
-				"newpm": "0",
-				"avatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
-				"regip": "127.0.0.1",
-				"ip": "127000000",
-				"mood": "0",
-				"quiznum": "10",
-				"winnum": "4",
-				"lostnum": "1",
-				"voternum": "8",
-				"self": 1,
-				"friends": [
-					"7"
-				],
-				"allnotenum": 0
-			}
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-[↑返回顶部](#momo)
-
-
-
-<h2>搜索好友</h2>
-域名/capi/cp.php?ac=friend&op=search&page=0&perpage=1&searchkey=admin&searchsubmit=true&searchmode=1&m_auth=af9cCEMpQ
-#### 请求参数
-	* 用户id -- uid
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* 查询参数 -- searchsubmit必须为true, searchmode必须为1
-	* 查询内容 -- searchkey
-	* API密钥 -- m_auth, 由登录后返回
-
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[friend]，打赌列表， 条目字段如下
-			* 用户id -- uid
-			* 用户头像 -- avatar
-			* 金币 -- credit
-			* 信用 -- experience
-			* 用户名 -- username
-			* 实名 -- name
-			* 是否实名 -- namestatus, 1是, 0否
-			* 心情数 -- doingnum
-			* 分享数 -- sharenum
-			* 最近活跃时间 -- dateline
-			* 最近更新时间 -- updatetime
-			* 最近一次搜索时间 -- lastsearch
-			* 最近一次发布时间 -- lastpost
-			* 最近一次登录时间 -- lastlogin
-			* 最近一次发送消息时间 -- lastsend
-			* 是否禁用 -- flag
-			* 是否有新通知 -- newpm
-			* 头像 -- avatar
-			* 登录的ip -- ip
-			* 附件大小 -- attachsize
-			* 发布的打赌数 -- quiznum
-			* 赢的次数 -- winnum
-			* 输的次数 -- lostnum
-			* 参与打赌数 -- voternum
-			* 是否好友-- isfriend, 0否，1是
-		* data[count], 返回列表条目数, 便用遍历
-
-#### 样例
-	{
-		"code": 0,
-		"data": {
-			"friends": [
-				{
-					"uid": "5",
-					"groupid": "11",
-					"credit": "1040",
-					"experience": "1004",
-					"username": "summit",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "10",
-					"viewnum": "20",
-					"notenum": "22",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "0",
-					"doingnum": "0",
-					"blognum": "0",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1343726668",
-					"updatetime": "1343726701",
-					"lastsearch": "0",
-					"lastpost": "1343726701",
-					"lastlogin": "1344936333",
-					"lastsend": "0",
-					"attachsize": "0",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "113.111.115.181",
-					"ip": "74125184",
-					"mood": "0",
-					"quiznum": "0",
-					"winnum": "1",
-					"lostnum": "0",
-					"voternum": "1",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "5",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				},
-				{
-					"uid": "1",
-					"groupid": "5",
-					"credit": "152",
-					"experience": "45",
-					"username": "admin",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "8",
-					"viewnum": "7",
-					"notenum": "1",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "1",
-					"doingnum": "0",
-					"blognum": "1",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1343725030",
-					"updatetime": "1343873852",
-					"lastsearch": "0",
-					"lastpost": "1343873852",
-					"lastlogin": "1346209918",
-					"lastsend": "0",
-					"attachsize": "2155640",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "127.0.0.1",
-					"ip": "113111119",
-					"mood": "0",
-					"quiznum": "2",
-					"winnum": "0",
-					"lostnum": "1",
-					"voternum": "2",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "1",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				},
-				{
-					"uid": "14",
-					"groupid": "5",
-					"credit": "79",
-					"experience": "14",
-					"username": "lin",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "5",
-					"viewnum": "3",
-					"notenum": "0",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "2",
-					"doingnum": "0",
-					"blognum": "0",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1344825403",
-					"updatetime": "0",
-					"lastsearch": "0",
-					"lastpost": "0",
-					"lastlogin": "1345707145",
-					"lastsend": "0",
-					"attachsize": "0",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "113.111.133.144",
-					"ip": "113111117",
-					"mood": "0",
-					"quiznum": "0",
-					"winnum": "0",
-					"lostnum": "0",
-					"voternum": "2",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "0",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				}
-			],
-			"count": 3
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-[↑返回顶部](#momo)
-
-
-
-
-<h2>系统未读信息计数器</h2>
-
-域名/capi/space.php?do=stat&m_auth=e8b7zu%2BuRuir9hvAgj%2BLxbZtCgUKnFTojhHKjm9zc%2ByGzcuj2cUL
-
-#### 请求参数
-	* 固定参数 -- do, 必须为stat
-	* API密钥 -- m_auth, 由登录后返回
-
-#### 返回字段
-
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组,
-		* allnotenum: 未读通知数
-		* newpn: 新短消息
-		* addfriendnum: 好友请求
-
-#### 样例
-
-	{
-		"code": 0,
-		"data": {
-			"allnotenum": 25,
-			"newpm": "0",
-			"addfriendnum": "0"
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-
-
-[↑返回顶部](#momo)
-
-<h2>用户登陆状态</h2>
-
-域名/capi/space.php?do=isonline&uid=186
-
-#### 请求参数
-	* 固定参数 -- do, 必须为isonline
-	* uid -- 查询的用户id
-
-#### 返回字段
-
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组,
-		* isonline: 0代表不在线, 1代表新浪微博在线, 2代表腾讯微博在线
-
-
-#### 样例
-
-	{
-		"code": 0,
-		"data": {
-			"isonline": "2"
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-
-
-[↑返回顶部](#momo)
-
-<h2>好友申请列表</h2>
-域名/capi/cp.php?ac=friend&op=request&page=0&perpage=1&m_auth=8616qvbrwntFdXONEB
-
-#### 请求参数
-	* 用户id -- uid
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* 查询参数 -- op必须为request&page
-	* API密钥 -- m_auth, 由登录后返回
-
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[friend]，打赌列表， 条目字段如下
-			* 用户id -- uid
-			* 用户头像 -- avatar
-			* 金币 -- credit
-			* 信用 -- experience
-			* 用户名 -- username
-			* 实名 -- name
-			* 是否实名 -- namestatus, 1是, 0否
-			* 心情数 -- doingnum
-			* 分享数 -- sharenum
-			* 最近活跃时间 -- dateline
-			* 最近更新时间 -- updatetime
-			* 最近一次搜索时间 -- lastsearch
-			* 最近一次发布时间 -- lastpost
-			* 最近一次登录时间 -- lastlogin
-			* 最近一次发送消息时间 -- lastsend
-			* 是否禁用 -- flag
-			* 是否有新通知 -- newpm
-			* 头像 -- avatar
-			* 登录的ip -- ip
-			* 附件大小 -- attachsize
-			* 发布的打赌数 -- quiznum
-			* 赢的次数 -- winnum
-			* 输的次数 -- lostnum
-			* 参与打赌数 -- voternum
-			* 是否好友-- isfriend, 0否，1是
-			* 是否在线 --  isonline, 0不在线, 1新浪微博在线, 2腾讯微博在线
-		* data[count], 返回列表条目数, 便用遍历
-
-#### 样例
-	{
-		"code": 0,
-		"data": {
-			"friends": [
-				{
-					"uid": "1",
-					"groupid": "11",
-					"credit": "2231",
-					"experience": "2293",
-					"username": "admin",
-					"name": "admin",
-					"namestatus": "1",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "0",
-					"viewnum": "8",
-					"notenum": "25",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "0",
-					"doingnum": "1",
-					"blognum": "3",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "1",
-					"dateline": "1352519246",
-					"updatetime": "1348716805",
-					"lastsearch": "1344408548",
-					"lastpost": "1352516403",
-					"lastlogin": "1352519695",
-					"lastsend": "0",
-					"attachsize": "4873023",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://localhost:8080/momo/center/images/noavatar_small.gif",
-					"regip": "127.0.0.1",
-					"ip": "127000000",
-					"mood": "0",
-					"quiznum": "32",
-					"winnum": "2",
-					"lostnum": "1",
-					"voternum": "12",
-					"friend": "",
-					"fuid": "27",
-					"fusername": "sina_2236",
-					"status": "0",
-					"gid": "0",
-					"note": "",
-					"num": "0",
-					"cfriend": "",
-					"cfcount": 0,
-					"isonline": 0
-				}
-			],
-			"count": 1
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-
-[↑返回顶部](#momo)
-
-<h2>我的好友列表</h2> 
-域名/capi/space.php?uid=5&do=friend&isinsert=true&m_auth=54f8qnt8HxbRz8NWomy0e4k2gKvVvc6oil8qDY9upUERswmzj
-#### 请求参数
-	* 当前用户id -- uid
-	* API密钥 -- m_auth, 由登录后返回
-
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[friends]，好友列表， 条目字段如下(类似于[登录](#登录)返回的空间信息
-			* groupid -- 所在用户组（级别）
-			* credit -- 金币
-			* experience -- 经验
-			* username -- 用户名
-			* name -- 实名
-			* namestatus -- 是否实名
-			* videostatus -- 是否视频认证
-			* friendnum -- 好友数
-			* viewnum -- 浏览次数
-			* notenum -- 通知数
-			* addfriendnum -- 关注数
-			* doingnum -- 心情数
-			* spacenote -- 心情
-			* lastpost -- 最新提交时间
-			* lastlogin -- 最新登录时间
-			* attachsize -- 空间大小
-			* flag -- 是否被禁
-			* newpm -- 是否有新通知
-			* avatar -- 个人头像
-			* creditrank -- 金币排行
-			* experiencerank -- 经验排行
-			* online -- 0,代表不在线 , 1代表新浪微博在线, 2代表腾讯微博在线
-		* data[count], 返回列表条目数, 便用遍历
-
-#### 样例
-	{
-		"code": 0,
-		"data": {
-			"friends": [
-				{
-					"uid": "5",
-					"groupid": "11",
-					"credit": "1040",
-					"experience": "1004",
-					"username": "summit",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "10",
-					"viewnum": "20",
-					"notenum": "22",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "0",
-					"doingnum": "0",
-					"blognum": "0",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1343726668",
-					"updatetime": "1343726701",
-					"lastsearch": "0",
-					"lastpost": "1343726701",
-					"lastlogin": "1344936333",
-					"lastsend": "0",
-					"attachsize": "0",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "113.111.115.181",
-					"ip": "74125184",
-					"mood": "0",
-					"quiznum": "0",
-					"winnum": "1",
-					"lostnum": "0",
-					"voternum": "1",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "5",
-					"creditrank": "4",
-					"experiencerank": "3",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				},
-				{
-					"uid": "1",
-					"groupid": "5",
-					"credit": "152",
-					"experience": "45",
-					"username": "admin",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "8",
-					"viewnum": "7",
-					"notenum": "1",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "1",
-					"doingnum": "0",
-					"blognum": "1",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1343725030",
-					"updatetime": "1343873852",
-					"lastsearch": "0",
-					"lastpost": "1343873852",
-					"lastlogin": "1346209918",
-					"lastsend": "0",
-					"attachsize": "2155640",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "127.0.0.1",
-					"ip": "113111119",
-					"mood": "0",
-					"quiznum": "2",
-					"winnum": "0",
-					"lostnum": "1",
-					"voternum": "2",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "1",
-					"creditrank": "4",
-					"experiencerank": "3",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				},
-				{
-					"uid": "14",
-					"groupid": "5",
-					"credit": "79",
-					"experience": "14",
-					"username": "lin",
-					"name": "",
-					"namestatus": "0",
-					"videostatus": "0",
-					"domain": "",
-					"friendnum": "5",
-					"viewnum": "3",
-					"notenum": "0",
-					"addfriendnum": "0",
-					"mtaginvitenum": "0",
-					"eventinvitenum": "0",
-					"myinvitenum": "0",
-					"pokenum": "2",
-					"doingnum": "0",
-					"blognum": "0",
-					"albumnum": "0",
-					"threadnum": "0",
-					"pollnum": "0",
-					"eventnum": "0",
-					"sharenum": "0",
-					"dateline": "1344825403",
-					"updatetime": "0",
-					"lastsearch": "0",
-					"lastpost": "0",
-					"lastlogin": "1345707145",
-					"lastsend": "0",
-					"attachsize": "0",
-					"addsize": "0",
-					"addfriend": "0",
-					"flag": "0",
-					"newpm": "0",
-					"avatar": "http://58.215.187.8:8081/center/images/noavatar_small.gif",
-					"regip": "113.111.133.144",
-					"ip": "113111117",
-					"mood": "0",
-					"quiznum": "0",
-					"winnum": "0",
-					"lostnum": "0",
-					"voternum": "2",
-					"resideprovince": "",
-					"residecity": "",
-					"note": "",
-					"spacenote": "",
-					"sex": "0",
-					"gid": "0",
-					"num": "0",
-					"creditrank": "4",
-					"experiencerank": "3",
-					"p": "",
-					"c": "",
-					"group": "其他",
-					"isfriend": 1
-				}
-			],
-			"count": 3
-		},
-		"msg": "数据获取成功",
-		"action": "rest_success"
-	}
-[↑返回顶部](#momo)
-
-<h2>我的留言</h2>
-域名/capi/do.php?ac=ajax&op=getcomment&id=24&idtype=uid&page=0&prepage=1&dateline=234234&queryop=up&m_auth=af9cCEMpQlfFTifZltugadwhG
-
-#### 请求参数
-	* 操作类型 -- op, 必须为getcomment
-	* 查询评论关联的id -- id, 若为打赌，则为打赌id值，若为空间则为用户id值，若为分享则为分享id值
-	* 指示id代表的类型 -- idtype, uid代表空间
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* API密钥 -- m_auth, 由登录后返回
-	* 时间点 -- dateline
-	* 查询方式 -- queryop, 取值可以是up, down
-		* up 代表上拉，取比dateline新的评论
-		* down 代表到底，取紧接着dateline之后的评论
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[comments],评论列表，具体内容如下
-			* 评论id -- cid
-			* 评论对象，用户id -- uid
-			* 评论对象头像 -- avatar
-			* 评论关联的id -- id
-			* 评论类型 -- idtype
-			* 发表评论的用户id -- authorid
-			* 发表评论的用户头像 -- authoravatar
-			* 发表评论的用户名 -- author
-			* 发表的时间 -- dateline
-			* 发表的ip -- ip
-			* 评论的内容 -- message
-		* data[count], 返回列表条目数, 便用遍历
-
-#### 样例
-	{
-    "code": 0,
-    "data": {
-        "comments": [
-            {
-                "cid": "31",
-                "uid": "1",
-                "id": "24",
-                "idtype": "quizid",
-                "authorid": "1",
-                "author": "admin",
-                "ip": "127.0.0.1",
-                "dateline": "1344407149",
-                "message": "234234",
-                "magicflicker": "0",
-                "avatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
-            }
-        ],
-        "count": 1
-    },
-    "msg": "数据获取成功",
-    "action": "rest_success"
-}
-[↑返回顶部](#momo)
 
 <h2>发表博客</h2>
 域名/capi/cp.php?ac=blog&blogid=0&blogsubmit=true&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
@@ -1724,23 +519,132 @@ momo
 		* avatar -- 个人头像
 
 #### 样例
-	{"code":0,"data":{"space":{"uid":"11","sex":"0","email":"test6@momo.cn","newemail":"","emailcheck":"0",
-	"mobile":"","qq":"","msn":"","msnrobot":"","msncstatus":"0","videopic":"","birthyear":"0","birthmonth":"0",
-	"birthday":"0","blood":"","marry":"0","birthprovince":"","birthcity":"","resideprovince":"","residecity":"",
-	"note":"","spacenote":"","authstr":"","theme":"","nocss":"0","menunum":"0","css":"",
-	"privacy":{"view":{"index":"0","friend":"0","wall":"0","feed":"0","mtag":"0","event":"0","doing":"0",
-	"blog":"0","quiz":"0","album":"0","share":"0","poll":"0"},"feed":{"doing":1,"blog":1,"quiz":1,"joinquiz":1,
-	"upload":1,"share":1,"poll":1,"joinpoll":1,"thread":1,"post":1,"mtag":1,"event":1,"join":1,"friend":1,
-	"comment":1,"show":1,"credit":1,"spaceopen":1,"invite":1,"task":1,"profile":1,"click":1}},"friend":"",
-	"feedfriend":"","sendmail":"","magicstar":"0","magicexpire":"0","timeoffset":"","weibo":"","groupid":"0",
-	"credit":"25","experience":"15","username":"test6","name":"","namestatus":"0","videostatus":"0","domain":"",
-	"friendnum":"0","viewnum":"0","notenum":"0","addfriendnum":"0","mtaginvitenum":"0","eventinvitenum":"0",
-	"myinvitenum":"0","pokenum":"0","doingnum":"0","blognum":"0","albumnum":"0","threadnum":"0","pollnum":"0",
-	"eventnum":"0","sharenum":"0","dateline":"1344414070","updatetime":"0","lastsearch":"0","lastpost":"0",
-	"lastlogin":"1344414070","lastsend":"0","attachsize":"0","addsize":"0","addfriend":"0","flag":"0","newpm":"0",
-	"avatar":"0","regip":"127.0.0.1","ip":"127000000","mood":"0","voternum":"0","self":1,"friends":[],"allnotenum":0},
-	"m_auth":"cf7chDvDIcnUVeupGp4utLftIQEP%2B1rP8eGrGWydH3ITmly6DURpvHCvByCJlE0hEus%2F5Ji%2FqVUrfnd3dHn6%2BA"},
-	"msg":"注册成功了，进入个人空间","action":"registered"}
+{
+    "code": 0,
+    "data": {
+        "space": {
+            "uid": "11",
+            "sex": "0",
+            "email": "test6@momo.cn",
+            "newemail": "",
+            "emailcheck": "0",
+            "mobile": "",
+            "qq": "",
+            "msn": "",
+            "msnrobot": "",
+            "msncstatus": "0",
+            "videopic": "",
+            "birthyear": "0",
+            "birthmonth": "0",
+            "birthday": "0",
+            "blood": "",
+            "marry": "0",
+            "birthprovince": "",
+            "birthcity": "",
+            "resideprovince": "",
+            "residecity": "",
+            "note": "",
+            "spacenote": "",
+            "authstr": "",
+            "theme": "",
+            "nocss": "0",
+            "menunum": "0",
+            "css": "",
+            "privacy": {
+                "view": {
+                    "index": "0",
+                    "friend": "0",
+                    "wall": "0",
+                    "feed": "0",
+                    "mtag": "0",
+                    "event": "0",
+                    "doing": "0",
+                    "blog": "0",
+                    "quiz": "0",
+                    "album": "0",
+                    "share": "0",
+                    "poll": "0"
+                },
+                "feed": {
+                    "doing": 1,
+                    "blog": 1,
+                    "quiz": 1,
+                    "joinquiz": 1,
+                    "upload": 1,
+                    "share": 1,
+                    "poll": 1,
+                    "joinpoll": 1,
+                    "thread": 1,
+                    "post": 1,
+                    "mtag": 1,
+                    "event": 1,
+                    "join": 1,
+                    "friend": 1,
+                    "comment": 1,
+                    "show": 1,
+                    "credit": 1,
+                    "spaceopen": 1,
+                    "invite": 1,
+                    "task": 1,
+                    "profile": 1,
+                    "click": 1
+                }
+            },
+            "friend": "",
+            "feedfriend": "",
+            "sendmail": "",
+            "magicstar": "0",
+            "magicexpire": "0",
+            "timeoffset": "",
+            "weibo": "",
+            "groupid": "0",
+            "credit": "25",
+            "experience": "15",
+            "username": "test6",
+            "name": "",
+            "namestatus": "0",
+            "videostatus": "0",
+            "domain": "",
+            "friendnum": "0",
+            "viewnum": "0",
+            "notenum": "0",
+            "addfriendnum": "0",
+            "mtaginvitenum": "0",
+            "eventinvitenum": "0",
+            "myinvitenum": "0",
+            "pokenum": "0",
+            "doingnum": "0",
+            "blognum": "0",
+            "albumnum": "0",
+            "threadnum": "0",
+            "pollnum": "0",
+            "eventnum": "0",
+            "sharenum": "0",
+            "dateline": "1344414070",
+            "updatetime": "0",
+            "lastsearch": "0",
+            "lastpost": "0",
+            "lastlogin": "1344414070",
+            "lastsend": "0",
+            "attachsize": "0",
+            "addsize": "0",
+            "addfriend": "0",
+            "flag": "0",
+            "newpm": "0",
+            "avatar": "0",
+            "regip": "127.0.0.1",
+            "ip": "127000000",
+            "mood": "0",
+            "voternum": "0",
+            "self": 1,
+            "friends": [],
+            "allnotenum": 0
+        },
+        "m_auth": "cf7chDvDIcnUVeupGp4utLftIQEP%2B1rP8eGrGWydH3ITmly6DURpvHCvByCJlE0hEus%2F5Ji%2FqVUrfnd3dHn6%2BA"
+    },
+    "msg": "注册成功了，进入个人空间",
+    "action": "registered"
+}
 [↑返回顶部](#momo)
 	
 <h2>登录</h2>
