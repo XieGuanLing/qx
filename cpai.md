@@ -3,34 +3,702 @@ momo
 ******************************
 
 索引
-----
-* 下行接口
-	*	[好友动态列表接口](#好友动态列表接口)
-	*	[私信列表接口](#私信列表接口)
-	*	[私信详情](#私信详情)
 
-
-* 上行接口
 	*	[获取注册验证码](#获取注册验证码)
 	*	[注册](#注册)
 	*	[登录](#登录)
-	*	[上传图片](#上传图片)
-	*	[撰写评论](#撰写评论)
-	*	[发布私信](#发布私信)
 	*	[更改头像](#更改头像)
 	*	[更改昵称](#更改昵称)
 	*	[退出](#退出)
 	*	[单向加关注](#单向加关注)
-	*	
+	*	[好友动态列表接口](#好友动态列表接口)
+	*	[发布私信](#发布私信)
+	*	[私信列表接口](#私信列表接口)
+	*	[私信详情](#私信详情)
+		
 	*	[发表博客](#发表博客)
+	*	[对某篇博客表态称赞](#对某篇博客表态称赞)
+	*	[撰写对某篇博客评论](#撰写对某篇博客评论)
+	*	[某篇博客的评论列表](#某篇博客的评论列表)
 	*	[查看自己的全部博客](#查看自己的全部博客)
-	*       [查看自己某篇博客的具体内容](#查看自己某篇博客的具体内容)
-	*       [删除自己的某篇博客](#删除自己的某篇博客)
+	*   [查看自己某篇博客的具体内容](#查看自己某篇博客的具体内容)
+	*   [删除自己的某篇博客](#删除自己的某篇博客)
 	*	[查看某个关注人的全部博客](#查看某个关注人的全部博客)
 	*	[查看整个站点的博客](#查看整个站点的博客)
+	
+
+	*	[新建并加入群组](#新建并加入群组)
+	*	[加入群组](#加入群组)
+	*	[群组列表](#群组列表)
+	*	[发表新话题](#发表新话题)
+	*	[某个话题的评论列表](#某个话题的评论列表)
+	*	[某个群组下的话题列表](#某个群组下的话题列表)
+	*	[某个群组下的成员列表](#某个群组下的成员列表)
+	*	[对某个话题表态称赞](#对某个话题表态称赞)
+	*	[对某个话题发表看法](#对某个话题发表看法)
 
 接口说明
 --------
+<h2>某个话题的评论列表</h2>
+/capi/do.php?ac=ajax&op=getthreadpost&tid=2&page=0&perpage=5&dateline=1386434227&queryop=up
+有多种查询方式，可参考[某篇博客的评论列表](#某篇博客的评论列表)
+
+
+#### 请求参数
+	*ac=ajax   op=getthreadpost  ---  固定搭配
+	*tid --- 话题id
+	*page --- 第几页
+	*perpage --- 每页显示数量
+	*dateline --- 时间点
+	*queryop --- 查询方式, 取值可以是up, down
+	    * up 代表上拉，dataline时间点以前的评论
+        * down 代表到底，dataline时间点以后的评论
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+		*posts数组
+			*uid --- 评论人的id
+			*username -- 评论人的用户名
+			*dataline -- 评论的时间点
+			*message -- 评论信息
+			*pic --- 图片
+		*count --- 评论信息的数量
+
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "posts": [
+	            {
+	                "uid": "4",
+	                "username": "qiuxia",
+	                "dateline": "1386414481",
+	                "message": "还不显示名字",
+	                "pic": ""
+	            },
+	            {
+	                "uid": "4",
+	                "username": "qiuxia",
+	                "dateline": "1386413596",
+	                "message": "还不显示",
+	                "pic": ""
+	            }
+	          
+	        ],
+	        "count": 2
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
+<h2>某篇博客的评论列表</h2>
+有多种查询方式
+*前10条评论----- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9 (默认是取前10条数据)
+	相当于  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=10
+*自定义要查询的数量（如：20条）  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=20
+*某个时间点以前的评论 ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=1&dateline=1386434227&queryop=up
+*某个时间点以后的评论 ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=1&dateline=1386434227&queryop=down
+
+
+#### 请求参数
+	*ac=ajax   op=getcomment  idtype=blogid ---  固定搭配
+	*id --- 博客id
+	*page --- 第几页
+	*perpage --- 每页显示数量
+	*dateline --- 时间点
+	*queryop --- 查询方式, 取值可以是up, down
+	    * up 代表上拉，dataline时间点以前的评论
+        * down 代表到底，dataline时间点以后的评论
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+		*comments数组
+			*cid --- 评论信息的id
+			*authorid -- 评论人的id
+			*author -- 评论人的用户名
+			*message -- 评论信息
+		*count --- 评论信息的数量
+
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "comments": [
+	            {
+	                "cid": "9",
+	                "authorid": "6",
+	                "author": "summit",
+	                "message": "写得很好6"
+	            },
+	            {
+	                "cid": "8",
+	                "authorid": "6",
+	                "author": "summit",
+	                "message": "写得很好5"
+	            },
+	            {
+	                "cid": "7",
+	                "authorid": "6",
+	                "author": "summit",
+	                "message": "写得很好4"
+	            },
+	            {
+	                "cid": "6",
+	                "authorid": "6",
+	                "author": "summit",
+	                "message": "写得很好3"
+	            }
+	        ],
+	        "count": 4
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
+<h2>撰写对某篇博客评论</h2>
+域名/capi/cp.php?ac=comment&commentsubmit=true&idtype=blogid&message=写得很好&id=9&m_auth=efafX16s6n%2B8WyOhcn
+#### 请求参数
+	*ac=comment  commentsubmit=true idtype=blogid ---  固定搭配
+	*message --- 评论
+	*id --- 博客id
+	*m_auth --- 登录后返回的授权码
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>对某篇博客表态称赞</h2>
+域名/capi/cp.php?ac=click&op=add&clickid=4&idtype=blogid&id=6&m_auth=69a8srzUGHbLglC%2FJDKPa%2FdTQDcx1%2FJNaXYDdxdUlA
+#### 请求参数
+	*ac=click&op=add   clickid=4   idtype=blogid ---  固定搭配
+		当clickid选择不同的值时，表示不同的态度，clickid可以取下列值
+		*1 --- 路过
+		*2 --- 雷人
+		*3 --- 握手
+		*4 --- 鲜花
+		*5 --- 鸡蛋
+	*id---话题id
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "参与表态完成了",
+	    "action": "click_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>对某个话题发表看法</h2>
+域名capi/cp.php?ac=thread&postsubmit=true&message=还不显示名字&tid=2&m_auth=69a8srzUGHbLglC%2FJDKPa
+#### 请求参数
+	*ac=thread&postsubmit=true ---  固定搭配
+	*message --- 对话题的看法
+	*tid---话题id
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+	
+[↑返回顶部](#momo)
+
+
+
+<h2>对某个话题表态称赞</h2>
+域名/capi/cp.php?ac=click&op=add&clickid=14&idtype=tid&id=1&m_auth=c0d8IRk2sRIH5xdzWMxEy2GuvkXOh%2BLmZWC7Dgzhig
+#### 请求参数
+	*ac=click&op=add&clickid=14&idtype=tid ---  固定搭配
+	*id---话题id
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "参与表态完成了",
+	    "action": "click_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
+<h2>加入群组</h2>
+域名/capi/space.php?do=mtag&view=member&tagid=2
+
+#### 请求参数
+	*do=mtag&view=member ---  固定搭配
+	*tagid---群组id
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组，返回两个数据
+	     *memberlist:成员列表
+	     		*uid --  用户id
+	     		*username -- 用户名
+	     *onlineStatus:在线的成员uid数组
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "memberlist": [
+	            {
+	                "uid": "3",
+	                "username": "yuyu"
+	            },
+	            {
+	                "uid": "7",
+	                "username": "yongwang"
+	            },
+	            {
+	                "uid": "6",
+	                "username": ""
+	            }
+	        ],
+	        "onlineStatus": []
+	            "7"
+	        ]
+	    },
+	    "msg": "do_sucess",
+	    "action": "do_sucess"
+	}
+
+
+[↑返回顶部](#momo)
+
+
+<h2>某个群组下的话题列表</h2>
+域名capi/space.php?do=mtag&tagid=2&view=list
+
+#### 请求参数
+	*ac=mtag&op=join&joinsubmit=true---  固定搭配
+	*tagid---群组id
+	*m_auth---授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组，每个话题的信息：
+		        *tid -- 话题id
+	            *topicid  -- 
+	            *tagid 
+	            *eventid
+	            *subject -- 话题的主题
+	            *magiccolor
+	            *magicegg
+	            *uid -- 话题发起人的id
+	            *username -- 话题发起人的用户名
+	            *dateline 
+	            *viewnum -- 该话题的浏览数
+	            *replynum -- 该话题的回复数
+	            *lastpost -- 该话题的最后回复时间
+	            *lastauthor -- 最后回复的作者的用户名 
+	            *lastauthorid -- 最后回复的作者的id
+	            *displayorder 
+	            *digest  -- 是否是精品话题
+	            *hot -- 是否是热闹话题
+	            *click_11 -- 对该话题表态的为“搞笑”的人数
+	            *click_12 -- 对该话题表态的为“迷惑”的人数
+	            *click_13 -- 对该话题表态的为“雷人”的人数
+	            *click_14 -- 对该话题表态的为“鲜花”的人数
+	            *click_15 -- 对该话题表态的为“鸡蛋”的人数
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "tid": "5",
+	            "topicid": "0",
+	            "tagid": "2",
+	            "eventid": "0",
+	            "subject": "这个test的新话题",
+	            "magiccolor": "0",
+	            "magicegg": "0",
+	            "uid": "6",
+	            "username": "",
+	            "dateline": "1386168431",
+	            "viewnum": "1",
+	            "replynum": "1",
+	            "lastpost": "1386168679",
+	            "lastauthor": "yongwang",
+	            "lastauthorid": "7",
+	            "displayorder": "0",
+	            "digest": "0",
+	            "hot": "1",
+	            "click_11": "0",
+	            "click_12": "1",
+	            "click_13": "0",
+	            "click_14": "0",
+	            "click_15": "0"
+	        },
+	        {
+	            "tid": "1",
+	            "topicid": "0",
+	            "tagid": "2",
+	            "eventid": "0",
+	            "subject": "你在哪？",
+	            "magiccolor": "0",
+	            "magicegg": "0",
+	            "uid": "3",
+	            "username": "yuyu",
+	            "dateline": "1382946000",
+	            "viewnum": "2",
+	            "replynum": "0",
+	            "lastpost": "1382946000",
+	            "lastauthor": "yuyu",
+	            "lastauthorid": "3",
+	            "displayorder": "0",
+	            "digest": "0",
+	            "hot": "1",
+	            "click_11": "0",
+	            "click_12": "0",
+	            "click_13": "1",
+	            "click_14": "0",
+	            "click_15": "0"
+	        }
+	    ],
+	    "msg": "do_sucess",
+	    "action": "do_sucess"
+	}	
+
+[↑返回顶部](#momo)
+
+
+
+<h2>发表新话题</h2>
+域名/capi/cp.php?ac=thread&threadsubmit=true&tid=0&topicid=0&tagid=2&subject=这个test的新话题&message=你对这个话题有什么看法&m_auth=db5bwgI15VsGtX
+
+#### 请求参数
+	*ac=thread&threadsubmit=true&tid=0&topicid=0 ---  固定搭配
+	*tagid---群组id
+	*subject --- 话题题目
+	*message --- 你对这个话题的说明与看法
+	*m_auth---授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+
+[↑返回顶部](#momo)
+
+
+
+<h2>加入群组</h2>
+域名/capi/cp.php?ac=mtag&op=join&joinsubmit=true&tagid=2&m_auth=2e37fk%2Bchmhmsq9PW98em27P8b8
+
+#### 请求参数
+	*ac=mtag&op=join&joinsubmit=true---  固定搭配
+	*tagid---群组id
+	*m_auth---授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "加入成功，您现在是该群组的成员了",
+	    "action": "join_success"
+	}
+
+
+[↑返回顶部](#momo)
+
+
+<h2>新建并加入群组</h2>
+域名/capi/cp.php?ac=mtag&textsubmit=true&tagname=extjs群组&joinmode=1&fieldid=1&m_auth=2e37fk%2Bchmhmsq9PW
+
+#### 请求参数
+	*ac=mtag&textsubmit=true---  固定搭配
+	*tagname---群组名称
+	*joinmode---只能取1，说明自身也加入这个群组
+	*fieldid ---群组类型id
+    		*自由联盟--1 
+    		*地区联盟--2 
+    		*兴趣联盟--3 
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	       
+	    ],
+	    "msg": "操作成功了",
+	    "action": "rest_success"
+	}
+
+
+[↑返回顶部](#momo)
+
+
+
+<h2>群组列表</h2>
+域名/capi/capi/space.php?do=mtag&view=hot&orderby=postnum
+
+#### 请求参数
+	* view---查看哪些群组，view取me或manage时，要多传递一个m_auth参数。可以取下列某个值：
+		*me--我参与的群组  
+		*hot--热门群组
+		*recommend--推荐群组 
+		*manage--我管理的群组
+
+
+	*orderby---如何排序， 可以下列某个取值：
+	     *threadnum--话题发表数 
+	     *postnum--提交信息数
+	     *membernum--成员数
+
+#### 返回字段
+	* code--- 错误码 0:代表成功， 1:代表失败
+	* data
+	    *   tagid--- 群组id
+	    *	tagname--- 群组名
+	    *	fieldid--- 群组类型id
+	    *	membernum--- 群组中的成员数
+	    *	threadnum--- 群组中的话题数
+	    *	postnum--- 回复数
+	    *	close--- 群组是否已经关闭
+	    *	announcement--- 群组口号
+	    *	pic--- 群组logo
+	    *	closeapply 
+	    *	joinperm 
+	    *	viewperm 
+	    *	threadperm
+	    *	postperm 
+	    *	recommend--- 推荐数
+	    *	moderator 
+	    *	title--- 群组类型名称，与fieldid对应
+	    		*全部--0 
+	    		*自由联盟--1 
+	    		*地区联盟--2 
+	    		*兴趣联盟--3 
+   	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+
+	
+#### 样例
+	{
+    "code": 0,
+    "data": [
+        {
+            "tagid": "3",
+            "tagname": "感冒讨论组",
+            "fieldid": "1",
+            "membernum": "2",
+            "threadnum": "2",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        },
+        {
+            "tagid": "1",
+            "tagname": "Apps开发",
+            "fieldid": "1",
+            "membernum": "3",
+            "threadnum": "1",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        },
+        {
+            "tagid": "2",
+            "tagname": "故乡情",
+            "fieldid": "1",
+            "membernum": "1",
+            "threadnum": "1",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        },
+        {
+            "tagid": "4",
+            "tagname": "我是优秀程序员",
+            "fieldid": "1",
+            "membernum": "2",
+            "threadnum": "0",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        },
+        {
+            "tagid": "5",
+            "tagname": "群组测试",
+            "fieldid": "1",
+            "membernum": "1",
+            "threadnum": "0",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        },
+        {
+            "tagid": "6",
+            "tagname": "postman群组",
+            "fieldid": "1",
+            "membernum": "1",
+            "threadnum": "0",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        },
+        {
+            "tagid": "7",
+            "tagname": "extjs群组",
+            "fieldid": "1",
+            "membernum": "1",
+            "threadnum": "0",
+            "postnum": "0",
+            "close": "0",
+            "announcement": "",
+            "pic": "image/nologo.jpg",
+            "closeapply": "0",
+            "joinperm": "0",
+            "viewperm": "0",
+            "threadperm": "0",
+            "postperm": "0",
+            "recommend": "0",
+            "moderator": "",
+            "title": "自由联盟"
+        }
+    ],
+    "msg": "do_sucess",
+    "action": "do_sucess"
+    }
+	
+
+[↑返回顶部](#momo)
+
+
+
 
 <h2>查看自己的全部博客</h2>
 域名/capi/space.php?do=blog&view=me&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
@@ -39,9 +707,8 @@ momo
 	* 当前用户id -- uid
 
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
 	* blogid --  博客id
 	* subject -- 博客标题
 	* classid -- 博客分类
@@ -112,8 +779,8 @@ momo
 	* blogid -- 所要删除的自己的博客的id
 
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
 
 #### 样例
 	{
@@ -139,10 +806,10 @@ momo
 	
 
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	    blogid: 博客id
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data-- 返回的数据
+	        blogid: 博客id
             uid: 用户id
             tag: 标记
             message: 博客内容
@@ -272,7 +939,7 @@ momo
 
 
 <h2>私信列表接口</h2>
-域名/capi/space.php?do=pm&page=0&prepage=2&uid=1&filter=newpm&dateline=0&queryop=up&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
+域名/capi/space.php?do=pm&page=0&prepage=2&uid=1&filter=newpm&dateline=0&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
 #### 请求参数
 	* 当前用户id -- uid
 	* 第几页 -- page
@@ -285,13 +952,11 @@ momo
 		* 空 -- 私人消息
 	* API密钥 -- m_auth, 由登录后返回
 	* 时间点 -- dateline
-	* 查询方式 -- queryop, 取值可以是up, down
-		* up 代表上拉，取比dateline新的动态
-		* down 代表到底，取紧接着dateline之后的动态
+
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	* 操作信息 -- msg, 详细参见附录
 	* 结果 -- data, json数组, 本操作返回两个数据
 		* data[pms]，私信列表， 条目字段如下
 			* pmid -- 私信id
@@ -351,10 +1016,10 @@ momo
 	* API密钥 -- m_auth, 由登录后返回
 
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg--  操作信息 , 详细参见附录
+	*data--  结果 , json数组, 本操作返回两个数据
 		* data[pms]，私信列表， 条目字段如下
 			* pmid -- 私信id
 			* msgfrom -- 消息发送人
@@ -453,7 +1118,12 @@ momo
 		*classid  --- 博客分类
 
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+
+####示例
 	{
 	    "code": 0,
 	    "data": [],
@@ -471,16 +1141,24 @@ momo
 	* 操作类型 -- op, 必须为seccode
 	
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, rest_success:代表成功, rest_fail:代表失败
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回两个数据
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组本操作返回两个数据
 		* data[seccode_auth] -- 返回的验证码key，在注册时需要传入
 		* data[seccode] -- 验证码
 
 #### 样例
-	{"code":0,"data":{"seccode_auth":"1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta","seccode":"CQ7T"},
-	"msg":"数据获取成功","action":"rest_success"}
+	{
+		"code":0,
+		"data":
+		{
+			"seccode_auth":"1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta",
+			"seccode":"CQ7T"
+		},
+		"msg":"数据获取成功",
+		"action":"rest_success"
+	}
 [↑返回顶部](#momo)
 
 <h2>注册</h2>
@@ -494,29 +1172,31 @@ momo
 	* 生成验证码返回的key -- m_auth
 
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+		* 用户空间信息 -- space
+			* groupid -- 所在用户组（级别）
+			* credit -- 金币(这里代表注册增加的金币)
+			* experience -- 经验(这里代表注册增加的经验)
+			* username -- 用户名
+			* name -- 实名
+			* namestatus -- 是否实名
+			* videostatus -- 是否视频认证
+			* friendnum -- 好友数
+			* viewnum -- 浏览次数
+			* notenum -- 通知数
+			* addfriendnum -- 关注数
+			* doingnum -- 心情数
+			* lastpost -- 最新提交时间
+			* lastlogin -- 最新登录时间
+			* attachsize -- 空间大小
+			* flag -- 是否被禁
+			* newpm -- 是否有新通知
+			* avatar -- 个人头像
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
-	* 用户空间信息 -- space
-		* groupid -- 所在用户组（级别）
-		* credit -- 金币(这里代表注册增加的金币)
-		* experience -- 经验(这里代表注册增加的经验)
-		* username -- 用户名
-		* name -- 实名
-		* namestatus -- 是否实名
-		* videostatus -- 是否视频认证
-		* friendnum -- 好友数
-		* viewnum -- 浏览次数
-		* notenum -- 通知数
-		* addfriendnum -- 关注数
-		* doingnum -- 心情数
-		* lastpost -- 最新提交时间
-		* lastlogin -- 最新登录时间
-		* attachsize -- 空间大小
-		* flag -- 是否被禁
-		* newpm -- 是否有新通知
-		* avatar -- 个人头像
+	
 
 #### 样例
 	{
@@ -656,11 +1336,11 @@ momo
 	*经度--longtitude
 	*纬度--latitude
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
-	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
-	* 用户空间信息 -- space
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+		* 用户空间信息 -- space
 		* groupid -- 所在用户组（级别）
 		* credit -- 金币
 		* experience -- 经验
@@ -682,6 +1362,8 @@ momo
 		* reward -- 操作增加的金币分和经验
 			* credit -- 金币
 			* experience -- 经验
+	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
+
 #### 样例
 	{
 		"code": {
@@ -766,7 +1448,7 @@ momo
 #### 返回字段
 	* 错误码 -- code, 0:代表成功， 1:代表失败
 	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
+	* 操作信息 -- msg, 详细参见附录
 	* 结果 -- data, json数组, 本操作返回一个数据
 		* data[pic] -- 上传成功的图片内容，具体条目如下:
 			* 上传的用户id -- uid
@@ -801,10 +1483,10 @@ momo
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
 #### 返回参数
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 返回操作完成增加的金币和经验
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
 		* credit -- 金币
 		* experience -- 经验
 #### 样例
@@ -829,9 +1511,10 @@ momo
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
 #### 返回参数
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
 
 #### 样例
 	{"code":0,"data":[],"msg":"进行的操作完成了","action":"do_success"}
@@ -858,10 +1541,10 @@ momo
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 	
 #### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回三个数据
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组 本操作返回三个数据
 		* data[url], 返回头像的链接
 			* big -- 大头像URL
 			* middle -- 中头像URL
@@ -885,10 +1568,10 @@ momo
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
 #### 返回参数
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 错误信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 返回操作完成增加的金币和经验
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组 返回操作完成增加的金币和经验
 		* credit -- 金币
 		* experience -- 经验
 #### 样例
@@ -921,9 +1604,10 @@ momo
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
 #### 返回参数
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, request_has_been_sent:代表成功
-	* 错误信息 -- msg, 详细参见附录
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
 #### 样例
 	{
 	    "code": 0,
