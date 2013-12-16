@@ -138,154 +138,154 @@ momo
 	    *count --- 数组中共有多少个对象
 	
 #### 样例
-{
-    "code": 0,
-    "data": {
-        "blogs": [
-            {
-                "message": "slkldlsld",
-                "blogid": "14",
-                "topicid": "0",
-                "uid": "2",
-                "username": "1396636115",
-                "subject": "afad",
-                "classid": "0",
-                "viewnum": "1",
-                "replynum": "0",
-                "hot": "0",
-                "dateline": "1386421423",
-                "pic": "",
-                "picflag": "0",
-                "noreply": "0",
-                "friend": "0",
-                "password": "",
-                "click_1": "0",
-                "click_2": "0",
-                "click_3": "0",
-                "click_4": "0",
-                "click_5": "0"
-            },
-            {
-                "message": "希望今晚能做好。",
-                "blogid": "11",
-                "topicid": "0",
-                "uid": "7",
-                "username": "yongwang",
-                "subject": "new blog",
-                "classid": "0",
-                "viewnum": "0",
-                "replynum": "0",
-                "hot": "0",
-                "dateline": "1385551734",
-                "pic": "",
-                "picflag": "0",
-                "noreply": "0",
-                "friend": "0",
-                "password": "",
-                "click_1": "0",
-                "click_2": "0",
-                "click_3": "0",
-                "click_4": "0",
-                "click_5": "0"
-            },
-            {
-                "message": "难道你不相信吗？",
-                "blogid": "10",
-                "topicid": "0",
-                "uid": "2",
-                "username": "",
-                "subject": "真的可以发表了吗",
-                "classid": "1",
-                "viewnum": "1",
-                "replynum": "0",
-                "hot": "1",
-                "dateline": "1384717770",
-                "pic": "",
-                "picflag": "0",
-                "noreply": "0",
-                "friend": "0",
-                "password": "",
-                "click_1": "0",
-                "click_2": "0",
-                "click_3": "0",
-                "click_4": "0",
-                "click_5": "1"
-            },
-            {
-                "message": "希望你好,真心祝福你。",
-                "blogid": "9",
-                "topicid": "0",
-                "uid": "2",
-                "username": "",
-                "subject": "希望你好",
-                "classid": "0",
-                "viewnum": "2",
-                "replynum": "12",
-                "hot": "1",
-                "dateline": "1384716829",
-                "pic": "",
-                "picflag": "0",
-                "noreply": "0",
-                "friend": "0",
-                "password": "",
-                "click_1": "0",
-                "click_2": "0",
-                "click_3": "0",
-                "click_4": "0",
-                "click_5": "0"
-            },
-            {
-                "message": "世事难料------纪念同年的小伙伴。",
-                "blogid": "5",
-                "topicid": "0",
-                "uid": "2",
-                "username": "",
-                "subject": "世事难料",
-                "classid": "3",
-                "viewnum": "0",
-                "replynum": "0",
-                "hot": "0",
-                "dateline": "1384621157",
-                "pic": "",
-                "picflag": "0",
-                "noreply": "0",
-                "friend": "0",
-                "password": "",
-                "click_1": "0",
-                "click_2": "0",
-                "click_3": "0",
-                "click_4": "0",
-                "click_5": "0"
-            },
-            {
-                "message": "今天认识blog模块，写blog的入口cp.php?ac=blog",
-                "blogid": "4",
-                "topicid": "0",
-                "uid": "2",
-                "username": "1396636115",
-                "subject": "今天认识blog模块",
-                "classid": "3",
-                "viewnum": "1",
-                "replynum": "0",
-                "hot": "0",
-                "dateline": "1384579241",
-                "pic": "",
-                "picflag": "0",
-                "noreply": "0",
-                "friend": "0",
-                "password": "",
-                "click_1": "0",
-                "click_2": "0",
-                "click_3": "0",
-                "click_4": "0",
-                "click_5": "0"
-            }
-        ],
-        "count": 6
-    },
-    "msg": "进行的操作完成了",
-    "action": "do_success"
-}
+	{
+	    "code": 0,
+	    "data": {
+	        "blogs": [
+	            {
+	                "message": "slkldlsld",
+	                "blogid": "14",
+	                "topicid": "0",
+	                "uid": "2",
+	                "username": "1396636115",
+	                "subject": "afad",
+	                "classid": "0",
+	                "viewnum": "1",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1386421423",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            },
+	            {
+	                "message": "希望今晚能做好。",
+	                "blogid": "11",
+	                "topicid": "0",
+	                "uid": "7",
+	                "username": "yongwang",
+	                "subject": "new blog",
+	                "classid": "0",
+	                "viewnum": "0",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1385551734",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            },
+	            {
+	                "message": "难道你不相信吗？",
+	                "blogid": "10",
+	                "topicid": "0",
+	                "uid": "2",
+	                "username": "",
+	                "subject": "真的可以发表了吗",
+	                "classid": "1",
+	                "viewnum": "1",
+	                "replynum": "0",
+	                "hot": "1",
+	                "dateline": "1384717770",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "1"
+	            },
+	            {
+	                "message": "希望你好,真心祝福你。",
+	                "blogid": "9",
+	                "topicid": "0",
+	                "uid": "2",
+	                "username": "",
+	                "subject": "希望你好",
+	                "classid": "0",
+	                "viewnum": "2",
+	                "replynum": "12",
+	                "hot": "1",
+	                "dateline": "1384716829",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            },
+	            {
+	                "message": "世事难料------纪念同年的小伙伴。",
+	                "blogid": "5",
+	                "topicid": "0",
+	                "uid": "2",
+	                "username": "",
+	                "subject": "世事难料",
+	                "classid": "3",
+	                "viewnum": "0",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1384621157",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            },
+	            {
+	                "message": "今天认识blog模块，写blog的入口cp.php?ac=blog",
+	                "blogid": "4",
+	                "topicid": "0",
+	                "uid": "2",
+	                "username": "1396636115",
+	                "subject": "今天认识blog模块",
+	                "classid": "3",
+	                "viewnum": "1",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1384579241",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            }
+	        ],
+	        "count": 6
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
 
 [↑返回顶部](#momo)
 
@@ -367,7 +367,7 @@ momo
 
 <h2>某个话题的评论列表</h2>
 /capi/do.php?ac=ajax&op=getthreadpost&tid=2&page=0&perpage=5&dateline=1386434227&queryop=up
-有多种查询方式，可参考[某篇博客的评论列表](#某篇博客的评论列表)
+	*有多种查询方式，可参考[某篇博客的评论列表](#某篇博客的评论列表)
 
 
 #### 请求参数
@@ -426,12 +426,12 @@ momo
 
 
 <h2>某篇博客的评论列表</h2>
-有多种查询方式
-*前10条评论----- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9 (默认是取前10条数据)
-	相当于  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=10
-*自定义要查询的数量（如：20条）  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=20
-*某个时间点以前的评论 ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=1&dateline=1386434227&queryop=up
-*某个时间点以后的评论 ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=1&dateline=1386434227&queryop=down
+	*有多种查询方式
+	*前10条评论----- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9 (默认是取前10条数据)
+	*相当于  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=10
+	*自定义要查询的数量（如：20条）  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=20
+	*某个时间点以前的评论 ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=1&dateline=1386434227&queryop=up
+	*某个时间点以后的评论 ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=1&dateline=1386434227&queryop=down
 
 
 #### 请求参数
