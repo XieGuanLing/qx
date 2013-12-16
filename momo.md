@@ -12,6 +12,7 @@ momo
 	*	[发布私信](#发布私信)
 	*	[私信列表接口](#私信列表接口)
 	*	[私信详情](#私信详情)
+	*---------------------------------------------------------------------------------------------
 	*	[发表博客](#发表博客)
 	*	[对某篇博客表态称赞](#对某篇博客表态称赞)
 	*	[撰写对某篇博客评论](#撰写对某篇博客评论)
@@ -19,8 +20,10 @@ momo
 	*	[查看自己的全部博客](#查看自己的全部博客)
 	*   [查看自己某篇博客的具体内容](#查看自己某篇博客的具体内容)
 	*   [删除自己的某篇博客](#删除自己的某篇博客)
-	*   [查看某个关注人的全部博客](#查看某个关注人的全部博客)
+	*   [查看某个被关注人的全部博客](#查看某个被关注人的全部博客)
+	*   [查看所有被关注人的全部博客](#查看所有被关注人的全部博客)
 	*   [查看整个站点的博客](#查看整个站点的博客)
+	*---------------------------------------------------------------------------------------------
 	*	[新建并加入群组](#新建并加入群组)
 	*	[群组列表](#群组列表)
 	*	[加入群组](#加入群组)
@@ -37,6 +40,331 @@ momo
 
 接口说明
 --------
+<h2>查看某个被关注人的全部博客</h2>
+域名/capi/space.php?do=blog&view=we&fusername=yongwang&auth=071eGlvIzPkREWLjgH9g4%2Fnyehu6CEnfTZ2y4uZ6PA
+
+#### 请求参数
+	* do=blog&view=we  --- 固定搭配
+	* fusername --- 被关注人的用户名
+	* auth  --- 当前用户登录时返回的值
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回对象数组，
+		*对象的属性有：
+			* blogid --  博客id
+			* uid -- 博客作者id
+			* viewnum -- 被浏览数
+			* replynum -- 评论回复数
+			* subject -- 博客标题
+			* classid -- 博客分类id
+			* click_1 -- 表态“路过"
+	        * click_2 -- 表态"雷人"
+	        * click_3 -- 表态"握手"
+	        * click_4 -- 表态"鲜花"
+	        * click_5  -- 表态"鸡蛋"
+	    *count --- 数组中共有多少个对象
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "blogs": [
+	            {
+	                "blogid": "11",
+	                "topicid": "0",
+	                "uid": "7",
+	                "username": "yongwang",
+	                "subject": "new blog",
+	                "classid": "0",
+	                "viewnum": "0",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1385551734",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            }
+	        ],
+	        "count": 1
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
+<h2>查看所有被关注人的全部博客</h2>
+域名/capi/space.php?do=blog&view=we&orderby=dateline&page=0&perpage=20&auth=071eGlvIzPkREWLjgH9g4%2Fnyehu6CEnfTZ2y4uZ6PA
+
+#### 请求参数
+	* do=blog&view=we  --- 固定搭配
+	* orderby -- 按什么排序，可选值为：
+		* dateline -- 时间
+		* replynum -- 回复数
+		* viewnum -- 浏览数
+		* hot -- 热点数
+	* page -- 哪一页
+	* perpage -- 每页的数量
+	* auth  --- 当前用户登录时返回的值
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回对象数组，
+		*对象的属性有：
+			* message --  博客的内容
+			* blogid --  博客id
+			* uid -- 博客作者id
+			* viewnum -- 被浏览数
+			* replynum -- 评论回复数
+			* subject -- 博客标题
+			* classid -- 博客分类id
+			* click_1 -- 表态“路过"
+	        * click_2 -- 表态"雷人"
+	        * click_3 -- 表态"握手"
+	        * click_4 -- 表态"鲜花"
+	        * click_5  -- 表态"鸡蛋"
+	    *count --- 数组中共有多少个对象
+	
+#### 样例
+{
+    "code": 0,
+    "data": {
+        "blogs": [
+            {
+                "message": "slkldlsld",
+                "blogid": "14",
+                "topicid": "0",
+                "uid": "2",
+                "username": "1396636115",
+                "subject": "afad",
+                "classid": "0",
+                "viewnum": "1",
+                "replynum": "0",
+                "hot": "0",
+                "dateline": "1386421423",
+                "pic": "",
+                "picflag": "0",
+                "noreply": "0",
+                "friend": "0",
+                "password": "",
+                "click_1": "0",
+                "click_2": "0",
+                "click_3": "0",
+                "click_4": "0",
+                "click_5": "0"
+            },
+            {
+                "message": "希望今晚能做好。",
+                "blogid": "11",
+                "topicid": "0",
+                "uid": "7",
+                "username": "yongwang",
+                "subject": "new blog",
+                "classid": "0",
+                "viewnum": "0",
+                "replynum": "0",
+                "hot": "0",
+                "dateline": "1385551734",
+                "pic": "",
+                "picflag": "0",
+                "noreply": "0",
+                "friend": "0",
+                "password": "",
+                "click_1": "0",
+                "click_2": "0",
+                "click_3": "0",
+                "click_4": "0",
+                "click_5": "0"
+            },
+            {
+                "message": "难道你不相信吗？",
+                "blogid": "10",
+                "topicid": "0",
+                "uid": "2",
+                "username": "",
+                "subject": "真的可以发表了吗",
+                "classid": "1",
+                "viewnum": "1",
+                "replynum": "0",
+                "hot": "1",
+                "dateline": "1384717770",
+                "pic": "",
+                "picflag": "0",
+                "noreply": "0",
+                "friend": "0",
+                "password": "",
+                "click_1": "0",
+                "click_2": "0",
+                "click_3": "0",
+                "click_4": "0",
+                "click_5": "1"
+            },
+            {
+                "message": "希望你好,真心祝福你。",
+                "blogid": "9",
+                "topicid": "0",
+                "uid": "2",
+                "username": "",
+                "subject": "希望你好",
+                "classid": "0",
+                "viewnum": "2",
+                "replynum": "12",
+                "hot": "1",
+                "dateline": "1384716829",
+                "pic": "",
+                "picflag": "0",
+                "noreply": "0",
+                "friend": "0",
+                "password": "",
+                "click_1": "0",
+                "click_2": "0",
+                "click_3": "0",
+                "click_4": "0",
+                "click_5": "0"
+            },
+            {
+                "message": "世事难料------纪念同年的小伙伴。",
+                "blogid": "5",
+                "topicid": "0",
+                "uid": "2",
+                "username": "",
+                "subject": "世事难料",
+                "classid": "3",
+                "viewnum": "0",
+                "replynum": "0",
+                "hot": "0",
+                "dateline": "1384621157",
+                "pic": "",
+                "picflag": "0",
+                "noreply": "0",
+                "friend": "0",
+                "password": "",
+                "click_1": "0",
+                "click_2": "0",
+                "click_3": "0",
+                "click_4": "0",
+                "click_5": "0"
+            },
+            {
+                "message": "今天认识blog模块，写blog的入口cp.php?ac=blog",
+                "blogid": "4",
+                "topicid": "0",
+                "uid": "2",
+                "username": "1396636115",
+                "subject": "今天认识blog模块",
+                "classid": "3",
+                "viewnum": "1",
+                "replynum": "0",
+                "hot": "0",
+                "dateline": "1384579241",
+                "pic": "",
+                "picflag": "0",
+                "noreply": "0",
+                "friend": "0",
+                "password": "",
+                "click_1": "0",
+                "click_2": "0",
+                "click_3": "0",
+                "click_4": "0",
+                "click_5": "0"
+            }
+        ],
+        "count": 6
+    },
+    "msg": "进行的操作完成了",
+    "action": "do_success"
+}
+
+[↑返回顶部](#momo)
+
+
+<h2>查看整个站点的博客</h2>
+域名/capi/space.php?do=blog&view=all&day=10&orderby=dateline&page=0&perpage=20&auth=071eGlvIzPkREWLjgH9g4%2Fn
+
+#### 请求参数
+	* do=blog&view=all  --- 固定搭配
+	* day -- 距离现在的天数
+	* orderby -- 按什么排序，可选值为：
+		* dateline -- 时间
+		* replynum -- 回复数
+		* viewnum -- 浏览数
+		* hot -- 热点数
+	* page -- 哪一页
+	* perpage -- 每页的数量
+	* auth  --- 当前用户登录时返回的值
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回对象数组，
+		*对象的属性有：
+			* message  -- 博客内容
+			* blogid --  博客id
+			* uid -- 博客作者id
+			* viewnum -- 被浏览数
+			* replynum -- 评论回复数
+			* subject -- 博客标题
+			* classid -- 博客分类id
+			* click_1 -- 表态“路过"
+	        * click_2 -- 表态"雷人"
+	        * click_3 -- 表态"握手"
+	        * click_4 -- 表态"鲜花"
+	        * click_5  -- 表态"鸡蛋"
+	    *count --- 数组中共有多少个对象
+
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "bloga": [
+	            {
+	                "message": "slkldlsld",
+	                "target_ids": "",
+	                "magiccolor": "0",
+	                "blogid": "14",
+	                "topicid": "0",
+	                "uid": "2",
+	                "username": "1396636115",
+	                "subject": "afad",
+	                "classid": "0",
+	                "viewnum": "1",
+	                "replynum": "0",
+	                "hot": "0",
+	                "dateline": "1386421423",
+	                "pic": "",
+	                "picflag": "0",
+	                "noreply": "0",
+	                "friend": "0",
+	                "password": "",
+	                "click_1": "0",
+	                "click_2": "0",
+	                "click_3": "0",
+	                "click_4": "0",
+	                "click_5": "0"
+	            }
+	        ]
+	        "count": 1
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
 <h2>某个话题的评论列表</h2>
 /capi/do.php?ac=ajax&op=getthreadpost&tid=2&page=0&perpage=5&dateline=1386434227&queryop=up
 有多种查询方式，可参考[某篇博客的评论列表](#某篇博客的评论列表)
@@ -702,14 +1030,28 @@ momo
 域名/capi/space.php?do=blog&view=me&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
 
 #### 请求参数
-	* 当前用户id -- uid
+	*do=blog&view=me  --- 固定搭配
+	*auth  --- 当前用户登录时返回的值
 
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
-	* blogid --  博客id
-	* subject -- 博客标题
-	* classid -- 博客分类
+	*data -- 返回对象数组，
+		*对象的属性有：
+			* message --  博客的内容
+			* blogid --  博客id
+			* uid -- 博客作者id
+			* viewnum -- 被浏览数
+			* replynum -- 评论回复数
+			* subject -- 博客标题
+			* classid -- 博客分类id
+			* click_1 -- 表态“路过"
+	        * click_2 -- 表态"雷人"
+	        * click_3 -- 表态"握手"
+	        * click_4 -- 表态"鲜花"
+	        * click_5  -- 表态"鸡蛋"
+	    *connt -- 数组中对象的个数
+
 	
 #### 样例
 	{
@@ -717,6 +1059,7 @@ momo
 	    "data": {
 	        "blogs": [
 	            {
+	            	 "message":i want to 
 	                "blogid": "12",
 	                "topicid": "0",
 	                "uid": "8",
@@ -739,6 +1082,7 @@ momo
 	                "click_5": "0"
 	            },
 	            {
+	            	"message":i want to 
 	                "blogid": "13",
 	                "topicid": "0",
 	                "uid": "8",
@@ -807,36 +1151,17 @@ momo
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
 	*data-- 返回的数据
-	        blogid: 博客id
-            uid: 用户id
-            tag: 标记
-            message: 博客内容
-            postip: 提交的ip
-            related: 相关
-            relatedtime:
-            target_ids:
-            hotuser:
-            magiccolor: 
-            magicpaper: 
-            magiccall: 
-            topicid:
-            username: 
-            subject: 博客标题
-            classid: 博客分类
-            viewnum:
-            replynum: 
-            hot: 
-            dateline: 
-            pic: 
-            picflag: 
-            noreply: 
-            friend: 
-            password: 
-            click_1: 表态“路过"
-            click_2: 表态"雷人"
-            click_3: 表态"握手"
-            click_4: 表态"鲜花"
-            click_5: 表态"鸡蛋"
+		* blogid --  博客id
+		* uid -- 博客作者id
+		* viewnum -- 被浏览数
+		* replynum -- 评论回复数
+		* subject -- 博客标题
+		* classid -- 博客分类id
+		* click_1 -- 表态“路过"
+        * click_2 -- 表态"雷人"
+        * click_3 -- 表态"握手"
+        * click_4 -- 表态"鲜花"
+        * click_5  -- 表态"鸡蛋"
 
 #### 样例
 	{
