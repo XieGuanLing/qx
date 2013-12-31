@@ -9,11 +9,16 @@ momo
 	*	[退出](#退出)
 	*	[检测用户登陆状态](#检测用户登陆状态)
 	*	[单向加关注](#单向加关注)
+	*	[我的好友列表](#我的好友列表)
+	*   [-------------------------------------------------------------](--------------------------------)
 	*	[好友动态列表接口](#好友动态列表接口)
 	*	[发布私信](#发布私信)
 	*	[私信列表接口](#私信列表接口)
 	*	[私信详情](#私信详情)
 	*   [-------------------------------------------------------------](--------------------------------)
+	*	[新建博客分类](#新建博客分类)
+	*	[删除博客分类](#删除博客分类)
+	*	[查看我的全部博客分类](#查看我的全部博客分类)
 	*	[发表博客](#发表博客)
 	*	[对某篇博客表态称赞](#对某篇博客表态称赞)
 	*	[撰写对某篇博客评论](#撰写对某篇博客评论)
@@ -41,6 +46,311 @@ momo
 
 接口说明
 --------
+<h2>查看我的全部博客分类</h2>
+域名/capi/cp.php?ac=blog&classsubmit=true&op=allclass&uid=6&m_auth=10c9GwYPPQ%2BrByX2PVqkj8FP
+
+#### 请求参数
+	* ac=blog&classsubmit=true&op=allclass  --- 固定搭配
+	* uid --- 我的id
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回
+		*class 
+			* classid -- 分类id
+			*classname -- 分类名
+			*dateline -- 创建时间
+		*count -- 计算class数组的长度 
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "class": [
+	            {
+	                "classid": "4",
+	                "classname": "test我的新生活",
+	                "uid": "6",
+	                "dateline": "1384624568"
+	            },
+	            {
+	                "classid": "5",
+	                "classname": "美好生活",
+	                "uid": "6",
+	                "dateline": "1388517650"
+	            },
+	            {
+	                "classid": "6",
+	                "classname": "开心",
+	                "uid": "6",
+	                "dateline": "1388518048"
+	            }
+	        ],
+	        "count": 3
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+[↑返回顶部](#momo)
+
+
+<h2>删除博客分类</h2>
+域名/capi/cp.php?ac=blog&op=delete&classsubmit=true&classid=6&m_auth=10c9GwYPPQ%2BrByX2PVqkj8FPzmNYeBOHK0Z99dOrcQ
+
+#### 请求参数
+	* ac=blog&op=delete&classsubmit=true  --- 固定搭配
+	* classid --- 删除的博客分类id
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回对象数组，
+		
+	
+#### 样例
+	{
+    "code": 0,
+    "data": [],
+    "msg": "进行的操作完成了",
+    "action": "do_success"
+	}
+[↑返回顶部](#momo)
+
+
+
+<h2>新建博客分类</h2>
+域名/capi/cp.php?ac=blog&op=add&classsubmit=true&classname=美好生活&m_auth=10c9GwYPPQ%2BrByX2PVqkj8FPzmNYeBOHK0Z99dOrcQ
+
+#### 请求参数
+	* ac=blog&op=add&classsubmit=true  --- 固定搭配
+	* classname --- 新建的博客分类名称
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回对象数组，
+		
+	
+#### 样例
+	{
+    "code": 0,
+    "data": [],
+    "msg": "进行的操作完成了",
+    "action": "do_success"
+	}
+[↑返回顶部](#momo)
+
+
+
+<h2>我的好友列表</h2>
+域名/capi/space.php?do=friend&isinsert=true&uid=6&m_auth=ab65k4c%2BTeZjDt%2BJIEnN
+
+#### 请求参数
+	* do=friend&isinsert=true -- 固定搭配 
+	* uid -- 我的id
+	* m_auth  -- API密钥, 由登录后返回
+#### 返回字段
+	*code--  0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, 里面包含friends数组 和 count属性
+		 *friends
+		 	*uid -- 好友id
+		 	*groupid -- 好友所在群组的id
+		 	*credit -- 成长值
+		 	*experience -- 经验值
+		 	*username -- 用户名
+		 	*name -- 实名 
+		 	*sex -- 性别
+		 	*isonline -- 0：不在线 1：在线
+
+####示例
+	{
+    "code": 0,
+    "data": {
+        "friends": [
+            {
+                "uid": "7",
+                "groupid": "6",
+                "credit": "130",
+                "experience": "120",
+                "username": "yongwang",
+                "name": "",
+                "namestatus": "0",
+                "videostatus": "0",
+                "domain": "",
+                "friendnum": "3",
+                "viewnum": "2",
+                "notenum": "0",
+                "addfriendnum": "0",
+                "mtaginvitenum": "0",
+                "eventinvitenum": "0",
+                "myinvitenum": "0",
+                "pokenum": "0",
+                "doingnum": "0",
+                "blognum": "1",
+                "albumnum": "0",
+                "threadnum": "0",
+                "pollnum": "0",
+                "eventnum": "0",
+                "sharenum": "0",
+                "dateline": "1383550247",
+                "updatetime": "1385551734",
+                "lastsearch": "0",
+                "lastpost": "1385551734",
+                "lastlogin": "1386601713",
+                "lastsend": "0",
+                "attachsize": "0",
+                "addsize": "0",
+                "addfriend": "0",
+                "flag": "0",
+                "newpm": "0",
+                "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+                "regip": "127.0.0.1",
+                "ip": "127000000",
+                "mood": "0",
+                "resideprovince": "",
+                "residecity": "",
+                "note": "",
+                "spacenote": "",
+                "sex": "0",
+                "gid": "0",
+                "num": "1",
+                "creditrank": "5",
+                "experiencerank": "5",
+                "p": "",
+                "c": "",
+                "group": "其他",
+                "isfriend": 1,
+                "grouptitle": "中级会员",
+                "isonline": 0
+            },
+            {
+                "uid": "4",
+                "groupid": "5",
+                "credit": "106",
+                "experience": "96",
+                "username": "qiuxia",
+                "name": "",
+                "namestatus": "0",
+                "videostatus": "0",
+                "domain": "",
+                "friendnum": "3",
+                "viewnum": "0",
+                "notenum": "2",
+                "addfriendnum": "1",
+                "mtaginvitenum": "0",
+                "eventinvitenum": "0",
+                "myinvitenum": "0",
+                "pokenum": "0",
+                "doingnum": "0",
+                "blognum": "0",
+                "albumnum": "0",
+                "threadnum": "0",
+                "pollnum": "0",
+                "eventnum": "0",
+                "sharenum": "0",
+                "dateline": "1382944586",
+                "updatetime": "1382944667",
+                "lastsearch": "0",
+                "lastpost": "0",
+                "lastlogin": "1386413565",
+                "lastsend": "0",
+                "attachsize": "0",
+                "addsize": "0",
+                "addfriend": "0",
+                "flag": "0",
+                "newpm": "0",
+                "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+                "regip": "127.0.0.1",
+                "ip": "127000000",
+                "mood": "0",
+                "resideprovince": "",
+                "residecity": "",
+                "note": "",
+                "spacenote": "",
+                "sex": "0",
+                "gid": "0",
+                "num": "0",
+                "creditrank": "7",
+                "experiencerank": "7",
+                "p": "",
+                "c": "",
+                "group": "其他",
+                "isfriend": 1,
+                "grouptitle": "普通会员",
+                "isonline": 0
+            },
+            {
+                "uid": "2",
+                "groupid": "6",
+                "credit": "295",
+                "experience": "280",
+                "username": "uid2",
+                "name": "uid2",
+                "namestatus": "1",
+                "videostatus": "0",
+                "domain": "",
+                "friendnum": "6",
+                "viewnum": "10",
+                "notenum": "10",
+                "addfriendnum": "0",
+                "mtaginvitenum": "0",
+                "eventinvitenum": "0",
+                "myinvitenum": "0",
+                "pokenum": "0",
+                "doingnum": "2",
+                "blognum": "5",
+                "albumnum": "0",
+                "threadnum": "0",
+                "pollnum": "0",
+                "eventnum": "0",
+                "sharenum": "0",
+                "dateline": "1382601338",
+                "updatetime": "1386421423",
+                "lastsearch": "1384617842",
+                "lastpost": "1386421423",
+                "lastlogin": "1387634596",
+                "lastsend": "0",
+                "attachsize": "0",
+                "addsize": "0",
+                "addfriend": "0",
+                "flag": "0",
+                "newpm": "0",
+                "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+                "regip": "127.0.0.1",
+                "ip": "163177136",
+                "mood": "3",
+                "resideprovince": "",
+                "residecity": "",
+                "note": "我在学习",
+                "spacenote": "<img src=\"image/face/3.gif\" class=\"face\">我在学习",
+                "sex": "1",
+                "gid": "5",
+                "num": "10",
+                "creditrank": "2",
+                "experiencerank": "2",
+                "p": "",
+                "c": "",
+                "group": "同事",
+                "isfriend": 1,
+                "grouptitle": "中级会员",
+                "isonline": 0
+            }
+        ],
+        "count": 3
+    },
+    "msg": "rest_success",
+    "action": "rest_success"
+}
+[↑返回顶部](#momo)
+
+
 <h2>检测用户登陆状态</h2>
 域名/capi/space.php?do=isonline&uid=7
 
@@ -65,9 +375,9 @@ momo
 	    "msg": "rest_success",
 	    "action": "rest_success"
 	}
-
-
 [↑返回顶部](#momo)
+
+
 
 <h2>查看某个被关注人的全部博客</h2>
 域名/capi/space.php?do=blog&view=we&fusername=yongwang&auth=071eGlvIzPkREWLjgH9g4%2Fnyehu6CEnfTZ2y4uZ6PA
@@ -1461,16 +1771,15 @@ momo
 
 
 #### 请求参数
-	* 操作类型 -- ac为blog,blogid为0，blogsubmit为true
-	* 查询参数 -- 若传入 view=done， 则查询已完成任务
+	* 操作类型 -- ac为blog,  blogid为0，blogsubmit为true
 	* API密钥 -- m_auth, 由登录后返回
 	*用post方式提交以下参数
 		*subject  --- 博客标题
 		*message  --- 博客内容
-		*classid  --- 博客分类
+		*classid  --- 博客分类 classid=0表示默认分类
 
 #### 返回字段
-	*code-- 错误码, 0:代表成功， 1:代表失败
+	*code--  0:代表成功， 1:代表失败
 	*action --  操作类型
 	*msg -- 操作信息, 详细参见附录
 	*data -- 结果, json数组
@@ -1493,7 +1802,7 @@ momo
 	* 操作类型 -- op, 必须为seccode
 	
 #### 返回字段
-	*code-- 错误码, 0:代表成功， 1:代表失败
+	*code--  0:代表成功， 1:代表失败
 	*action --  操作类型
 	*msg -- 操作信息, 详细参见附录
 	*data -- 结果, json数组本操作返回两个数据
