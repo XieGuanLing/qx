@@ -1825,12 +1825,13 @@ momo
 <h2>注册</h2>
 /capi/do.php?ac=register&registersubmit=true&username=test4&password=123&password2=123&seccode=cQ7T&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 #### 请求参数
-	* 操作参数 -- registersubmit, 必须为true
-	* 用户名 -- username
-	* 用户输入的第一次密码 -- password
-	* 用户输入的确认密码 -- password2
-	* 用户输入的验证码 -- seccode
-	* 生成验证码返回的key -- m_auth
+	* ac=register&registersubmit=true -- 固配
+	* username  --  用户名
+	* password  --  用户输入的第一次密码
+	* password2  --  用户输入的确认密码 
+	* pushuserid --  百度推送的用户id 
+	* seccode  --  用户输入的验证码 
+	* m_auth  --   生成验证码返回的seccode_auth
 
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
@@ -2163,62 +2164,42 @@ momo
 [↑返回顶部](#momo)
 
 <h2>发布私信</h2>
-域名/capi/cp.php?ac=pm&op=send&touid=0&pmid=0&username=test6&message=你好!summit&pmsubmit=true&m_auth=af9cCEMpQlfFTifZltugadwh
+域名/capi/cp.php?ac=pm&op=send&pmsubmit=true&username=test6&message=你好!summit&m_auth=af9cCEMpQlfFTifZltugadwh
 
 #### 请求参数
-	* 操作类型(固定搭配) -- op: send, touid: 0, pmid: 0, pmsubmit: true
-	* 接收方的用户名 -- username
-	* 私信内容 -- message
-	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
+	* ac=pm  op=send  pmsubmit=true  -- 固定搭配 
+	* username -- 接收方的用户名
+	* message  --  私信内容
+	* m_auth -- 登录返回的授权码
 
 #### 返回参数
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
 	*msg -- 操作信息, 详细参见附录
-	*data -- 结果, json数组
+	*data -- 结果
+		*request_id -- 请求id
+		*response_params 对象
+			* success_amount -- 发送数量
+			* msgids -- 消息id
 
 #### 样例
-	{"code":0,"data":[],"msg":"进行的操作完成了","action":"do_success"}
+	{
+	    "code": 0,
+	    "data": {
+	        "request_id": -649934962,
+	        "response_params": {
+	            "success_amount": 1,
+	            "msgids": [
+	                "8654230163905675803"
+	            ]
+	        }
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
 [↑返回顶部](#momo)
 
-<h2>更改头像</h2>
-#### 注意:采用POST上传
-#### POST样例：
-	`<!DOCTYPE HTML>
-	<html>
-	<head>
-	<meta charset="utf-8">
-	<title>上传头像</title></head><body>
-	<form action="capi/cp.php?ac=avatar" method="post" enctype="multipart/form-data">
-	<input type="file" name="Filedata"/><input type="submit"  name="submit"  value="提交"/>
-	<input type="hidden" name="m_auth" value="af9cCEMpQlfFTifZltugadwhGAXL%2Ba%2BCor8voR9jZyBh60v4xFryq2ibMM1tNHXaHYweU%2B8hsBHobKzgHFJs" />
-	<input type="hidden" name="ac" value="avatar" />
-	<input type="hidden" name="avatarsubmit" id="avatarsubmit" value="true" />
-	</form></body>`
 
-#### 请求参数
-	* 上传头像 -- Filedata
-	* 操作类型(固定搭配) -- ac:avatar, avatarsubmit:true
-	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
-	
-#### 返回字段
-	*code-- 错误码, 0:代表成功， 1:代表失败
-	*action --  操作类型
-	*msg -- 操作信息, 详细参见附录
-	*data -- 结果, json数组 本操作返回三个数据
-		* data[url], 返回头像的链接
-			* big -- 大头像URL
-			* middle -- 中头像URL
-			* small -- 小头像URL
-		* data[reward], 返回操作增加的金币和信用
-			* credit -- 增加的金币量
-			* experience -- 增加的信用
-		* date[dateline]: 操作更新的时间
-
-#### 样例
-	{"code":0,"data":{"url":{"big":"http:\/\/localhost:8080\/momo\/center\/data\/avatar\/000\/00\/00\/00_avatar_big.jpg","middle":"http:\/\/localhost:8080\/momo\/center\/data\/avatar\/000\/00\/00\/00_avatar_middle.jpg","small":"http:\/\/localhost:8080\/momo\/center\/data\/avatar\/000\/00\/00\/00_avatar_small.jpg"},"msg":"",
-	"reward":{"credit":0,"experience":0},"dateline":"1344421976"},"msg":"\u8fdb\u884c\u7684\u64cd\u4f5c\u5b8c\u6210\u4e86","action":"do_success"}
-[↑返回顶部](#momo)
 
 <h2>更改昵称</h2>
 域名/capi/cp.php?ac=profile&op=name&name=summit&m_auth=af9cCEMpQlfFTifZltu
