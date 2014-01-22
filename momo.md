@@ -8,12 +8,14 @@ momo
 	*	[登录](#登录)
 	*	[退出](#退出)
 	*	[检测用户登陆状态](#检测用户登陆状态)
+	*	[上传头像](#上传头像)
 	*	[单向加关注](#单向加关注)
 	*	[我的好友列表](#我的好友列表)
 	*   [-------------------------------------------------------------](--------------------------------)
-	*	[好友动态列表接口](#好友动态列表接口)
+	*	[好友动态列表](#好友动态列表)
 	*	[发布私信](#发布私信)
-	*	[私信列表接口](#私信列表接口)
+	*	[私信列表](#私信列表)
+	*	[查看新私信](#查看新私信)
 	*	[私信详情](#私信详情)
 	*   [-------------------------------------------------------------](--------------------------------)
 	*	[新建博客分类](#新建博客分类)
@@ -46,6 +48,98 @@ momo
 
 接口说明
 --------
+<h2>好友动态列表</h2>
+域名/capi/space.php?do=feed&view=friend&page=0&perpage=10&queryop=down&m_auth=55dalDuJytwHteL6s5qlKwHLm
+
+
+#### 请求参数
+	* do=feed&view=friend  --- 固定搭配
+	* page --- 第几页
+	* perpage --- 每页的数量
+	* m_auth ---  登录返回的授权码
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+
+[↑返回顶部](#momo)
+
+
+<h2>查看新私信</h2>
+域名/capi/space.php?do=pm&filter=newpm&m_auth=963aFwmLNwzFcR9K%2BOItoVptXdR4C
+
+
+#### 请求参数
+	* do=pm&filter=newpm  --- 固定搭配
+	* m_auth ---  登录返回的授权码
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "pms": [
+	            {
+	                "pmid": "53",
+	                "msgfrom": "uid2",
+	                "msgfromid": "2",
+	                "msgtoid": "4",
+	                "new": "0",
+	                "subject": "新消息",
+	                "dateline": "1390059009",
+	                "message": "新消息",
+	                "delstatus": "0",
+	                "related": "0",
+	                "fromappid": "1",
+	                "daterange": 2,
+	                "touid": "2",
+	                "msgfromavatar": "http://localhost/ucenter/images/noavatar_small.gif",
+	                "msgtoavatar": "http://localhost/ucenter/images/noavatar_small.gif",
+	                "msgfromisonline": 0,
+	                "msgtoisonline": 1
+	            }
+	        ],
+	        "count": 1,
+	        "newpm": 1
+	    },
+	    "msg": "rest_success",
+	    "action": "rest_success"
+	}
+[↑返回顶部](#momo)
+
+
+<h2>上传头像</h2>
+域名/capi/cp.php?ac=avatar&avatarsubmit=true&m_auth=2551OHptdlM%2Bbka2dCZNeEUkuS
+post提交以下参数
+upfile  文件
+
+#### 请求参数
+	* ac=blog&classsubmit=true&op=allclass  --- 固定搭配
+	* uid --- 我的id
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+
+[↑返回顶部](#momo)
+
+
 <h2>查看我的全部博客分类</h2>
 域名/capi/cp.php?ac=blog&classsubmit=true&op=allclass&uid=6&m_auth=10c9GwYPPQ%2BrByX2PVqkj8FP
 
@@ -1600,7 +1694,7 @@ momo
 
 
 
-<h2>私信列表接口</h2>
+<h2>私信列表</h2>
 域名/capi/space.php?do=pm&page=0&prepage=2&uid=1&filter=newpm&dateline=0&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
 #### 请求参数
 	* 当前用户id -- uid
@@ -1764,7 +1858,28 @@ momo
 [↑返回顶部](#momo)
 
 
+<h2>退出</h2>
+域名/capi/cp.php?ac=common&op=logout&m_auth=7c44hpLskh17xPRklyu
 
+#### 请求参数
+	* ac=common   op=logout  --- 固定搭配
+	* m_auth --- 登录后返回的授权码
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回对象数组，
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "你已经安全退出了\\1",
+	    "action": "security_exit"
+   }
+[↑返回顶部](#momo)
 
 <h2>发表博客</h2>
 域名/capi/cp.php?ac=blog&blogid=0&blogsubmit=true&auth=6284SqqRXsIhxZ2IUCMkFUcRADW8fsyHyTYimRgF1w
@@ -1823,13 +1938,14 @@ momo
 [↑返回顶部](#momo)
 
 <h2>注册</h2>
-/capi/do.php?ac=register&registersubmit=true&username=test4&password=123&password2=123&seccode=cQ7T&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
+/capi/do.php?ac=register&registersubmit=true&username=test4&password=123&password2=123&seccode=cQ7T
+&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
+
 #### 请求参数
 	* ac=register&registersubmit=true -- 固配
 	* username  --  用户名
 	* password  --  用户输入的第一次密码
 	* password2  --  用户输入的确认密码 
-	* pushuserid --  百度推送的用户id 
 	* seccode  --  用户输入的验证码 
 	* m_auth  --   生成验证码返回的seccode_auth
 
@@ -1990,96 +2106,147 @@ momo
 [↑返回顶部](#momo)
 	
 <h2>登录</h2>
-域名/capi/do.php?ac=login&username=summit&password=likeyou&loginsubmit=true&longtitude=23°27′30"&latitude=23°27′30"
+域名/capi/do.php?ac=login&loginsubmit=true&username=summit&password=likeyou&longtitude=23°27′30"&latitude=23°27′30"&pushid=8392839&channelid=83923892023
 #### 请求参数
-	* 用户名 -- username
-	* 密码 -- password
-	* 提交类型 -- loginsubmit， 必须为true
-	*经度--longtitude
-	*纬度--latitude
+	* loginsubmit -- 提交类型 ， 必须为true
+	* username -- 用户名
+	* password -- 密码
+	* longtitude -- 经度
+	* latitude -- 纬度
+	* pushid -- 推送id
+	* channelid -- 推送通道id
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
 	*msg -- 操作信息, 详细参见附录
 	*data -- 结果, json数组
-		* 用户空间信息 -- space
-		* groupid -- 所在用户组（级别）
-		* credit -- 金币
-		* experience -- 经验
-		* username -- 用户名
-		* name -- 实名
-		* namestatus -- 是否实名
-		* videostatus -- 是否视频认证
-		* friendnum -- 好友数
-		* viewnum -- 浏览次数
-		* notenum -- 通知数
-		* addfriendnum -- 关注数
-		* doingnum -- 心情数
-		* lastpost -- 最新提交时间
-		* lastlogin -- 最新登录时间
-		* attachsize -- 空间大小
-		* flag -- 是否被禁
-		* newpm -- 是否有新通知
-		* avatar -- 个人头像
-		* reward -- 操作增加的金币分和经验
-			* credit -- 金币
-			* experience -- 经验
+		* space -- 用户空间信息
+				* groupid -- 所在用户组（级别）
+				* credit -- 金币
+				* experience -- 经验
+				* username -- 用户名
+				* name -- 实名
+				* namestatus -- 是否实名
+				* videostatus -- 是否视频认证
+				* friendnum -- 好友数
+				* viewnum -- 浏览次数
+				* notenum -- 通知数
+				* addfriendnum -- 关注数
+				* doingnum -- 心情数
+				* lastpost -- 最新提交时间
+				* lastlogin -- 最新登录时间
+				* attachsize -- 空间大小
+				* flag -- 是否被禁
+				* newpm -- 是否有新通知
+				* avatar -- 个人头像
+				* reward -- 操作增加的金币分和经验
+					* credit -- 金币
+					* experience -- 经验
+		*pm --离线消息
+		       * count ---  计量
+		       * data --- 消息数组		       		
+		       		* pmid --- 消息id
+                    * msgfrom --- 发送方username
+                    * msgfromid ---  发送方id
+                    * msgtoid --- 接收方法id
+                    * new --- 
+                    * subject --- 主题与内容相同
+                    * dateline --- 发送的时间
+                    * delstatus ---
+                    * related ---
+                    * fromappid --- 
+                    * daterange --- 时间范围
+                    * touid --- 
+
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
 #### 样例
 	{
-		"code": {
-			"space": {
-				"uid": "5",
-				"groupid": "11",
-				"credit": "2047",
-				"experience": "2108",
-				"username": "summit",
-				"name": "",
-				"namestatus": "0",
-				"videostatus": "0",
-				"domain": "",
-				"friendnum": "1",
-				"viewnum": "17",
-				"notenum": "0",
-				"addfriendnum": "0",
-				"mtaginvitenum": "0",
-				"eventinvitenum": "0",
-				"myinvitenum": "0",
-				"pokenum": "0",
-				"doingnum": "0",
-				"blognum": "2",
-				"albumnum": "0",
-				"threadnum": "0",
-				"pollnum": "0",
-				"eventnum": "0",
-				"sharenum": "0",
-				"dateline": "1343789930",
-				"updatetime": "1344932295",
-				"lastsearch": "1345360391",
-				"lastpost": "1344932295",
-				"lastlogin": "1345359730",
-				"lastsend": "0",
-				"attachsize": "0",
-				"addsize": "0",
-				"addfriend": "0",
-				"flag": "0",
-				"newpm": "0",
-				"avatar": "0",
-				"regip": "127.0.0.1",
-				"ip": "127000000",
-				"mood": "0",
-				"reward": {
-					"credit": 0,
-					"experience": 0
-				}
-			},
-			"m_auth": "b819QOI5fDiDEO7L0DG66A%2FF%2B0bUu3DVzWGp3IQvkHwE%2BWc7p9qfAUwWK7jsI0C4FaXDCSbWNaqeCOlWIRDb"
-		},
-		"data": [],
-		"msg": "登录成功了，现在引导您进入登录前页面 \\1",
-		"action": "login_success"
-	}
+    "code": 0,
+    "data": {
+        "space": {
+            "uid": "2",
+            "groupid": "6",
+            "credit": "386",
+            "experience": "371",
+            "username": "1396636115",
+            "name": "uid2",
+            "namestatus": "1",
+            "videostatus": "0",
+            "domain": "",
+            "friendnum": "6",
+            "viewnum": "10",
+            "notenum": "0",
+            "addfriendnum": "0",
+            "mtaginvitenum": "0",
+            "eventinvitenum": "0",
+            "myinvitenum": "0",
+            "pokenum": "0",
+            "doingnum": "2",
+            "blognum": "5",
+            "albumnum": "0",
+            "threadnum": "0",
+            "pollnum": "0",
+            "eventnum": "0",
+            "sharenum": "0",
+            "dateline": "1382601338",
+            "updatetime": "1386421423",
+            "lastsearch": "1384617842",
+            "lastpost": "1390363444",
+            "lastlogin": "1390401484",
+            "lastsend": "0",
+            "attachsize": "0",
+            "addsize": "0",
+            "addfriend": "0",
+            "flag": "0",
+            "newpm": "0",
+            "avatar": "0",
+            "regip": "127.0.0.1",
+            "ip": "163177139",
+            "mood": "3",
+            "reward": {
+                "credit": 0,
+                "experience": 0
+            }
+        },
+        "pm": {
+            "data": [
+                {
+                    "pmid": "34",
+                    "msgfrom": "test",
+                    "msgfromid": "6",
+                    "msgtoid": "2",
+                    "new": "1",
+                    "subject": "现在是晚上10：40",
+                    "dateline": "1390401627",
+                    "delstatus": "0",
+                    "related": "0",
+                    "fromappid": "1",
+                    "daterange": 1,
+                    "touid": "6"
+                },
+                {
+                    "pmid": "75",
+                    "msgfrom": "qiia",
+                    "msgfromid": "4",
+                    "msgtoid": "2",
+                    "new": "1",
+                    "subject": "mdlskdlsmdlsk",
+                    "dateline": "1390367436",
+                    "delstatus": "0",
+                    "related": "0",
+                    "fromappid": "1",
+                    "daterange": 1,
+                    "touid": "4"
+                }
+            ],
+            "count": "2"
+        },
+        "m_auth": "5d64If2gsVrSs%2BU0nZUJjchI1gKBSA3ZOTVd69s%2FgQ"
+    },
+    "msg": "登录成功了，现在引导您进入登录前页面 \\1",
+    "action": "login_success"
+}
 [↑返回顶部](#momo)
 
 <h2>上传图片</h2>
