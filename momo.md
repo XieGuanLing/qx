@@ -1,7 +1,7 @@
 momo
 =====
 ******************************
-
+/capi/cp.php?ac=profile&op=work&mobile=15966538993&qq=1396636115&msn=1396636115@qq.com&m_auth=a5bd8ujqRWZeW4f9a3M3cUnY3E%2FJE5a4vbHVJdfQgA
 * 接口
 	*	[获取注册验证码](#获取注册验证码)
 	*	[注册](#注册)
@@ -11,6 +11,16 @@ momo
 	*	[上传头像](#上传头像)
 	*	[单向加关注](#单向加关注)
 	*	[我的好友列表](#我的好友列表)
+	*   [-------------------------------------------------------------](--------------------------------)
+	*	[修改个人基本资料](#修改个人基本资料)
+	*   [增加个人工作情况](#增加个人工作情况)
+	*	[删除个人工作情况](#删除个人工作情况)
+	*	[增加个人教育情况](#增加个人教育情况)
+	*	[删除个人教育情况](#删除个人教育情况)
+	*	[修改昵称](#修改昵称)
+	*	[添加个人签名](#添加个人签名)
+	*	[分类查看个人信息](#分类查看个人信息)
+	*   [我的个人信息](#我的个人信息)
 	*   [-------------------------------------------------------------](--------------------------------)
 	*	[好友动态列表](#好友动态列表)
 	*	[发布私信](#发布私信)
@@ -48,6 +58,471 @@ momo
 
 接口说明
 --------
+<h2>分类查看个人信息</h2>
+域名/capi/cp.php?ac=profile&op=work&m_auth=a5bd8ujqRWZeW4f9a3M3cUnY3E%2FJE5a4vbHVJdfQgA
+
+
+#### 请求参数
+	* ac=profile --- 固定搭配
+	* m_auth --- 授权码
+	* op --- 取为不同的值，得到不同的个人信息
+			* work -- 工作情况
+			* edu --  教育情况
+			* info --  相关信息 (个人签名，兴趣爱好等)
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### op=work 的 样例	
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "infoid": "31",
+	            "uid": "6",
+	            "type": "work",
+	            "subtype": "",
+	            "title": "广东丰德",
+	            "subtitle": "软件部",
+	            "friend": "0",
+	            "startyear": "2010",
+	            "endyear": "0",
+	            "startmonth": "0",
+	            "endmonth": "0"	      
+	        }
+	        
+	    ],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+### op = edu 的样例
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "infoid": "33",
+	            "uid": "6",
+	            "type": "edu",
+	            "subtype": "",
+	            "title": "广东医学院",
+	            "subtitle": "信息工程学院",
+	            "friend": "0",
+	            "startyear": "2010",
+	            "endyear": "0",
+	            "startmonth": "0",
+	            "endmonth": "0"
+	        },
+	        {
+	            "infoid": "37",
+	            "uid": "6",
+	            "type": "edu",
+	            "subtype": "",
+	            "title": "连平中学",
+	            "subtitle": "高中",
+	            "friend": "0",
+	            "startyear": "2007",
+	            "endyear": "2010",
+	            "startmonth": "9",
+	            "endmonth": "7"
+	        }
+	    ],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+### op = info 时的样例
+	{
+	    "code": 0,
+	    "data": {
+	        "motto": {
+	            "infoid": "30",
+	            "uid": "6",
+	            "type": "info",
+	            "subtype": "motto",
+	            "title": "医者仁心",
+	            "subtitle": "",
+	            "friend": "0",
+	            "startyear": "0",
+	            "endyear": "0",
+	            "startmonth": "0",
+	            "endmonth": "0"
+	        }
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+[↑返回顶部](#momo)
+
+
+<h2>增加个人工作情况</h2>
+域名/capi/cp.php?ac=profile&op=work&profilesubmit=true&title=广东医学院&subtitle=信息工程学院&startyear=2010&m_auth=4f1bzUvjXrW7MIHumGEpavu4D3Nf5b
+
+
+#### 请求参数
+	* ac=profile&op=work&profilesubmit=true  --- 固定搭配
+	* title ---  公司或机构名
+	* subtitle --- 部门名
+	* startyear --- 就职的年份
+	* startmonth --- 就职的月份
+	* endyear --- 离职的年份
+	* endmonth --- 离职的月份
+    * m_auth --- 授权码
+	
+
+#### 返回字段
+	*code -- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "个人资料更新成功了",
+	    "action": "update_on_successful_individuals"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>删除个人工作情况</h2>
+域名/capi/cp.php?ac=profile&op=work&subop=delete&profilesubmit=true&infoid=10&m_auth=4f1bzUvjXrW7MIHumGEpavu4D3Nf5b
+
+
+#### 请求参数
+	* ac=profile&op=work&subop=delete&profilesubmit=true  --- 固定搭配
+	* infoid ---  教育信息id
+	* m_auth --- 授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
+
+<h2>修改昵称</h2>
+域名/capi/cp.php?ac=profile&op=name&name=春雨&m_auth=af9cCEMpQlfFTifZltu
+
+
+#### 请求参数
+	* ac=profile&op=name  --- 固定搭配
+	* name ---  真实姓名
+	* m_auth --- 授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+<h2>添加个人签名</h2>
+域名/capi/cp.php?ac=profile&op=info&profilesubmit=true&motto=医者仁心&m_auth=af9cCEMpQlfFTifZltu
+
+
+#### 请求参数
+	* ac=profile&op=info&profilesubmit=true --- 固定搭配
+	* motto ---  个人签名
+	* m_auth --- 授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>增加个人教育情况</h2>
+域名/capi/cp.php?ac=profile&op=edu&profilesubmit=true&title=广东医学院&subtitle=信息工程学院
+&startyear=2010&startmonth=9&endyear=2014&endmonth=7&m_auth=4f1bzUvjXrW7MIHumGEpavu4D3Nf5b
+
+
+#### 请求参数
+	* ac=profile&op=edu&profilesubmit=true  --- 固定搭配
+	* title ---  校名
+	* subtitle --- 学院名
+	* startyear --- 入学年份
+	* startmonth ---  入学月份
+	* endyear --- 毕业年份
+	* endmonth ---  毕业月份
+    * m_auth --- 授权码
+
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "个人资料更新成功了",
+	    "action": "update_on_successful_individuals"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>删除个人教育情况</h2>
+域名/capi/cp.php?ac=profile&op=edu&subop=delete&profilesubmit=true&infoid=10&m_auth=4f1bzUvjXrW7MIHumGEpavu4D3Nf5b
+
+
+#### 请求参数
+	* ac=profile&op=edu&subop=delete&profilesubmit=true  --- 固定搭配
+	* infoid ---  教育信息id
+	* m_auth --- 授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
+
+
+<h2>修改个人基本资料</h2>
+域名/capi/cp.php?ac=profile&op=base&profilesubmit=true&birthyear=1990&birthmonth=10&birthday=21&birthprovince=广东&birthcity=河源
+&resideprovince=广东&residecity=广州&m_auth=4f1bzUvjXrW7MIHumGEpavu4D3Nf5b
+
+
+#### 请求参数
+	* ac=profile&op=base&profilesubmit=true  --- 固定搭配
+	* name ---  真实姓名
+	* birthyear --- 出生年
+	* birthmonth --- 出生月
+	* birthday ---  出生日
+	* birthporvince --- 出生省
+	* birthcity -- 出生市
+	* resideprovince --- 现在居住在哪个省
+	* residecity --- 现在居住在哪个市
+	* blood --- 血型
+	* marry --- 是否已婚 
+			* 1：单身 
+			* 2：非单身
+	* sex --- 性别
+			* 1：男
+			* 2：女
+
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "个人资料更新成功了",
+	    "action": "update_on_successful_individuals"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>我的个人信息</h2>
+域名/capi/cp.php?ac=profile&m_auth=4f1bzUvjXrW7MIHumGEpavu4D3Nf5b
+
+
+#### 请求参数
+	* ac=profile  --- 固定搭配
+	* m_auth --- 授权码
+
+	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "space": {
+	            "uid": "5",
+	            "sex": "0",
+	            "email": "yuyu01@qq.com",
+	            "newemail": "",
+	            "emailcheck": "0",
+	            "mobile": "",
+	            "qq": "",
+	            "msn": "",
+	            "msnrobot": "",
+	            "msncstatus": "0",
+	            "videopic": "",
+	            "birthyear": "1990",
+	            "birthmonth": "10",
+	            "birthday": "21",
+	            "blood": "",
+	            "marry": "0",
+	            "birthprovince": "广东",
+	            "birthcity": "河源",
+	            "resideprovince": "",
+	            "residecity": "",
+	            "note": "",
+	            "spacenote": "",
+	            "authstr": "",
+	            "theme": "",
+	            "nocss": "0",
+	            "menunum": "0",
+	            "css": "",
+	            "privacy": {
+	                "view": {
+	                    "index": "0",
+	                    "profile": "0",
+	                    "friend": "0",
+	                    "wall": "0",
+	                    "feed": "0",
+	                    "mtag": "0",
+	                    "event": "0",
+	                    "doing": "0",
+	                    "blog": "0",
+	                    "album": "0",
+	                    "share": "0",
+	                    "poll": "0"
+	                },
+	                "feed": {
+	                    "doing": 1,
+	                    "blog": 1,
+	                    "upload": 1,
+	                    "share": 1,
+	                    "poll": 1,
+	                    "joinpoll": 1,
+	                    "thread": 1,
+	                    "post": 1,
+	                    "mtag": 1,
+	                    "event": 1,
+	                    "join": 1,
+	                    "friend": 1,
+	                    "comment": 1,
+	                    "show": 1,
+	                    "spaceopen": 1,
+	                    "credit": 1,
+	                    "invite": 1,
+	                    "task": 1,
+	                    "profile": 1,
+	                    "album": 1,
+	                    "click": 1
+	                }
+	            },
+	            "friend": "3,4,2",
+	            "feedfriend": "3,4,2",
+	            "sendmail": "",
+	            "magicstar": "0",
+	            "magicexpire": "0",
+	            "timeoffset": "",
+	            "groupid": "5",
+	            "credit": "69",
+	            "experience": "81",
+	            "username": "yuyu_invite01",
+	            "name": "",
+	            "namestatus": "1",
+	            "videostatus": "0",
+	            "domain": "",
+	            "friendnum": "3",
+	            "viewnum": "6",
+	            "notenum": "10",
+	            "addfriendnum": "1",
+	            "mtaginvitenum": "0",
+	            "eventinvitenum": "0",
+	            "myinvitenum": "0",
+	            "pokenum": "0",
+	            "doingnum": "0",
+	            "blognum": "2",
+	            "albumnum": "0",
+	            "threadnum": "1",
+	            "pollnum": "0",
+	            "eventnum": "0",
+	            "sharenum": "0",
+	            "dateline": "1382948406",
+	            "updatetime": "1383031334",
+	            "lastsearch": "0",
+	            "lastpost": "1383135725",
+	            "lastlogin": "1390787719",
+	            "lastsend": "0",
+	            "attachsize": "0",
+	            "addsize": "0",
+	            "addfriend": "0",
+	            "flag": "0",
+	            "newpm": "0",
+	            "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+	            "regip": "127.0.0.1",
+	            "ip": "121008157",
+	            "mood": "0",
+	            "self": 1,
+	            "friends": [
+	                "3",
+	                "4",
+	                "2"
+	            ],
+	            "allnotenum": 11,
+	            "grouptitle": "普通会员",
+	            "tasknum": 7,
+	            "commentnum": "0",
+	            "isonline": 1
+	        }
+	    },
+	    "msg": "rest_success",
+	    "action": "rest_success"
+	}
+
+[↑返回顶部](#momo)
+
+
 <h2>好友动态列表</h2>
 域名/capi/space.php?do=feed&view=friend&page=0&perpage=10&queryop=down&m_auth=55dalDuJytwHteL6s5qlKwHLm
 
