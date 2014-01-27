@@ -1,8 +1,6 @@
 momo
 =====
 ******************************
-/capi/cp.php?ac=profile&op=work&mobile=15966538993&qq=1396636115&msn=1396636115@qq.com&m_auth=a5bd8ujqRWZeW4f9a3M3cUnY3E%2FJE5a4vbHVJdfQgA
-* 接口
 	*	[获取注册验证码](#获取注册验证码)
 	*	[注册](#注册)
 	*	[登录](#登录)
