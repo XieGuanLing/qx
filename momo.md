@@ -21,6 +21,8 @@ momo
 	*	[分类查看个人信息](#分类查看个人信息)
 	*   [我的个人信息](#我的个人信息)
 	*   [-------------------------------------------------------------](--------------------------------)
+	*   [添加图片](#添加图片)
+	*   [-------------------------------------------------------------](--------------------------------)
 	*	[好友动态列表](#好友动态列表)
 	*	[发布私信](#发布私信)
 	*	[私信列表](#私信列表)
@@ -57,6 +59,55 @@ momo
 
 接口说明
 --------
+<h2>删除个人工作情况</h2>
+域名/capi/cp.php?ac=upload&uploadsubmit2=true&albumid=0&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw&attach=
+
+
+#### 请求参数
+	* ac=upload&uploadsubmit2=true&albumid=0  --- 固定搭配
+	* attach ---  要上传的文件
+	* m_auth --- 授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+			* albumid --- 相册id
+			* uid --- 上传图片的用户id
+			* filename --- 上传的文件名
+			* filepath --- 文件存放路径		
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "pic": {
+	            "albumid": 0,
+	            "uid": 6,
+	            "username": null,
+	            "dateline": "1390925663",
+	            "filename": "2e7c0708caf4599662d9862b.jpg",
+	            "postip": "127.0.0.1",
+	            "title": "",
+	            "type": "image/jpeg",
+	            "size": 41175,
+	            "filepath": "201401/28/6_13909256636f3i.jpg",
+	            "thumb": 1,
+	            "remote": 0,
+	            "topicid": 0,
+	            "picid": 8,
+	            "pic": "attachment/201401/28/6_13909256636f3i.jpg.thumb.jpg"
+	        }
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
 <h2>分类查看个人信息</h2>
 域名/capi/cp.php?ac=profile&op=work&m_auth=a5bd8ujqRWZeW4f9a3M3cUnY3E%2FJE5a4vbHVJdfQgA
 
