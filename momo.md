@@ -27,7 +27,8 @@ momo
 	*	[发布私信](#发布私信)
 	*	[私信列表](#私信列表)
 	*	[查看新私信](#查看新私信)
-	*	[私信详情](#私信详情)
+	*	[根据消息id查看私信详情](#根据消息id查看私信详情)
+	*	[根据消息来源查看私信详情](#根据消息来源查看私信详情)
 	*   [-------------------------------------------------------------](--------------------------------)
 	*	[新建博客分类](#新建博客分类)
 	*	[删除博客分类](#删除博客分类)
@@ -59,7 +60,7 @@ momo
 
 接口说明
 --------
-<h2>删除个人工作情况</h2>
+<h2>添加图片</h2>
 域名/capi/cp.php?ac=upload&uploadsubmit2=true&albumid=0&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw&attach=
 
 
@@ -2220,26 +2221,25 @@ upfile  文件
 
 
 <h2>私信列表</h2>
-域名/capi/space.php?do=pm&page=0&prepage=2&uid=1&filter=newpm&dateline=0&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
+域名/capi/space.php?do=pm&page=0&prepage=2&filter=newpm&dateline=0&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
 #### 请求参数
-	* 当前用户id -- uid
-	* 第几页 -- page
-	* 每页显示数量  -- perpage
-	* 私信类型 -- filter
+	* page -- 第几页
+	* perpage  --  每页显示数量
+	* filter -- 私信类型
 		* newpm -- 未读私信
 		* privatepm -- 私人消息
 		* systempm -- 系统消息
 		* announcepm -- 公共消息
 		* 空 -- 私人消息
-	* API密钥 -- m_auth, 由登录后返回
-	* 时间点 -- dateline
+	* m_auth -- API密钥, 由登录后返回
+	* dateline -- 时间点
 
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
 	* 操作信息 -- msg, 详细参见附录
 	* 结果 -- data, json数组, 本操作返回两个数据
-		* data[pms]，私信列表， 条目字段如下
+		* pms，私信列表， 条目字段如下
 			* pmid -- 私信id
 			* msgfrom -- 消息发送人
 			* msgfromavatar -- 消息发送人头像
@@ -2254,7 +2254,7 @@ upfile  文件
 			* fromappid -- 应用程序ID，可以忽略
 			* dateline -- 时间
 			* daterange -- 消息相隔的天数，1代表1天内，2代表两天内，3代表3天内
-		* data[count], 返回列表条目数, 便用遍历
+		* count, 返回列表条目数, 便用遍历
 #### 样例
 	{
 		"code": 0,
@@ -2285,23 +2285,22 @@ upfile  文件
 	}
 [↑返回顶部](#momo)
 
-<h2>私信详情</h2>
+<h2>根据消息id查看私信详情</h2>
 域名/capi/space.php?do=pm&subop=view&pmid=2&touid=12&daterange=10&page=1&perpage=10&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
 #### 请求参数
-	* 消息送至的用户id -- touid
-	* 检索消息的区间（几天之内的） -- daterange
-	* 消息id -- pmid
-	* 当前页 -- page, 默认为1
-	* 分页数 -- perpage, 默认为10
-	* 操作参数 -- subop, 必须为view
-	* API密钥 -- m_auth, 由登录后返回
+	*  do=pm&subop=view -- 操作参数 
+	*  pmid -- 消息id
+	*  daterange -- 检索消息的区间（几天之内的）
+	*  page -- 当前页, 默认为1
+	*  perpage -- 分页数, 默认为10
+	*  m_auth -- API密钥, 由登录后返回
 
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
 	*msg--  操作信息 , 详细参见附录
 	*data--  结果 , json数组, 本操作返回两个数据
-		* data[pms]，私信列表， 条目字段如下
+		* pms，私信列表， 条目字段如下
 			* pmid -- 私信id
 			* msgfrom -- 消息发送人
 			* msgfromid -- 消息发送人id
@@ -2316,7 +2315,103 @@ upfile  文件
 			* fromappid -- 应用程序ID，可以忽略
 			* dateline -- 时间
 			* daterange -- 消息相隔的天数，1代表1天内，2代表两天内，3代表3天内
-		* data[count], 返回列表条目数, 便用遍历
+		* count, 返回列表条目数, 便用遍历
+
+#### 样例
+	{
+		"code": 0,
+		"data": {
+			"pms": [
+				{
+					"pmid": "6",
+					"msgfrom": "summit",
+					"msgfromid": "5",
+					"msgtoid": "1",
+					"folder": "inbox",
+					"new": "1",
+					"subject": "23423432423",
+					"dateline": "1344324163",
+					"message": "23423432423",
+					"delstatus": "0",
+					"related": "1",
+					"fromappid": "1",
+					"daterange": 5,
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
+				},
+				{
+					"pmid": "8",
+					"msgfrom": "summit",
+					"msgfromid": "5",
+					"msgtoid": "1",
+					"folder": "inbox",
+					"new": "1",
+					"subject": "你好吧。admin",
+					"dateline": "1344324259",
+					"message": "你好吧。admin",
+					"delstatus": "0",
+					"related": "1",
+					"fromappid": "1",
+					"daterange": 5,
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
+				},
+				{
+					"pmid": "9",
+					"msgfrom": "admin",
+					"msgfromid": "1",
+					"msgtoid": "5",
+					"folder": "inbox",
+					"new": "0",
+					"subject": "你好summit",
+					"dateline": "1344324792",
+					"message": "你好summit",
+					"delstatus": "0",
+					"related": "1",
+					"fromappid": "1",
+					"daterange": 5,
+					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg"
+				}
+			],
+			"count": 3
+		},
+		"msg": "数据获取成功",
+		"action": "rest_success"
+	}
+[↑返回顶部](#momo)
+
+<h2>根据消息来源查看私信详情</h2>
+域名/capi/space.php?do=pm&subop=view&touid=12&daterange=10&page=1&perpage=10&m_auth=55dalDuJytwHteL6s5qlKwHLmhIhpGZ4fZUXHu0
+#### 请求参数
+	*  do=pm&subop=view -- 操作参数 
+	*  touid -- 来自哪个用户
+	*  daterange -- 检索消息的区间（几天之内的）
+	*  page -- 当前页, 默认为1
+	*  perpage -- 分页数, 默认为10
+	*  m_auth -- API密钥, 由登录后返回
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg--  操作信息 , 详细参见附录
+	*data--  结果 , json数组, 本操作返回两个数据
+		* pms，私信列表， 条目字段如下
+			* pmid -- 私信id
+			* msgfrom -- 消息发送人
+			* msgfromid -- 消息发送人id
+			* msgfromavatar -- 消息发送人头像
+			* msgtoid -- 消息接收人id
+			* msgtoavatar -- 消息接收人头像
+			* authorid -- 发送通知的用户
+			* new -- 是否未读
+			* subject -- 私信标题
+			* message -- 私信内容
+			* delstatus -- 删除状态
+			* fromappid -- 应用程序ID，可以忽略
+			* dateline -- 时间
+			* daterange -- 消息相隔的天数，1代表1天内，2代表两天内，3代表3天内
+		* count, 返回列表条目数, 便用遍历
 
 #### 样例
 	{
@@ -2631,12 +2726,12 @@ upfile  文件
 [↑返回顶部](#momo)
 	
 <h2>登录</h2>
-域名/capi/do.php?ac=login&loginsubmit=true&username=summit&password=likeyou&longtitude=23°27′30"&latitude=23°27′30"&pushid=8392839&channelid=83923892023
+域名/capi/do.php?ac=login&loginsubmit=true&username=summit&password=likeyou&longititude=116.89238&latitude=23.88923&pushid=8392839&channelid=83923892023
 #### 请求参数
 	* loginsubmit -- 提交类型 ， 必须为true
 	* username -- 用户名
 	* password -- 密码
-	* longtitude -- 经度
+	* longititude -- 经度
 	* latitude -- 纬度
 	* pushid -- 推送id
 	* channelid -- 推送通道id
@@ -2671,17 +2766,17 @@ upfile  文件
 		       * count ---  计量
 		       * data --- 消息数组		       		
 		       		* pmid --- 消息id
-                    * msgfrom --- 发送方username
-                    * msgfromid ---  发送方id
-                    * msgtoid --- 接收方法id
-                    * new --- 
+                    * msgfrom --- 该消息发送方username
+                    * msgfromid ---  该消息发送方id
+                    * msgtoid --- 该消息接收方id
+                    * new --- 是否属于新消息 1-是 0-否
                     * subject --- 主题与内容相同
                     * dateline --- 发送的时间
                     * delstatus ---
                     * related ---
                     * fromappid --- 
                     * daterange --- 时间范围
-                    * touid --- 
+                    * touid --- 回复该消息时，接收人的id
 
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
