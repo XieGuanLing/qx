@@ -60,13 +60,55 @@ momo
 
 接口说明
 --------
+<h2>附近的用户</h2>
+域名/capi/space.php?do=near&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw&
+
+
+#### 请求参数
+	* do=near --- 固定搭配
+	* m_auth --- 授权码
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+			* uid --- 用户id
+			* username --- 用户名
+			* avatar_url -- 头像所在目录,加上网址即可下载
+			* distance --- 距离
+		
+	
+#### 样例
+{
+    "code": 0,
+    "data": [
+        {
+            "uid": "6",
+            "username": "test",
+            "avatar_url": "/data/avatar/000/00/00/06_avatar_small.jpg",
+            "distance": 111.3195
+        },
+        {
+            "uid": "4",
+            "username": "qia",
+            "avatar_url": "/data/avatar/000/00/00/04_avatar_small.jpg",
+            "distance": 222.639
+        }
+    ],
+    "msg": "进行的操作完成了",
+    "action": "do_success"
+}
+
+
+[↑返回顶部](#momo)
+
 <h2>添加图片</h2>
 域名/capi/cp.php?ac=upload&uploadsubmit2=true&albumid=0&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw&attach=
 
 
 #### 请求参数
 	* ac=upload&uploadsubmit2=true&albumid=0  --- 固定搭配
-	* attach ---  要上传的文件
+	* attach ---  要上传的文件 post方式提交
 	* m_auth --- 授权码
 
 #### 返回字段
@@ -646,22 +688,36 @@ momo
 
 
 <h2>上传头像</h2>
-域名/capi/cp.php?ac=avatar&avatarsubmit=true&m_auth=2551OHptdlM%2Bbka2dCZNeEUkuS
-post提交以下参数
-upfile  文件
+域名/capi/cp.php?ac=avatar&avatarsubmit=true&upfile= &m_auth=2551OHptdlM%2Bbka2dCZNeEUkuS
+
+
 
 #### 请求参数
 	* ac=blog&classsubmit=true&op=allclass  --- 固定搭配
 	* uid --- 我的id
+	* upfile --- 文件 (post方式提交)
 	
 
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
-	*data -- 返回数据		
+	*data -- 返回数据
+		*small -- 小尺寸的头像所在目录,加上网址即可下载
+		*middle -- 中尺寸的头像所在目录,加上网址即可下载
+		*big -- 大尺寸的头像所在目录,加上网址即可下载		
 		
 	
 #### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "small": "/data/avatar/000/00/00/07_avatar_small.jpg",
+	        "middle": "/data/avatar/000/00/00/07_avatar_middle.jpg",
+	        "big": "/data/avatar/000/00/00/07_avatar_big.jpg"
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
 
 [↑返回顶部](#momo)
 
@@ -2758,10 +2814,9 @@ upfile  文件
 				* attachsize -- 空间大小
 				* flag -- 是否被禁
 				* newpm -- 是否有新通知
-				* avatar -- 个人头像
-				* reward -- 操作增加的金币分和经验
-					* credit -- 金币
-					* experience -- 经验
+				* avatar -- 是否上传了头像
+				* avatar_url -- 头像存放目录,加上网址即可下载
+
 		*pm --离线消息
 		       * count ---  计量
 		       * data --- 消息数组		       		
@@ -2824,10 +2879,7 @@ upfile  文件
             "regip": "127.0.0.1",
             "ip": "163177139",
             "mood": "3",
-            "reward": {
-                "credit": 0,
-                "experience": 0
-            }
+   			"avatar_url":"/data/avatar/000/00/00/02_avatar_small.jpg"
         },
         "pm": {
             "data": [
