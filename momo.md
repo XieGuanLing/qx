@@ -10,6 +10,7 @@ momo
 	*	[上传头像](#上传头像)
 	*	[单向加关注](#单向加关注)
 	*	[我的好友列表](#我的好友列表)
+	*	[附近的用户](#附近的用户)
 	*   [-------------------------------------------------------------](--------------------------------)
 	*	[修改个人基本资料](#修改个人基本资料)
 	*   [增加个人工作情况](#增加个人工作情况)
@@ -61,7 +62,7 @@ momo
 接口说明
 --------
 <h2>附近的用户</h2>
-域名/capi/space.php?do=near&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw&
+域名/capi/space.php?do=near&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw
 
 
 #### 请求参数
@@ -79,25 +80,25 @@ momo
 		
 	
 #### 样例
-{
-    "code": 0,
-    "data": [
-        {
-            "uid": "6",
-            "username": "test",
-            "avatar_url": "/data/avatar/000/00/00/06_avatar_small.jpg",
-            "distance": 111.3195
-        },
-        {
-            "uid": "4",
-            "username": "qia",
-            "avatar_url": "/data/avatar/000/00/00/04_avatar_small.jpg",
-            "distance": 222.639
-        }
-    ],
-    "msg": "进行的操作完成了",
-    "action": "do_success"
-}
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "uid": "6",
+	            "username": "test",
+	            "avatar_url": "/data/avatar/000/00/00/06_avatar_small.jpg",
+	            "distance": 111.3195
+	        },
+	        {
+	            "uid": "4",
+	            "username": "qia",
+	            "avatar_url": "/data/avatar/000/00/00/04_avatar_small.jpg",
+	            "distance": 222.639
+	        }
+	    ],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
 
 
 [↑返回顶部](#momo)
@@ -886,7 +887,7 @@ momo
                 "addfriend": "0",
                 "flag": "0",
                 "newpm": "0",
-                "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+                "avatar":  "/data/avatar/000/00/00/07_avatar_small.jpg",
                 "regip": "127.0.0.1",
                 "ip": "127000000",
                 "mood": "0",
@@ -942,7 +943,7 @@ momo
                 "addfriend": "0",
                 "flag": "0",
                 "newpm": "0",
-                "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+                "avatar": "/data/avatar/000/00/00/04_avatar_small.jpg",,
                 "regip": "127.0.0.1",
                 "ip": "127000000",
                 "mood": "0",
@@ -1306,7 +1307,7 @@ momo
 
 
 <h2>查看整个站点的博客</h2>
-域名/capi/space.php?do=blog&view=all&day=10&orderby=dateline&page=0&perpage=20&auth=071eGlvIzPkREWLjgH9g4%2Fn
+域名/capi/space.php?do=blog&view=all&day=10&orderby=dateline&page=0&perpage=20
 
 #### 请求参数
 	* do=blog&view=all  --- 固定搭配
@@ -2330,8 +2331,8 @@ momo
 					"fromappid": "1",
 					"daterange": 5,
 					"touid": "1",
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "/data/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 1
@@ -2392,8 +2393,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "8",
@@ -2409,8 +2410,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "9",
@@ -2426,8 +2427,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 3
@@ -2488,8 +2489,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "8",
@@ -2505,8 +2506,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "9",
@@ -2522,8 +2523,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "http://localhost:8080/momo/center/data/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 3
