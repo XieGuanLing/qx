@@ -122,7 +122,8 @@ momo
 			* albumid --- 相册id
 			* uid --- 上传图片的用户id
 			* filename --- 上传的文件名
-			* filepath --- 文件存放路径		
+			* filepath --- 文件存放路径
+			* picid --- 上传后保存的id		
 		
 	
 #### 样例
@@ -2175,6 +2176,7 @@ momo
 		* viewnum -- 被浏览数
 		* replynum -- 评论回复数
 		* subject -- 博客标题
+		* pic -- 图片链接，多个链接用英文逗号隔开，加上http://gluchome.duapp.com/attachment就是下载地址
 		* classid -- 博客分类id
 		* click_1 -- 表态“路过"
         * click_2 -- 表态"雷人"
@@ -2207,7 +2209,7 @@ momo
 	            "replynum": "0",
 	            "hot": "0",
 	            "dateline": "1385554217",
-	            "pic": "",
+	            "pic": "201402/21/6_1393000257FMFM.jpg,201402/22/6_1393042190vEER.png,201402/22/6_1393042528z63y.gif",
 	            "picflag": "0",
 	            "noreply": "0",
 	            "friend": "0",
@@ -2572,7 +2574,7 @@ momo
 		*subject  --- 博客标题
 		*message  --- 博客内容
 		*classid=0  --- 默认博客分类 
-		*picids -- 上传图片后返回的pid，多个pid有英文逗号隔开
+		*picids -- 上传图片后返回的picid，多个pid有英文逗号隔开
 
 #### 返回字段
 	*code--  0:代表成功， 1:代表失败
