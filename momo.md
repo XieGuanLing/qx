@@ -75,6 +75,7 @@ momo
 	*data -- 返回数据
 			* uid --- 用户id
 			* username --- 用户名
+			* isdoctor --- 是否是医生
 			* avatar_url -- 头像所在目录,加上网址即可下载
 			* distance --- 距离
 		
@@ -86,12 +87,14 @@ momo
 	        {
 	            "uid": "6",
 	            "username": "test",
+	            "isdoctor":"0",
 	            "avatar_url": "/data/avatar/000/00/00/06_avatar_small.jpg",
 	            "distance": 111.3195
 	        },
 	        {
 	            "uid": "4",
 	            "username": "qia",
+	            "isdoctor":"0",
 	            "avatar_url": "/data/avatar/000/00/00/04_avatar_small.jpg",
 	            "distance": 222.639
 	        }
@@ -2563,12 +2566,13 @@ momo
 
 
 #### 请求参数
-	* 操作类型 -- ac为blog,  blogid为0，blogsubmit为true
-	* API密钥 -- m_auth, 由登录后返回
+	* ac=blog&blogid=0&blogsubmit=true  -- 固定搭配
+	* m_auth -- API密钥, 由登录后返回
 	*用post方式提交以下参数
 		*subject  --- 博客标题
 		*message  --- 博客内容
-		*classid  --- 博客分类 classid=0表示默认分类
+		*classid=0  --- 默认博客分类 
+		*picids -- 上传图片后返回的pid，多个pid有英文逗号隔开
 
 #### 返回字段
 	*code--  0:代表成功， 1:代表失败
@@ -2616,14 +2620,15 @@ momo
 
 <h2>注册</h2>
 /capi/do.php?ac=register&registersubmit=true&username=test4&password=123&password2=123&seccode=cQ7T
-&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
+isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 
 #### 请求参数
 	* ac=register&registersubmit=true -- 固配
 	* username  --  用户名
 	* password  --  用户输入的第一次密码
 	* password2  --  用户输入的确认密码 
-	* seccode  --  用户输入的验证码 
+	* seccode  --  用户输入的验证码
+	* isdoctor  -- 是否是医生，0 -- 非医生，1 -- 医生
 	* m_auth  --   生成验证码返回的seccode_auth
 
 #### 返回字段
