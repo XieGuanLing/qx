@@ -76,7 +76,11 @@ momo
 			* uid --- 用户id
 			* username --- 用户名
 			* isdoctor --- 是否是医生
-			* avatar_url -- 头像所在目录,加上网址即可下载
+			* sex -- 性别 	1：男 2：女
+			* avatar -- 头像所在目录,加上网址即可下载
+			* dateline -- 注册时间
+	        * resideprovince -- 居住省份
+	        * residecity -- 居住城市
 			* distance --- 距离
 		
 	
@@ -85,18 +89,26 @@ momo
 	    "code": 0,
 	    "data": [
 	        {
-	            "uid": "6",
-	            "username": "test",
-	            "isdoctor":"0",
-	            "avatar_url": "/data/avatar/000/00/00/06_avatar_small.jpg",
-	            "distance": 111.3195
+	            "uid": "8",
+	            "username": "test08",
+	            "isdoctor": "0",
+	            "sex":"0",
+	            "dateline": "1385471652",
+	            "resideprovince": "",
+	            "residecity": "",
+	            "avatar": "/data/avatar/noavatar_middle.gif",
+	            "distance": 755.9084
 	        },
 	        {
-	            "uid": "4",
-	            "username": "qia",
-	            "isdoctor":"0",
-	            "avatar_url": "/data/avatar/000/00/00/04_avatar_small.jpg",
-	            "distance": 222.639
+	            "uid": "9",
+	            "username": "test09",
+	            "isdoctor": "0",
+	            "sex":"0",
+	            "dateline": "1386419293",
+	            "resideprovince": "",
+	            "residecity": "",
+	            "avatar": "/data/avatar/000/00/00/09_avatar_middle.jpg",
+	            "distance": 1852.6505
 	        }
 	    ],
 	    "msg": "进行的操作完成了",
@@ -123,7 +135,9 @@ momo
 			* uid --- 上传图片的用户id
 			* filename --- 上传的文件名
 			* filepath --- 文件存放路径
-			* picid --- 上传后保存的id		
+			* picid --- 上传后保存的id	
+			* filepath --- 图片保存目录，加上http://gluchome.duapp.com/attachment/
+			* pic --- 上传后的缩略图，加上http://gluchome.duapp.com/
 		
 	
 #### 样例
@@ -133,7 +147,6 @@ momo
 	        "pic": {
 	            "albumid": 0,
 	            "uid": 6,
-	            "username": null,
 	            "dateline": "1390925663",
 	            "filename": "2e7c0708caf4599662d9862b.jpg",
 	            "postip": "127.0.0.1",
@@ -483,7 +496,12 @@ momo
 #### 返回字段
 	*code-- 错误码, 0:代表成功， 1:代表失败
 	*action --  操作类型
-	*data -- 返回数据		
+	*data -- 返回数据
+		*mobile -- 手机号
+		*friend -- 朋友的id号，用逗号隔开
+		*avatar -- 头像存放目录		
+		*grouptitle --  会员级别
+		*commentnum -- 所有评论数
 		
 	
 #### 样例
@@ -597,7 +615,7 @@ momo
 	            "addfriend": "0",
 	            "flag": "0",
 	            "newpm": "0",
-	            "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
+	            "avatar":"/data/avatar/000/00/00/07_avatar_small.jpg"
 	            "regip": "127.0.0.1",
 	            "ip": "121008157",
 	            "mood": "0",
@@ -609,9 +627,7 @@ momo
 	            ],
 	            "allnotenum": 11,
 	            "grouptitle": "普通会员",
-	            "tasknum": 7,
 	            "commentnum": "0",
-	            "isonline": 1
 	        }
 	    },
 	    "msg": "rest_success",
@@ -677,8 +693,8 @@ momo
 	                "fromappid": "1",
 	                "daterange": 2,
 	                "touid": "2",
-	                "msgfromavatar": "http://localhost/ucenter/images/noavatar_small.gif",
-	                "msgtoavatar": "http://localhost/ucenter/images/noavatar_small.gif",
+	                "msgfromavatar": "/data/avatar/000/00/00/07_avatar_small.jpg",
+	                "msgtoavatar": "/data/avatar/000/00/00/07_avatar_small.jpg",
 	                "msgfromisonline": 0,
 	                "msgtoisonline": 1
 	            }
@@ -829,11 +845,10 @@ momo
 
 
 <h2>我的好友列表</h2>
-域名/capi/space.php?do=friend&isinsert=true&uid=6&m_auth=ab65k4c%2BTeZjDt%2BJIEnN
+域名/capi/space.php?do=friend&m_auth=ab65k4c%2BTeZjDt%2BJIEnN
 
 #### 请求参数
-	* do=friend&isinsert=true -- 固定搭配 
-	* uid -- 我的id
+	* do=friend -- 固定搭配 
 	* m_auth  -- API密钥, 由登录后返回
 #### 返回字段
 	*code--  0:代表成功， 1:代表失败
@@ -848,7 +863,12 @@ momo
 		 	*username -- 用户名
 		 	*name -- 实名 
 		 	*sex -- 性别
+		 	*avatar -- 头像url,加上网站地址就是下载地址
 		 	*isonline -- 0：不在线 1：在线
+		 	*resideprovince -- 居住省份
+            *residecity -- 居住城市
+            *lastpost -- 最后提交内容的时间
+            *lastlogin -- 最后登录的时间
 
 ####示例
 	{
@@ -904,8 +924,6 @@ momo
                 "num": "1",
                 "creditrank": "5",
                 "experiencerank": "5",
-                "p": "",
-                "c": "",
                 "group": "其他",
                 "isfriend": 1,
                 "grouptitle": "中级会员",
@@ -960,71 +978,13 @@ momo
                 "num": "0",
                 "creditrank": "7",
                 "experiencerank": "7",
-                "p": "",
-                "c": "",
                 "group": "其他",
                 "isfriend": 1,
                 "grouptitle": "普通会员",
                 "isonline": 0
-            },
-            {
-                "uid": "2",
-                "groupid": "6",
-                "credit": "295",
-                "experience": "280",
-                "username": "uid2",
-                "name": "uid2",
-                "namestatus": "1",
-                "videostatus": "0",
-                "domain": "",
-                "friendnum": "6",
-                "viewnum": "10",
-                "notenum": "10",
-                "addfriendnum": "0",
-                "mtaginvitenum": "0",
-                "eventinvitenum": "0",
-                "myinvitenum": "0",
-                "pokenum": "0",
-                "doingnum": "2",
-                "blognum": "5",
-                "albumnum": "0",
-                "threadnum": "0",
-                "pollnum": "0",
-                "eventnum": "0",
-                "sharenum": "0",
-                "dateline": "1382601338",
-                "updatetime": "1386421423",
-                "lastsearch": "1384617842",
-                "lastpost": "1386421423",
-                "lastlogin": "1387634596",
-                "lastsend": "0",
-                "attachsize": "0",
-                "addsize": "0",
-                "addfriend": "0",
-                "flag": "0",
-                "newpm": "0",
-                "avatar": "http://glucenter.duapp.com/images/noavatar_small.gif",
-                "regip": "127.0.0.1",
-                "ip": "163177136",
-                "mood": "3",
-                "resideprovince": "",
-                "residecity": "",
-                "note": "我在学习",
-                "spacenote": "<img src=\"image/face/3.gif\" class=\"face\">我在学习",
-                "sex": "1",
-                "gid": "5",
-                "num": "10",
-                "creditrank": "2",
-                "experiencerank": "2",
-                "p": "",
-                "c": "",
-                "group": "同事",
-                "isfriend": 1,
-                "grouptitle": "中级会员",
-                "isonline": 0
             }
         ],
-        "count": 3
+        "count": 2
     },
     "msg": "rest_success",
     "action": "rest_success"
@@ -1446,7 +1406,7 @@ momo
 
 
 <h2>某篇博客的评论列表</h2>
-	*有多种查询方式
+#### 有多种查询方式
 	*前10条评论----- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9 (默认是取前10条数据)
 	*相当于  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=10
 	*自定义要查询的数量（如：20条）  ---- /capi/do.php?ac=ajax&op=getcomment&idtype=blogid&id=9&page=0&perpage=20
@@ -1473,7 +1433,9 @@ momo
 			*cid --- 评论信息的id
 			*authorid -- 评论人的id
 			*author -- 评论人的用户名
-			*message -- 评论信息
+			*avatar -- 评论人的头像地址，加上网站地址就可下载
+			*message -- 评论的信息
+			*dateline -- 评论的时间
 		*count --- 评论信息的数量
 
 
@@ -1482,32 +1444,23 @@ momo
 	    "code": 0,
 	    "data": {
 	        "comments": [
-	            {
-	                "cid": "9",
+		         {
+	                "avatar": "/data/avatar/000/00/00/06_avatar_small.jpg",
+	                "cid": "15",
 	                "authorid": "6",
-	                "author": "summit",
-	                "message": "写得很好6"
+	                "author": "test",
+	                "message": "写得很好11",
+	                "dateline": "1386471660"
 	            },
 	            {
-	                "cid": "8",
+	                "avatar": "/data/avatar/000/00/00/06_avatar_small.jpg",
+	                "cid": "14",
 	                "authorid": "6",
-	                "author": "summit",
-	                "message": "写得很好5"
-	            },
-	            {
-	                "cid": "7",
-	                "authorid": "6",
-	                "author": "summit",
-	                "message": "写得很好4"
-	            },
-	            {
-	                "cid": "6",
-	                "authorid": "6",
-	                "author": "summit",
-	                "message": "写得很好3"
+	                "author": "test",
+	                "message": "写得很好11",
+	                "dateline": "1386471581"
 	            }
-	        ],
-	        "count": 4
+	        "count": 2
 	    },
 	    "msg": "进行的操作完成了",
 	    "action": "do_success"
@@ -2822,8 +2775,7 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 				* attachsize -- 空间大小
 				* flag -- 是否被禁
 				* newpm -- 是否有新通知
-				* avatar -- 是否上传了头像
-				* avatar_url -- 头像存放目录,加上网址即可下载
+				* avatar -- 头像存放目录,加上网址即可下载
 
 		*pm --离线消息
 		       * count ---  计量
@@ -2883,11 +2835,10 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
             "addfriend": "0",
             "flag": "0",
             "newpm": "0",
-            "avatar": "0",
             "regip": "127.0.0.1",
             "ip": "163177139",
             "mood": "3",
-   			"avatar_url":"/data/avatar/000/00/00/02_avatar_small.jpg"
+   			"avatar":"/data/avatar/000/00/00/02_avatar_small.jpg"
         },
         "pm": {
             "data": [
