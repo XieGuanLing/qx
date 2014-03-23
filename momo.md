@@ -7,7 +7,6 @@ momo
 	*	[登录](#登录)
 	*	[退出](#退出)
 	*	[检测用户登陆状态](#检测用户登陆状态)
-	*	[上传头像](#上传头像)
 	*	[单向加关注](#单向加关注)
 	*	[我的好友列表](#我的好友列表)
 	*	[附近的用户](#附近的用户)
@@ -23,6 +22,8 @@ momo
 	*   [我的个人信息](#我的个人信息)
 	*   [-------------------------------------------------------------](--------------------------------)
 	*   [添加图片](#添加图片)
+	*	[上传头像](#上传头像)
+	*	[得到某个用户的大中小头像存放目录](#得到某个用户的大中小头像存放目录)
 	*   [-------------------------------------------------------------](--------------------------------)
 	*	[好友动态列表](#好友动态列表)
 	*	[发布私信](#发布私信)
@@ -61,6 +62,39 @@ momo
 
 接口说明
 --------
+<h2>得到某个用户的大中小头像存放目录</h2>
+域名/capi/cp.php?ac=avatar&getavatar=true&uid=6&m_auth=403wei
+
+
+#### 请求参数
+	* ac=avatar&getavatar=true --- 固定搭配
+	* uid -- 用户id
+	* m_auth --- 授权码	
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+		
+	
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "small": "/data/avatar/000/00/00/06_avatar_small.jpg",
+	        "middle": "/data/avatar/000/00/00/06_avatar_middle.jpg",
+	        "big": "/data/avatar/000/00/00/06_avatar_big.jpg"
+	    },
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+
+[↑返回顶部](#momo)
+
+
+
 <h2>附近的用户</h2>
 域名/capi/space.php?do=near&m_auth=c39aGq%2BSPRshmMH50rcR%2Bjqq%2Fz82zaomqDSuuWG5tw
 
@@ -75,8 +109,8 @@ momo
 	*data -- 返回数据
 			* uid --- 用户id
 			* username --- 用户名
-			* isdoctor --- 是否是医生
-			* sex -- 性别 	1：男 2：女
+			* isdoctor --- 是否是医生 0 -- 非医生，1 -- 医生
+			* sex -- 性别 0：没有设置	1：男 2：女
 			* avatar -- 头像所在目录,加上网址即可下载
 			* dateline -- 注册时间
 	        * resideprovince -- 居住省份
@@ -2777,21 +2811,19 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 				* newpm -- 是否有新通知
 				* avatar -- 头像存放目录,加上网址即可下载
 
-		*pm --离线消息
-		       * count ---  计量
-		       * data --- 消息数组		       		
-		       		* pmid --- 消息id
-                    * msgfrom --- 该消息发送方username
-                    * msgfromid ---  该消息发送方id
-                    * msgtoid --- 该消息接收方id
-                    * new --- 是否属于新消息 1-是 0-否
-                    * subject --- 主题与内容相同
-                    * dateline --- 发送的时间
-                    * delstatus ---
-                    * related ---
-                    * fromappid --- 
-                    * daterange --- 时间范围
-                    * touid --- 回复该消息时，接收人的id
+		*newpm --离线消息数组
+	       		* pmid --- 消息id
+                * msgfrom --- 该消息发送方username
+                * msgfromid ---  该消息发送方id
+                * msgtoid --- 该消息接收方id
+                * new --- 是否属于新消息 1-是 0-否
+                * subject --- 主题与内容相同
+                * dateline --- 发送的时间
+                * delstatus ---
+                * related ---
+                * fromappid --- 
+                * daterange --- 时间范围
+                * touid --- 回复该消息时，接收人的id
 
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
@@ -2840,39 +2872,50 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
             "mood": "3",
    			"avatar":"/data/avatar/000/00/00/02_avatar_small.jpg"
         },
-        "pm": {
-            "data": [
-                {
-                    "pmid": "34",
-                    "msgfrom": "test",
-                    "msgfromid": "6",
-                    "msgtoid": "2",
-                    "new": "1",
-                    "subject": "现在是晚上10：40",
-                    "dateline": "1390401627",
-                    "delstatus": "0",
-                    "related": "0",
-                    "fromappid": "1",
-                    "daterange": 1,
-                    "touid": "6"
-                },
-                {
-                    "pmid": "75",
-                    "msgfrom": "qiia",
-                    "msgfromid": "4",
-                    "msgtoid": "2",
-                    "new": "1",
-                    "subject": "mdlskdlsmdlsk",
-                    "dateline": "1390367436",
-                    "delstatus": "0",
-                    "related": "0",
-                    "fromappid": "1",
-                    "daterange": 1,
-                    "touid": "4"
-                }
-            ],
-            "count": "2"
-        },
+       "newpm": [
+            {
+                "pmid": "65",
+                "msgfrom": "1396636115",
+                "msgfromid": "2",
+                "msgtoid": "4",
+                "folder": "inbox",
+                "new": "1",
+                "subject": "",
+                "dateline": "1395578077",
+                "message": "你好",
+                "delstatus": "0",
+                "related": "1",
+                "fromappid": "1"
+            },
+            {
+                "pmid": "69",
+                "msgfrom": "1396636115",
+                "msgfromid": "2",
+                "msgtoid": "4",
+                "folder": "inbox",
+                "new": "1",
+                "subject": "",
+                "dateline": "1395578205",
+                "message": "你会收到吗？",
+                "delstatus": "0",
+                "related": "1",
+                "fromappid": "1"
+            },
+            {
+                "pmid": "68",
+                "msgfrom": "test",
+                "msgfromid": "6",
+                "msgtoid": "4",
+                "folder": "inbox",
+                "new": "1",
+                "subject": "第三条。感谢有你",
+                "dateline": "1395578157",
+                "message": "第三条。感谢有你",
+                "delstatus": "0",
+                "related": "1",
+                "fromappid": "1"
+            }
+        ],
         "m_auth": "5d64If2gsVrSs%2BU0nZUJjchI1gKBSA3ZOTVd69s%2FgQ"
     },
     "msg": "登录成功了，现在引导您进入登录前页面 \\1",
