@@ -11,7 +11,8 @@ momo
 * 好友      
 	*    [好友动态列表](#好友动态列表)
 	*    [附近的用户](#附近的用户)
-	*    [单向加关注](#单向加关注)
+	*    [请求添加为好友](#请求添加为好友)
+	*    [通过添加好友请求](#通过添加好友请求)
 	*    [我的好友列表](#我的好友列表)
 	*    [删除好友](#删除好友)
 
@@ -29,7 +30,7 @@ momo
 * 图片
 	*    [添加图片](#添加图片)
 	*    [上传头像](#上传头像)
-	*    [得到某个用户的大中小头像存放目录](#得到某个用户的大中小头像存放目录)
+	*    [得到某个用户的头像](#得到某个用户的头像)
 
 * 私信
 	*    [发布私信](#发布私信)
@@ -94,8 +95,8 @@ momo
 [↑返回顶部](#momo)
 
 
-<h2>得到某个用户的大中小头像存放目录</h2>
-域名/capi/cp.php?ac=avatar&getavatar=true&uid=6&m_auth=403wei
+<h2>得到某个用户的头像</h2>
+域名/capi/cp.php?ac=avatar&getavatar=true&uid=6
 
 #### 请求参数
 	* ac=avatar&getavatar=true --- 固定搭配
@@ -771,35 +772,59 @@ momo
 
 
 <h2>上传头像</h2>
-域名/capi/cp.php?ac=avatar&avatarsubmit=true&upfile= &m_auth=2551OHptdlM%2Bbka2dCZNeEUkuS
-
+域名http://glucenter.duapp.com/avatar.php?avatarsubmit=true&uid=12
 
 
 #### 请求参数
-	* ac=blog&classsubmit=true&op=allclass  --- 固定搭配
-	* uid --- 我的id
-	* upfile --- 文件 (post方式提交)
+	* avatarsubmit=true  --- 固定搭配
+	* uid --- 用户id
+	* avatar --- 文件 (post方式提交)
 	
 
 #### 返回字段
-	*code-- 错误码, 0:代表成功， 1:代表失败
+	*code--  0:代表成功， 1:代表失败
 	*action --  操作类型
 	*data -- 返回数据
-		*small -- 小尺寸的头像所在目录,加上网址即可下载
-		*middle -- 中尺寸的头像所在目录,加上网址即可下载
-		*big -- 大尺寸的头像所在目录,加上网址即可下载		
+		*small -- 小尺寸的头像所在目录
+		*middle -- 中尺寸的头像所在目录
+		*big -- 大尺寸的头像所在目录		
 		
 	
 #### 样例
 	{
 	    "code": 0,
 	    "data": {
-	        "small": "/data/avatar/000/00/00/07_avatar_small.jpg",
-	        "middle": "/data/avatar/000/00/00/07_avatar_middle.jpg",
-	        "big": "/data/avatar/000/00/00/07_avatar_big.jpg"
+	        "small": "http://localhost/ucenter/data/avatar/000/00/00/12_avatar_small.jpg",
+	        "middle": "http://localhost/ucenter/data/avatar/000/00/00/12_avatar_middle.jpg",
+	        "big": "http://localhost/ucenter/data/avatar/000/00/00/12_avatar_big.jpg"
 	    },
-	    "msg": "进行的操作完成了",
+	    "msg": "",
 	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+<h2>更新头像状态</h2>
+域名/capi/cp.php?ac=avatar&ucenteravatar=true&m_auth=2551OHptdlM%2Bbka2dCZNeE
+
+
+#### 请求参数
+	* ac=avatar&ucenteravatar=true  --- 固定搭配
+	* m_auth --- 
+	
+
+#### 返回字段
+	*code--  0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+		
+	
+#### 样例
+	{
+		"code": 0,
+		"data": [],
+		"msg": "进行的操作完成了",
+		"action": "do_success"
 	}
 
 [↑返回顶部](#momo)
@@ -2950,56 +2975,6 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 }
 [↑返回顶部](#momo)
 
-<h2>上传图片</h2>
-#### 注意:采用POST上传
-#### POST样例：
-	`<!DOCTYPE HTML>
-	<html>
-	<head>
-	<meta charset="utf-8">
-	<title>上传图片</title></head><body>
-	<form action="capi/cp.php?ac=upload" method="post" enctype="multipart/form-data">
-	<input type="file" name="attach"/><input type="hidden" name="op" value="uploadphoto2" />
-	<input type="hidden" name="uid" value="1" />
-	<input type="hidden" name="uploadsubmit2"  value="true" />
-	<input type="hidden" name="m_auth"  value="af9cCEMpQlfFTifZltugadwhGAXL%2Ba%2BCor8voR9jZyBh60v4xFryq2i" />
-	<input type="hidden" name="topicid"  value="0" />
-	<input type="hidden" name="ac"  value="upload" />
-	<input type="hidden" name="albumid" value="0" />
-	<input type="submit"  name="submit"  value="提交"/>
-	</form>
-	</body>
-	</html>`
-#### 请求参数
-	* 上传文件 -- attach
-	* 操作类型(固定搭配) -- op: uploadphoto2, uploadsubmit2:true, topicid:0. albumid:0, ac:upload
-	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
-	* 上传用户id -- uid
-#### 返回字段
-	* 错误码 -- code, 0:代表成功， 1:代表失败
-	* 错误类型 -- action, login_success:代表登录成功
-	* 操作信息 -- msg, 详细参见附录
-	* 结果 -- data, json数组, 本操作返回一个数据
-		* data[pic] -- 上传成功的图片内容，具体条目如下:
-			* 上传的用户id -- uid
-			* 上传的用户名 -- username
-			* 上传时间 -- dateline
-			* 上传文件名 -- filename
-			* 图片标题 -- title, 默认为空
-			* 图片类型 -- type
-			* 图片大小 -- size
-			* 图片服务端文件名 -- filepath
-			* 是否生成了缩略图 -- thumb, 1代表生成了，0代表没有
-			* 是否放在远端图像服务器 -- remote
-			* 图片id -- picid, <em>重要</em>，当发布打赌时需要关联
-			* 图片服务端路径 -- pic
-#### 样例
-	{"code":0,"data":{"pic":{"albumid":0,"uid":"1","username":"test6","dateline":"1344415852","filename":"qq提醒.png","postip":"127.0.0.1","title":"",
-	"type":"image\/png","size":165056,"filepath":"1_1344415852h77H.png","thumb":1,"remote":0,"topicid":0,"picid":80,"pic":"attachment\/1_1344415852h77H.png.thumb.jpg"}},
-	"msg":"进行的操作完成了","action":"do_success"}
-[↑返回顶部](#momo)
-
-
 
 
 <h2>撰写评论</h2>
@@ -3007,7 +2982,7 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 
 #### 请求参数
 	* 操作类型(固定搭配) -- commentsubmit: true
-	* 指示id代表的类型 -- idtype, quizid代表打赌，uid代表空间, sid代表分享
+	* 指示id代表的类型 -- idtype, uid代表空间, sid代表分享
 	* 评论关联的id -- id
 	* 评论内容 -- message
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
@@ -3096,12 +3071,44 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 	}
 [↑返回顶部](#momo)
 
-<h2>单向加关注</h2>
-域名/capi/cp.php?ac=friend&op=add&gid=0&addsubmit=true&uid=4&m_auth=0ff76%2B%2F
+<h2>请求添加为好友</h2>
+域名/capi/cp.php?ac=friend&op=addaddsubmit=true&gid=0&uid=7&&note=想认识你&m_auth=c8202FOb80TMC
 
 #### 请求参数
-	* ac=friend&op=add&gid=0&addsubmit=true -- 固定搭配
-	* uid -- 加为关注的用户id
+	* ac=friend&op=addaddsubmit=true&gid=0 -- 固定搭配
+	* uid -- 加为好友的用户id
+	* gid -- 好友组别
+	    * 0 -- 其他
+	    * 1 -- 通过本站认识
+	    * 2 -- 通过活动认识
+	    * 3 -- 通过朋友认识
+	    * 4 -- 亲人
+	    * 5 -- 同事
+	    * 6 -- 同学
+	    * 7 -- 不认识
+	* m_auth -- 
+
+#### 返回参数
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息, 详细参见附录
+	*data -- 结果, json数组
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "好友请求已经发送，请等待对方验证中",
+	    "action": "request_has_been_sent"
+	}
+[↑返回顶部](#momo)
+
+
+<h2>通过添加好友请求</h2>
+域名/capi/cp.php?ac=friend&op=add&add2submit=true&gid=0&uid=13&m_auth=c8202FOb80TMCC8F
+
+#### 请求参数
+	* ac=friend&op=add&gid=0&add2submit=true -- 固定搭配
+	* uid -- 加为好友的用户id
 	* gid -- 好友组别
 	    * 0 -- 其他
 	    * 1 -- 通过本站认识
@@ -3122,9 +3129,9 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 	{
 	    "code": 0,
 	    "data": [
-	        "test8"
+	        "test"
 	    ],
-	    "msg": "您和 晓林 成为好友了",
+	    "msg": "您和 成为好友了",
 	    "action": "friends_add"
 	}
 [↑返回顶部](#momo)
