@@ -113,9 +113,9 @@ momo
 	{
 	    "code": 0,
 	    "data": {
-	        "small": "/data/avatar/000/00/00/06_avatar_small.jpg",
-	        "middle": "/data/avatar/000/00/00/06_avatar_middle.jpg",
-	        "big": "/data/avatar/000/00/00/06_avatar_big.jpg"
+	        "small": "http://localhost/ucenter/images/noavatar_small.gif",
+	        "middle": "http://localhost/ucenter/images/noavatar_small.gif",
+	        "big": "http://localhost/ucenter/images/noavatar_small.gif"
 	    },
 	    "msg": "进行的操作完成了",
 	    "action": "do_success"
@@ -160,7 +160,7 @@ momo
 	            "dateline": "1385471652",
 	            "resideprovince": "",
 	            "residecity": "",
-	            "avatar": "/data/avatar/noavatar_middle.gif",
+	            "avatar": "http://localhost/ucenter/images/noavatar_small.gif",
 	            "distance": 755.9084
 	        },
 	        {
@@ -171,7 +171,7 @@ momo
 	            "dateline": "1386419293",
 	            "resideprovince": "",
 	            "residecity": "",
-	            "avatar": "/data/avatar/000/00/00/09_avatar_middle.jpg",
+	            "avatar": "http://localhost/ucenter/images/noavatar_small.gif",
 	            "distance": 1852.6505
 	        }
 	    ],
@@ -679,7 +679,7 @@ momo
 	            "addfriend": "0",
 	            "flag": "0",
 	            "newpm": "0",
-	            "avatar":"/data/avatar/000/00/00/07_avatar_small.jpg"
+	            "avatar":"http://localhost/ucenter/images/noavatar_small.gif"
 	            "regip": "127.0.0.1",
 	            "ip": "121008157",
 	            "mood": "0",
@@ -757,8 +757,8 @@ momo
 	                "fromappid": "1",
 	                "daterange": 2,
 	                "touid": "2",
-	                "msgfromavatar": "/data/avatar/000/00/00/07_avatar_small.jpg",
-	                "msgtoavatar": "/data/avatar/000/00/00/07_avatar_small.jpg",
+	                "msgfromavatar": "http://localhost/ucenter/images/noavatar_small.gif",
+	                "msgtoavatar": "http://localhost/ucenter/images/noavatar_small.gif",
 	                "msgfromisonline": 0,
 	                "msgtoisonline": 1
 	            }
@@ -999,7 +999,7 @@ momo
                 "addfriend": "0",
                 "flag": "0",
                 "newpm": "0",
-                "avatar":  "/data/avatar/000/00/00/07_avatar_small.jpg",
+                "avatar":  "http://localhost/ucenter/images/noavatar_small.gif",
                 "regip": "127.0.0.1",
                 "ip": "127000000",
                 "mood": "0",
@@ -1053,7 +1053,7 @@ momo
                 "addfriend": "0",
                 "flag": "0",
                 "newpm": "0",
-                "avatar": "/data/avatar/000/00/00/04_avatar_small.jpg",,
+                "avatar": "http://localhost/ucenter/images/noavatar_small.gif",,
                 "regip": "127.0.0.1",
                 "ip": "127000000",
                 "mood": "0",
@@ -1533,7 +1533,7 @@ momo
 	    "data": {
 	        "comments": [
 		         {
-	                "avatar": "/data/avatar/000/00/00/06_avatar_small.jpg",
+	                "avatar": "http://localhost/ucenter/images/noavatar_small.gif",
 	                "cid": "15",
 	                "authorid": "6",
 	                "author": "test",
@@ -1541,7 +1541,7 @@ momo
 	                "dateline": "1386471660"
 	            },
 	            {
-	                "avatar": "/data/avatar/000/00/00/06_avatar_small.jpg",
+	                "avatar": "http://localhost/ucenter/images/noavatar_small.gif",
 	                "cid": "14",
 	                "authorid": "6",
 	                "author": "test",
@@ -2377,8 +2377,8 @@ momo
 					"fromappid": "1",
 					"daterange": 5,
 					"touid": "1",
-					"msgfromavatar": "/data/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "/data/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 1
@@ -2439,8 +2439,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "/data/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "/data/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "8",
@@ -2456,8 +2456,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "9",
@@ -2473,8 +2473,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 3
@@ -2535,8 +2535,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "8",
@@ -2552,8 +2552,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "/avatar/000/00/00/05_avatar_small.jpg",
-					"msgtoavatar": "/avatar/000/00/00/01_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg"
 				},
 				{
 					"pmid": "9",
@@ -2569,8 +2569,8 @@ momo
 					"related": "1",
 					"fromappid": "1",
 					"daterange": 5,
-					"msgfromavatar": "/avatar/000/00/00/01_avatar_small.jpg",
-					"msgtoavatar": "/avatar/000/00/00/05_avatar_small.jpg"
+					"msgfromavatar": "http://localhost/ucenter/data/avatar/000/00/00/01_avatar_small.jpg",
+					"msgtoavatar": "http://localhost/ucenter/data/avatar/000/00/00/05_avatar_small.jpg"
 				}
 			],
 			"count": 3
@@ -2923,7 +2923,7 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
             "regip": "127.0.0.1",
             "ip": "163177139",
             "mood": "3",
-   			"avatar":"/data/avatar/000/00/00/02_avatar_small.jpg"
+   			"avatar":"http://localhost/ucenter/data/avatar/000/00/00/02_avatar_small.jpg"
         },
        "newpm": [
             {
@@ -3073,10 +3073,10 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 [↑返回顶部](#momo)
 
 <h2>请求添加为好友</h2>
-域名/capi/cp.php?ac=friend&op=addaddsubmit=true&gid=0&uid=7&&note=想认识你&m_auth=c8202FOb80TMC
+域名/capi/cp.php?ac=friend&op=add&addsubmit=true&gid=0&uid=7&note=想认识你&m_auth=c8202FOb80TMC
 
 #### 请求参数
-	* ac=friend&op=addaddsubmit=true&gid=0 -- 固定搭配
+	* ac=friend&op=add&addsubmit=true&gid=0 -- 固定搭配
 	* uid -- 加为好友的用户id
 	* gid -- 好友组别
 	    * 0 -- 其他
