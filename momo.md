@@ -32,6 +32,7 @@ momo
 	*    [上传头像](#上传头像)
 	*    [更新头像状态](#更新头像状态)
 	*    [得到某个用户的头像](#得到某个用户的头像)
+	*    [好友申请列表](#好友申请列表)
 
 * 私信
 	*    [发布私信](#发布私信)
@@ -69,9 +70,50 @@ momo
 
 
 
-
 接口说明
 --------
+<h2>好友申请列表</h2>
+域名/capi/cp.php?ac=friend&op=request&page=0&perpage=10&m_auth=8616qvbrwntFdXONEB
+
+#### 请求参数
+	* ac=friend&op=request --- 固定搭配
+	* page -- 页数
+	* perpage -- 每页数量
+	* m_auth ---  
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+		* avatar  ---  来自哪个用户的avatar
+		* isonline -- 是否在线
+		* fuid  -- 来自哪个用户
+		* node -- 信息
+		* username -- 用户名
+		* name  -- 真实名
+			
+#### 样例
+	{
+	    "code": 0,
+	    "data": {
+	        "friends": [
+	            {
+	                "avatar": "http://localhost/ucenter/data/avatar/000/00/00/12_avatar_small.jpg",
+	                "isonline": 1,
+	                "fuid": "12",
+	                "note": "hello",
+	                "username": "successor",
+	                "name": ""
+	            }
+	        ],
+	        "count": 1
+	    },
+	    "msg": "rest_success",
+	    "action": "rest_success"
+	}
+[↑返回顶部](#momo)
+
+
 <h2>删除好友</h2>
 域名/capi/cp.php?ac=friend&op=ignore&friendsubmit=true&uid=4&m_auth=79ccF6ut7bTo8gRdHMU
 
@@ -2877,6 +2919,7 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
                 * fromappid --- 
                 * daterange --- 时间范围
                 * touid --- 回复该消息时，接收人的id
+                * avatar
 
 	* API密钥 -- m_auth, 每次调用接口，需要提供此key以验证用户
 
