@@ -4,6 +4,8 @@ momo
 * 基本
 	*    [获取注册验证码](#获取注册验证码)
 	*    [注册](#注册)
+	*    [注册时检测用户名是否存在](#注册时检测用户名是否存在)
+	*    [注册时检测验证码是否正确](#注册时检测验证码是否正确)
 	*    [登录](#登录)
 	*    [退出](#退出)
 	*    [检测用户登陆状态](#检测用户登陆状态)
@@ -23,7 +25,7 @@ momo
 	*    [删除个人工作情况](#删除个人工作情况)
 	*    [增加个人教育情况](#增加个人教育情况)
 	*    [删除个人教育情况](#删除个人教育情况)
-	*    [修改昵称](#修改昵称)
+	*    [设置真实姓名](#设置真实姓名)
 	*    [添加个人签名](#添加个人签名)
 	*    [分类查看个人信息](#分类查看个人信息)
 	*    [我的个人信息](#我的个人信息)
@@ -68,11 +70,747 @@ momo
 	*    [对某个话题表态称赞](#对某个话题表态称赞)
 	*    [对某个话题发表看法](#对某个话题发表看法)
 
+* 积分
+	*    [积分规则](#积分规则)
+	*    [用户组规则](#用户组规则)
+	*    [我的积分史](#我的积分史)
+
 
 
 
 接口说明
 --------
+<h2>积分规则</h2>
+域名/capi/cp.php?ac=credit&op=rule
+
+#### 请求参数
+	* ac=credit&op=rule --- 固定搭配
+
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+	 	* rulename -- 名称
+	 	* rewardtype -- 奖励类型 '0'：惩罚,'1'：奖励
+	 	* cycletype -- 奖励周期类型 '0':一次性,'1':每天,'2':整点,'3':间隔分钟,'4':不限周期
+	 	* cycletime --  
+	 	* rewardnum -- 每个周期的奖励次数
+	 	* norepeat -- 去重奖励:'0'：无,'1'：针对信息去掉重复,'2'：针对用户去掉重复
+	 	* credit -- 奖励积分
+	 	* experience -- 奖励经验
+			
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "rid": "1",
+	            "rulename": "开通空间",
+	            "action": "register",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "2",
+	            "rulename": "实名认证",
+	            "action": "realname",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "20",
+	            "experience": "20"
+	        },
+	        {
+	            "rid": "3",
+	            "rulename": "邮箱认证",
+	            "action": "realemail",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "40",
+	            "experience": "40"
+	        },
+	        {
+	            "rid": "4",
+	            "rulename": "成功邀请好友",
+	            "action": "invitefriend",
+	            "cycletype": "4",
+	            "cycletime": "0",
+	            "rewardnum": "20",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "10"
+	        },
+	        {
+	            "rid": "5",
+	            "rulename": "设置头像",
+	            "action": "setavatar",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "15",
+	            "experience": "15"
+	        },
+	        {
+	            "rid": "6",
+	            "rulename": "视频认证",
+	            "action": "videophoto",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "40",
+	            "experience": "40"
+	        },
+	        {
+	            "rid": "7",
+	            "rulename": "成功举报",
+	            "action": "report",
+	            "cycletype": "4",
+	            "cycletime": "0",
+	            "rewardnum": "0",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "2",
+	            "experience": "2"
+	        },
+	        {
+	            "rid": "8",
+	            "rulename": "更新心情",
+	            "action": "updatemood",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "3",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "3",
+	            "experience": "3"
+	        },
+	        {
+	            "rid": "9",
+	            "rulename": "热点信息",
+	            "action": "hotinfo",
+	            "cycletype": "4",
+	            "cycletime": "0",
+	            "rewardnum": "0",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "10"
+	        },
+	        {
+	            "rid": "10",
+	            "rulename": "每天登陆",
+	            "action": "daylogin",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "15",
+	            "experience": "15"
+	        },
+	        {
+	            "rid": "11",
+	            "rulename": "访问别人空间",
+	            "action": "visit",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "2",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "12",
+	            "rulename": "打招呼",
+	            "action": "poke",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "2",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "13",
+	            "rulename": "留言",
+	            "action": "guestbook",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "20",
+	            "rewardtype": "1",
+	            "norepeat": "2",
+	            "credit": "2",
+	            "experience": "2"
+	        },
+	        {
+	            "rid": "14",
+	            "rulename": "被留言",
+	            "action": "getguestbook",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "5",
+	            "rewardtype": "1",
+	            "norepeat": "2",
+	            "credit": "1",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "15",
+	            "rulename": "发表记录",
+	            "action": "doing",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "5",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "16",
+	            "rulename": "发表日志",
+	            "action": "publishblog",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "3",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "5",
+	            "experience": "5"
+	        },
+	        {
+	            "rid": "17",
+	            "rulename": "上传图片",
+	            "action": "uploadimage",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "2",
+	            "experience": "2"
+	        },
+	        {
+	            "rid": "18",
+	            "rulename": "拍大头贴",
+	            "action": "camera",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "5",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "3",
+	            "experience": "3"
+	        },
+	        {
+	            "rid": "19",
+	            "rulename": "发表话题",
+	            "action": "publishthread",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "5",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "5",
+	            "experience": "5"
+	        },
+	        {
+	            "rid": "20",
+	            "rulename": "回复话题",
+	            "action": "replythread",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "1",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "21",
+	            "rulename": "创建投票",
+	            "action": "createpoll",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "5",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "2",
+	            "experience": "2"
+	        },
+	        {
+	            "rid": "22",
+	            "rulename": "参与投票",
+	            "action": "joinpoll",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "1",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "23",
+	            "rulename": "发起活动",
+	            "action": "createevent",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "3",
+	            "experience": "3"
+	        },
+	        {
+	            "rid": "24",
+	            "rulename": "参与活动",
+	            "action": "joinevent",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "1",
+	            "norepeat": "1",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "25",
+	            "rulename": "推荐活动",
+	            "action": "recommendevent",
+	            "cycletype": "4",
+	            "cycletime": "0",
+	            "rewardnum": "0",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "10"
+	        },
+	        {
+	            "rid": "26",
+	            "rulename": "发起分享",
+	            "action": "createshare",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "3",
+	            "rewardtype": "1",
+	            "norepeat": "0",
+	            "credit": "2",
+	            "experience": "2"
+	        },
+	        {
+	            "rid": "27",
+	            "rulename": "评论",
+	            "action": "comment",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "40",
+	            "rewardtype": "1",
+	            "norepeat": "1",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "28",
+	            "rulename": "被评论",
+	            "action": "getcomment",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "20",
+	            "rewardtype": "1",
+	            "norepeat": "1",
+	            "credit": "1",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "29",
+	            "rulename": "安装应用",
+	            "action": "installapp",
+	            "cycletype": "4",
+	            "cycletime": "0",
+	            "rewardnum": "0",
+	            "rewardtype": "1",
+	            "norepeat": "3",
+	            "credit": "5",
+	            "experience": "5"
+	        },
+	        {
+	            "rid": "30",
+	            "rulename": "使用应用",
+	            "action": "useapp",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "3",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "31",
+	            "rulename": "信息表态",
+	            "action": "click",
+	            "cycletype": "1",
+	            "cycletime": "0",
+	            "rewardnum": "10",
+	            "rewardtype": "1",
+	            "norepeat": "1",
+	            "credit": "1",
+	            "experience": "1"
+	        },
+	        {
+	            "rid": "32",
+	            "rulename": "修改实名",
+	            "action": "editrealname",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "5",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "33",
+	            "rulename": "更改邮箱认证",
+	            "action": "editrealemail",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "5",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "34",
+	            "rulename": "头像被删除",
+	            "action": "delavatar",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "10"
+	        },
+	        {
+	            "rid": "35",
+	            "rulename": "获取邀请码",
+	            "action": "invitecode",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "0",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "36",
+	            "rulename": "搜索一次",
+	            "action": "search",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "1",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "37",
+	            "rulename": "日志导入",
+	            "action": "blogimport",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "38",
+	            "rulename": "修改域名",
+	            "action": "modifydomain",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "5",
+	            "experience": "0"
+	        },
+	        {
+	            "rid": "39",
+	            "rulename": "日志被删除",
+	            "action": "delblog",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "10",
+	            "experience": "10"
+	        },
+	        {
+	            "rid": "40",
+	            "rulename": "记录被删除",
+	            "action": "deldoing",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "2",
+	            "experience": "2"
+	        },
+	        {
+	            "rid": "41",
+	            "rulename": "图片被删除",
+	            "action": "delimage",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "4",
+	            "experience": "4"
+	        },
+	        {
+	            "rid": "42",
+	            "rulename": "投票被删除",
+	            "action": "delpoll",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "4",
+	            "experience": "4"
+	        },
+	        {
+	            "rid": "43",
+	            "rulename": "话题被删除",
+	            "action": "delthread",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "4",
+	            "experience": "4"
+	        },
+	        {
+	            "rid": "44",
+	            "rulename": "活动被删除",
+	            "action": "delevent",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "6",
+	            "experience": "6"
+	        },
+	        {
+	            "rid": "45",
+	            "rulename": "分享被删除",
+	            "action": "delshare",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "4",
+	            "experience": "4"
+	        },
+	        {
+	            "rid": "46",
+	            "rulename": "留言被删除",
+	            "action": "delguestbook",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "4",
+	            "experience": "4"
+	        },
+	        {
+	            "rid": "47",
+	            "rulename": "评论被删除",
+	            "action": "delcomment",
+	            "cycletype": "0",
+	            "cycletime": "0",
+	            "rewardnum": "1",
+	            "rewardtype": "0",
+	            "norepeat": "0",
+	            "credit": "2",
+	            "experience": "2"
+	        }
+	    ],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+<h2>用户组规则</h2>
+域名/capi/cp.php?ac=credit&op=usergroup
+
+#### 请求参数
+	* ac=credit&op=usergroup --- 固定搭配
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+		* maxfriendnum -- 最多可加好友数
+		* maxfriendnum -- 最多可上传附近大小（M）
+		* exphigher -- 最高经验值
+
+			
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "grouptitle": "高级会员",
+	            "maxfriendnum": "300",
+	            "maxattachsize": "100",
+	            "exphigher": 999999999
+	        },
+	        {
+	            "grouptitle": "中级会员",
+	            "maxfriendnum": "200",
+	            "maxattachsize": "50",
+	            "exphigher": 999
+	        },
+	        {
+	            "grouptitle": "普通会员",
+	            "maxfriendnum": "100",
+	            "maxattachsize": "20",
+	            "exphigher": 99
+	        },
+	        {
+	            "grouptitle": "受限会员",
+	            "maxfriendnum": "10",
+	            "maxattachsize": "10",
+	            "exphigher": -1
+	        }
+	    ],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+<h2>我的积分史</h2>
+域名/capi/cp.php?ac=credit&op=self&m_auth=
+
+#### 请求参数
+	* ac=credit&op=self --- 固定搭配
+	* m_auth --- 授权码	
+
+#### 返回字段
+	*code-- 错误码, 0:代表成功， 1:代表失败
+	*action --  操作类型
+	*data -- 返回数据
+		* rulename -- 名称
+	 	* total -- 得到某种奖励的总次数
+	 	* cyclenum --  奖励周期类型 '0':一次性,'1':每天,'2':整点,'3':间隔分钟,'4':不限周期
+	 	* credit -- 奖励积分
+	 	* experience -- 奖励经验
+	 	* dateline --
+			
+#### 样例
+	{
+	    "code": 0,
+	    "data": [
+	        {
+	            "rid": "16",
+	            "rulename": "发表日志",
+	            "credit": "5",
+	            "experience": "5",
+	            "total": "3",
+	            "cyclenum": "1",
+	            "dateline": "1397232030"
+	        },
+	        {
+	            "rid": "10",
+	            "rulename": "每天登陆",
+	            "credit": "15",
+	            "experience": "15",
+	            "total": "7",
+	            "cyclenum": "1",
+	            "dateline": "1397230804"
+	        },
+	        {
+	            "rid": "17",
+	            "rulename": "上传图片",
+	            "credit": "2",
+	            "experience": "2",
+	            "total": "4",
+	            "cyclenum": "4",
+	            "dateline": "1390748004"
+	        },
+	        {
+	            "rid": "13",
+	            "rulename": "留言",
+	            "credit": "2",
+	            "experience": "2",
+	            "total": "1",
+	            "cyclenum": "1",
+	            "dateline": "1385829210"
+	        },
+	        {
+	            "rid": "11",
+	            "rulename": "访问别人空间",
+	            "credit": "1",
+	            "experience": "1",
+	            "total": "2",
+	            "cyclenum": "1",
+	            "dateline": "1385829168"
+	        },
+	        {
+	            "rid": "1",
+	            "rulename": "开通空间",
+	            "credit": "10",
+	            "experience": "0",
+	            "total": "1",
+	            "cyclenum": "1",
+	            "dateline": "1385471652"
+	        }
+	    ],
+	    "msg": "进行的操作完成了",
+	    "action": "do_success"
+	}
+
+[↑返回顶部](#momo)
+
+
+
 <h2>好友申请列表</h2>
 域名/capi/cp.php?ac=friend&op=request&page=0&perpage=10&m_auth=8616qvbrwntFdXONEB
 
@@ -434,13 +1172,13 @@ momo
 
 
 
-<h2>修改昵称</h2>
+<h2>设置真实姓名</h2>
 域名/capi/cp.php?ac=profile&op=name&name=春雨&m_auth=af9cCEMpQlfFTifZltu
 
 
 #### 请求参数
 	* ac=profile&op=name  --- 固定搭配
-	* name ---  真实姓名
+	* name ---  真实姓名，只能设置一次，设置后不能修改
 	* m_auth --- 授权码
 
 #### 返回字段
@@ -451,10 +1189,15 @@ momo
 	
 #### 样例
 	{
-	    "code": 0,
-	    "data": [],
-	    "msg": "进行的操作完成了",
-	    "action": "do_success"
+		"code": 0,
+		"data": {
+				"reward": {
+		            "credit": 20,
+		            "experience": 20
+		        }
+			},
+		"msg": "进行的操作完成了",
+		"action": "do_success"
 	}
 
 [↑返回顶部](#momo)
@@ -866,7 +1609,12 @@ momo
 #### 样例
 	{
 		"code": 0,
-		"data": [],
+		"data": {}
+				"reward": {
+		            "credit": 15,
+		            "experience": 15
+		        }
+			},
 		"msg": "进行的操作完成了",
 		"action": "do_success"
 	}
@@ -2669,7 +3417,12 @@ momo
 ####示例
 	{
 	    "code": 0,
-	    "data": [],
+	    "data": {
+	        "reward": {
+	            "credit": 5,
+	            "experience": 5
+	        }
+	    },
 	    "msg": "进行的操作完成了",
 	    "action": "do_success"
 	}
@@ -2686,9 +3439,8 @@ momo
 	*code--  0:代表成功， 1:代表失败
 	*action --  操作类型
 	*msg -- 操作信息, 详细参见附录
-	*data -- 结果, json数组本操作返回两个数据
-		* data[seccode_auth] -- 返回的验证码key，在注册时需要传入
-		* data[seccode] -- 验证码
+	*data -- 结果
+		* seccode -- 验证码
 
 #### 样例
 	{
@@ -2702,6 +3454,57 @@ momo
 		"action":"rest_success"
 	}
 [↑返回顶部](#momo)
+
+<h2>注册时检测用户名是否存在</h2>
+域名/capi/do.php?ac=register&op=checkusername&username=yuyu
+
+#### 请求参数
+	* ac=register&op=checkusername -- 固配
+	* username -- 要检测的用户名
+	
+#### 返回字段
+	*code--  0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息,有四种情况
+		* user_name_is_not_legitimate
+		* include_not_registered_words
+		* user_name_already_exists
+		* succeed
+	*data -- 结果
+		
+
+#### 样例
+	{
+	    "code": 1,
+	    "data": [],
+	    "msg": "用户名已经存在",
+	    "action": "user_name_already_exists"
+	}
+[↑返回顶部](#momo)
+
+<h2>注册时检测验证码是否正确</h2>
+域名/capi/do.php?ac=register&op=checkseccode&secode=Q83P
+
+#### 请求参数
+	* ac=register&op=checkseccode -- 固配
+	* secode -- 输入的验证码
+	
+#### 返回字段
+	*code--  0:代表成功， 1:代表失败
+	*action --  操作类型
+	*msg -- 操作信息
+	*data -- 结果
+		
+
+#### 样例
+	{
+	    "code": 0,
+	    "data": [],
+	    "msg": "正确",
+	    "action": "succeed"
+	}
+[↑返回顶部](#momo)
+
 
 <h2>注册</h2>
 /capi/do.php?ac=register&registersubmit=true&username=test4&password=123&password2=123&seccode=cQ7T
@@ -2723,8 +3526,6 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 	*data -- 结果, json数组
 		* 用户空间信息 -- space
 			* groupid -- 所在用户组（级别）
-			* credit -- 金币(这里代表注册增加的金币)
-			* experience -- 经验(这里代表注册增加的经验)
 			* username -- 用户名
 			* name -- 实名
 			* namestatus -- 是否实名
@@ -2744,6 +3545,19 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 	
 
 #### 样例
+	{
+		"code": 0,
+		"data": {
+				"reward": {
+		            "credit": 10,
+		            "experience": 0
+		        }
+		        "m_auth": "cf7chDvDIcnUVeupGp4utLftIQEP%2B1rP8eGrGWydH3ITmly6DURpvHCvByCJlE"
+			},
+	    "msg": "注册成功了，进入个人空间",
+	    "action": "registered"
+	}
+####以前注册后返回的数据
 	{
 	    "code": 0,
 	    "data": {
@@ -2928,6 +3742,10 @@ isdoctor=0&m_auth=1a6431MIvgvhZZzUPUmCUML%2FtL4rlXrN2R8nL5G3qvta
 	{
     "code": 0,
     "data": {
+    	 "reward": {
+            "credit": 15,
+            "experience": 15
+        },
         "space": {
             "uid": "2",
             "groupid": "6",
