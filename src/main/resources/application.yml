@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: superWorld
+    messages:
+      basename: com.ws.i18n
+#    datasource:
+#        driverClassName: com.mysql.jdbc.Driver
+#        url: jdbc:mysql://localhost/test
+
+server:
+    port: 9000
