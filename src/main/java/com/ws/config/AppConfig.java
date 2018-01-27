@@ -1,13 +1,12 @@
-package com.ws.platform;
+package com.ws.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.ws.config.DateUtil;
-import com.ws.config.EnvironmentHelper;
 import com.ws.interceptor.JsonModule;
+import com.ws.platform.DateUtil;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

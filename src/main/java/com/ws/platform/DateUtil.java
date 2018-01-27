@@ -1,4 +1,4 @@
-package com.ws.config;
+package com.ws.platform;
 
 
 import org.apache.commons.lang3.StringUtils;
