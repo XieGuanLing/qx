@@ -1,0 +1,60 @@
+<div class="sbnav">
+    <div class="breakcrumb breakcrumb-user">
+        <ul>
+            <li class="txtCrumb">当前路径：</li>
+
+            <li class="firCrumb">
+                <a href="javascript:history.go(-1)" class="goBack">数据导入列表</a>
+                &gt;工作表
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="content_sub">
+        <div class="code">
+            <div class="ToolBar">
+                <a class="Bu2 Bu1_blue" ng-click="import2Mysql()">
+                    <b>
+                        <i class="icon i_Add_3"></i>重新导入修改的数据
+                    </b>
+                </a>
+                <a class="Bu2 Bu1_blue" href="/internal//export/mongo2Excel/{{batchId}}"  target="_blank">
+                    <b>
+                        <i class="icon i_Add_3"></i>导出结果Excel表
+                    </b>
+                </a>
+
+            </div>
+        </div>
+        <div class="list">
+            接车单        ：总数{{res.bill.upload}}条，校验通过{{res.bill.upload-res.bill.error}}条，校验失败{{res.bill.error}}条；
+            <br>   接车单商品明细 ：总数{{res.billItem.upload}}条，校验通过{{res.billItem.upload-res.billItem.error}}条，校验失败{{res.billItem.error}}条；；
+            <br>   会员卡        ：总数{{res.memberCard.upload}}条，校验通过{{res.memberCard.upload-res.memberCard.error}}条，校验失败{{res.memberCard.error}}条；；
+            <br>   卡内项目      ：总数{{res.memberCardItem.upload}}条，校验通过{{res.memberCardItem.upload-res.memberCardItem.error}}条，校验失败{{res.memberCardItem.error}}条；
+            <!--<br>卡品种        : 总数{{res.memberCardSort.upload}}条，校验通过{{res.memberCardSort.upload-res.memberCardSort.error}}条，校验失败{{res.memberCardSort.error}}条；-->
+            <!--<br>卡品种商品    : 总数{{res.memberCardSortItem.upload}}条，校验通过{{res.memberCardSortItem.upload-res.memberCardSortItem.error}}条，校验失败{{res.memberCardSortItem.error}}条；-->
+            <br>车辆信息      : 总数{{res.car.upload}}条，校验通过{{res.car.upload-res.car.error}}条，校验失败{{res.car.error}}条；
+            <br>商品（服务）   : 总数{{res.item.upload}}条，校验通过{{res.item.upload-res.item.error}}条，校验失败{{res.item.error}}条；
+            <br>供应商        : 总数{{res.supplier.upload}}条，校验通过{{res.supplier.upload-res.supplier.error}}条，校验失败{{res.supplier.error}}条；
+            <br>仓库清单      : 总数{{res.storeRoom.upload}}条，校验通过{{res.storeRoom.upload-res.storeRoom.error}}条，校验失败{{res.storeRoom.error}}条；
+            <br>库存          : 总数{{res.storeRoomInventory.upload}}条，校验通过{{res.storeRoomInventory.upload-res.storeRoomInventory.error}}条，校验失败{{res.storeRoomInventory.error}}条；
+
+        </div>
+        <p>数据处理情况：{{isImport2Mysql}}</p>
+        <div class="list">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                    <th style="text-align:center;">序号</th>
+                    <th>工作表</th>
+                </tr>
+                <tr ng-repeat="sheet in sheets">
+                    <td align="center">{{$index + 1}}</td>
+                    <td><a  ui-sref="sheet-detail({batchId:batchId, model:sheet.sheetId, sheetName:sheet.sheetName})">{{sheet.sheetName}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+
+<div class="sbnav">
+    <div class="breakcrumb breakcrumb-user">
+        <ul>
+            <li class="txtCrumb">当前路径：</li>
+            <li class="firCrumb">新概念网页样式</li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <br class="content_sub"style="height: 500px">
+
+        <div class="search_form">
+            <form action="" method="post" class="card_m">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td width="90"><label>车店编号：</label></td>
+                            <td width="200"><input type="text" class="input01" ng-model="companyId"/></td>
+
+                            <td width="200">
+                                <input type="button" class="input01" value="设置样式" ng-click="updateWebPageSettingId()" />
+
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <div class="list">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <th >序号</th>
+                        <th>车店编号</th>
+                        <th>名称</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="i in list">
+                        <td>{{$index + 1}}</td>
+                        <td>{{i.companyId}}</td>
+                        <td>{{i.companyName}}</td>
+                        <td ng-click="cancelWebPageSettingId(i.companyId)">删除</td>
+                    </tr>
+
+                    <tr ng-hide="list.length>0">
+                        <td colspan="3">没有符合条件的数据</td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+
+        </br>
+
+
+
+    </div>
+</div>

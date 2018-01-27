@@ -1,0 +1,92 @@
+<div class="sbnav">
+    <div class="breakcrumb breakcrumb-user">
+        <ul>
+            <li class="txtCrumb">当前路径：</li>
+            <li class="firCrumb">用户管理</li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="employee">
+        <header class="form-inline col-sm-12">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="请输入用户名称/手机/角色" ng-model="q.key">
+            </div>
+            <button class="btn-blue" ng-click="search()">查询</button>
+        </header>
+        <section class="section">
+            <div class="function-list col-sm-12">
+                <button class="btn-blue" ng-click="showAddRoleToUserModal()">角色设置</button>
+                <button class="btn-blue" ng-click="showDeleteInternalUserModal()">删除</button>
+                <button class="btn-blue" ng-click="showEditInternalUserModal()">新增</button>
+            </div>
+            <div class="list">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th style="text-align:center;">
+                            <input type="checkbox" ng-model="isCheckAll" ng-change="checkAll()">
+                        </th>
+                        <th>用户姓名</th>
+                        <th>性别</th>
+                        <th>用户手机号</th>
+                        <th>用户邮箱</th>
+                        <th>用户角色</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="i in list">
+                        <td align="center">
+                            <input type="checkbox" ng-model="i.isCheck" ng-change="check(i)">
+                        </td>
+                        <td>{{i.realName}}</td>
+                        <td>{{i.genderTypeOption.desc}}</td>
+                        <td>{{i.phone}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.roleName}}</td>
+                        <td><a ng-click="showEditInternalUserModal(i)">编辑</a></td>
+                    </tr>
+                    </tbody>
+                    <tbody ng-show="records.length==0">
+                    <tr>
+                        <td colspan="5">没有符合条件的用户</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <div class="toolbar">
+            <div class="toolbar_info">
+                <table cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <button type="button" class="pg_first" ng-click="firstPage()">&nbsp;</button>
+                        </td>
+                        <td>
+                            <button type="button" class="pg_prev" ng-click="previousPage()">&nbsp;</button>
+                        </td>
+                        <td><span class="ytb-sep"></span></td>
+                        <td><span class="ytb-text">第{{currPage + 1}}页，</span></td>
+                        <td><span class="ytb-text">共{{totalPage}}页</span></td>
+                        <td><span class="ytb-sep"></span></td>
+                        <td>
+                            <button type="button" class="pg_next" ng-click="nextPage()">&nbsp;</button>
+                        </td>
+                        <td>
+                            <button type="button" class="pg_last" ng-click="lastPage()">&nbsp;</button>
+                        </td>
+                        <td><span class="ytb-sep" id="ext-gen283"></span></td>
+                        <td>
+                            <button type="button" class="x-btn-text bar_load" ng-click="search();">&nbsp;</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'modal/addRoleToUser-modal.html'"></div>
+<div ng-include="'modal/addInternalUser-modal.html'"></div>
+

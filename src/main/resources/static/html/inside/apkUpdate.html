@@ -1,0 +1,43 @@
+    <div class="sbnav" ng-show="hasAuthCode('7')">
+        <div class="breakcrumb breakcrumb-user">
+            <ul>
+                <li class="txtCrumb">当前路径：</li>
+                <li class="firCrumb">上传安卓apk更新包</li>
+            </ul>
+        </div>
+    </div>
+    <div id="main" ng-show="hasAuthCode('7')">
+        <div class="content_sub">
+            <div class="code">
+                <div class="ToolBar">
+                    <a class="Bu2 Bu1_blue" accept=".apk" ngf-select="upload(0,$file)">
+                        <b>
+                            <i class="icon i_Add_3"></i>选择超级车店apk更新包
+                        </b>
+                    </a>
+                </div>
+            </div>
+            <div class="code">
+                <div class="ToolBar">
+                    <a class="Bu2 Bu1_blue"  accept=".apk" ngf-select="upload(1,$file)">
+                        <b>
+                            <i class="icon i_Add_3"></i>选择新概念apk更新包
+                        </b>
+                    </a>
+                </div>
+            </div>
+            <div class="code">
+            <div class="ToolBar">
+                <a class="Bu2 Bu1_blue" ngf-select="upload(2,$file)">
+                    <b>
+                        <i class="icon i_Add_3"></i>选择updateInfo文件
+                    </b>
+                </a>
+            </div>
+            </div>
+            <div class="thr_btns thr_btns_QD">
+                <button class="btn-blue" ng-click="saveInfo()">保存updateInfo信息</button>
+            </div>
+        </div>
+        </div>
+    </div>

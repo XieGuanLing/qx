@@ -1,0 +1,25 @@
+<!-- 角色设置 -->
+<script type="text/ng-template" id="addRoleToUser-modal.html" >
+    <div class="modal-content employee-modal">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+            <h4 class="modal-title">角色设置</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-inline">
+                <div class="form-group">
+                    <span>角色名称</span>
+                    <div class="form-group">
+                        <select class="form-control" ng-model="m.roleId">
+                            <option ng-repeat="i in listRoles"  value="{{i.roleId}}">{{i.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+            <button type="button" class="btn-blue" ng-click="ok()">确定</button>
+        </div>
+    </div>
+</script>
+

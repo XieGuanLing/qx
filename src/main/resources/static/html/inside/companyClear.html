@@ -1,0 +1,52 @@
+<div class="sbnav">
+    <div class="breakcrumb breakcrumb-user">
+        <ul>
+            <li class="txtCrumb">当前路径：</li>
+            <li class="firCrumb">
+                车店数据清除
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="wechat-enroll">
+        <section class="section">
+            <div class="col-sm-12 form-inline">
+                <div class="col-sm-4 form-group">
+                    <label>车店编号</label>
+                    <input class="form-control" type="text" ng-model="companyId">
+                </div>
+                <div class="clear"></div>
+                <div class="col-sm-4 form-group">
+                    <label>车店手机</label>
+                    <input type="text" placeholder="请输入车店绑定手机号" class="form-control" ng-model="m.phone" />
+                </div>
+                <div class="clear"></div>
+                <div class="code">
+                    <img id="imageCode" src="/code?type=2" title="点击图片更换验证码" ng-click="changeImageCode()"/>
+                </div>
+                <div>
+                    <input type="text" placeholder="请输入验证码" class="form-control"    ng-model="m.imageCode" ng-keypress="enter($event)"/>
+                    <button class="btn btn-primary" ng-click="fetchSmsCode()">获取短信验证码</button>
+                </div>
+
+            </div>
+            <div class="col-sm-12 form-inline function-list">
+                <input type="text" placeholder="请输入短信验证码" class="form-control" ng-model="smsCode" />
+                <button class="btn btn-primary"ng-click="clearAll()">清理所有业务数据</button>
+                <button class="btn btn-danger" ng-click="clearAllExceptGoods()">保留配件</button>
+                <button class="btn btn-success" ng-click="clearAllExceptService()">保留服务</button>
+                <button class="btn btn-primary" ng-click="clearAllExceptGoodsAndService()">保留配件服务</button>
+            </div>
+            <div class="clear"></div>
+        </section>
+        一、使用说明:<br>
+        使用步骤:
+                (1),输入车店编号和车店绑定手机号,再输入图片验证码,点击获取短信验证码。
+                (2),获得短信验证码,输入之后,选择需要的清理功能.
+        1.清理所有业务数据:清理所有业务数据(仅保留用户注册时的初始数据)<br>
+        2.保留配件:清理所有业务数据(仅保留用户注册时的初始数据和配件)<br>
+        3.保留服务:清理所有业务数据(仅保留用户注册时的初始数据和服务)<br>
+        4.保留配件服务:清理所有业务数据(仅保留用户注册时的初始数据,配件和服务)<br>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="sbnav">
+    <div class="breakcrumb breakcrumb-user">
+        <ul>
+            <li class="txtCrumb">当前路径：</li>
+            <li class="firCrumb">
+                设置微信菜单
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="main">
+    <div class="content_sub">
+        <div class="code">
+            <div class="ToolBar">
+            </div>
+        </div>
+
+        <div class="search_form">
+            <form action="" method="post" class="card_m">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td width="90"><label>appId</label></td>
+                        <td width="200"><input type="text" class="input01" ng-model="appId"/></td>
+                        <td width="90"><label>companyId</label></td>
+                        <td width="200"><input type="text" class="input01" ng-model="companyId"/></td>
+                        <td width="90"><label>telephone</label></td>
+                        <td width="200"><input type="text" class="input01" ng-model="m.telephone" placeholder="请输入车店注册手机号"/></td>
+
+                        <!--<td width="90"><label>车店</label></td>-->
+                        <!--<td width="300">-->
+                            <!--<ui-select ng-model="selected.company" theme="bootstrap" title="车店名称">-->
+                                <!--<ui-select-match placeholder="输入至少一个字符">-->
+                                    <!--<span>{{$select.selected.companyName}}</span>-->
+                                <!--</ui-select-match>-->
+                                <!--<ui-select-choices repeat="i in companies | filter: $select.search"-->
+                                                   <!--refresh="refreshCompanyChoices($select.search)"-->
+                                                   <!--refresh-delay="200">-->
+                                    <!--<div ng-bind-html="i.companyName | highlight: $select.search"></div>-->
+                                    <!--<small>{{i.companyId}}</small>-->
+                                <!--</ui-select-choices>-->
+                            <!--</ui-select>-->
+                        <!--</td>-->
+
+                        <td colspan="2">
+                            <div class="thr_btns thr_btns_QD">
+                                <button type="button" class="btn_blue thr_btns_ZD" ng-click="getMenu()">查询</button>
+                            </div>
+                        </td>
+                        <td colspan="2">
+                            <div class="thr_btns thr_btns_QD">
+                                <button type="button" class="btn_blue thr_btns_ZD" ng-click="createMenu()">设置</button>
+                            </div>
+                        </td>
+                        <td style="float: right;">
+                            <label><a style="color: #337ab7;" target="_blank" href="http://www.bejson.com/zhuanyi/">JSON压缩转义工具</a></label>
+                        </td>
+                    </tr>
+                    <!--<tr>-->
+                        <!--<td width="90"><label>telephone</label></td>-->
+                        <!--<td width="200"><input type="text" class="input01" ng-model="m.telephone" placeholder="请输入车店注册手机号"/></td>-->
+                        <!--<td width="200"><button type="text" ng-click="sendSmsPhoneCodeToCreateOwner()"><a>{{count}}{{isCount?"s后重发":""}}</a></button></td>-->
+                        <!--<td width="200"><input type="text" class="input01" placeholder="请输入短信验证码" ng-model="m.receiveCode"/></td>-->
+                    <!--</tr>-->
+
+                    </tbody>
+                </table>
+
+            </form>
+
+        </div>
+
+        <div class="list">
+            <textarea ng-model="menu" style="height: 200px; width: 100%">
+
+            </textarea>
+        </div>
+
+        <div class="list">
+            默认菜单
+            <textarea  style="height: 200px; width: 100%">
+                 {{defaultMenu}}
+            </textarea>
+        </div>
+
+
+        <div class="toolbar">
+            <div class="toolbar_info">
+
+            </div>
+        </div>
+    </div>
+</div>

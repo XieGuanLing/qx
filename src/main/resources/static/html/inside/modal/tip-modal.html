@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="tip-modal.html">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+            <h4 class="modal-title">超级车店提醒您</h4>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                {{tip}}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" ng-click="ok()">确定</button>
+        </div>
+    </div>
+</script>

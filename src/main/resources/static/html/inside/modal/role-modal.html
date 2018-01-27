@@ -1,0 +1,21 @@
+<!-- 新增角色 -->
+<script type="text/ng-template" id="role-modal.html" >
+    <div class="modal-content role-modal">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="cancel()"><span>&times;</span></button>
+            <h4 class="modal-title">新增角色</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-inline">
+                <span>角色名称</span>
+                <div class="form-control">
+                    <input type="text" placeholder="请输入角色名称" ng-model="m.name">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+            <button type="button" class="btn-blue" ng-click="ok()">确定</button>
+        </div>
+    </div>
+</script>
+

@@ -1,0 +1,131 @@
+<div ng-show="hasAuthCode('7')">
+<div class="sbnav" ng-show="hasAuthCode('7')">
+    <div class="breakcrumb breakcrumb-user">
+        <ul>
+            <li class="txtCrumb">当前路径：</li>
+            <li class="firCrumb">数据导入记录</li>
+        </ul>
+    </div>
+</div>
+<div id="main" ng-show="hasAuthCode('7')">
+    <div class="content_sub">
+
+        <div class="search_form">
+            <form action="" method="post" class="card_m">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+
+                            <td width="90"><label>车店编号</label></td>
+                            <td width="250"><input type="text" class="input01" ng-model="m.companyId"/></td>
+                            <td width="90"><label>店主手机</label></td>
+                            <td width="250"><input type="text" class="input01" ng-model="m.phone"/></td>
+                            <td width="90"><label>备注</label></td>
+                            <td width="250"><input type="text" class="input01" ng-model="m.remark"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+
+        <div class="code">
+            <div class="ToolBar">
+                <a class="Bu2 Bu1_blue" ngf-select="upload($file)"
+                   ngf-accept="'application/vnd.ms-excel'">
+                    <b>
+                        <i class="icon i_Add_3"></i>导入数据文件
+                    </b>
+                </a>
+
+                <a class="Bu2 Bu1_blue" href="./template/template.xls">
+                    <b>
+                        <i class="icon i_Add_3"></i>下载模板
+                    </b>
+                </a>
+            </div>
+        </div>
+        <div class="list">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                <tr>
+                    <th style="text-align:center;">序号</th>
+                    <th>批次号</th>
+                    <th>创建时间</th>
+                    <th>店主手机</th>
+                    <th>备注</th>
+                </tr>
+                <tr ng-repeat="record in records">
+                    <td align="center">{{$index + 1}}</td>
+                    <td><a ng-click="assertDetail(record.batchId)">{{record.batchId}}</a></td>
+                    <td>{{record.uploadTime}}</td>
+                    <td>{{record.phone}}</td>
+                    <td>{{record.remark}}</td>
+                </tr>
+                </tbody>
+                <tbody ng-show="records.length==0">
+                <tr>
+                    <td colspan="5">没有符合条件的数据</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="toolbar">
+            <div class="toolbar_info">
+                <table cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <button type="button" class="pg_first" ng-click="firstPage()">&nbsp;</button>
+                        </td>
+                        <td>
+                            <button type="button" class="pg_prev" ng-click="previousPage()">&nbsp;</button>
+                        </td>
+                        <td><span class="ytb-sep"></span></td>
+                        <td><span class="ytb-text">第{{currPage + 1}}页，</span></td>
+                        <td><span class="ytb-text">共{{totalPage}}页</span></td>
+                        <td><span class="ytb-sep"></span></td>
+                        <td>
+                            <button type="button" class="pg_next" ng-click="nextPage()">&nbsp;</button>
+                        </td>
+                        <td>
+                            <button type="button" class="pg_last" ng-click="lastPage()">&nbsp;</button>
+                        </td>
+                        <td><span class="ytb-sep" id="ext-gen283"></span></td>
+                        <td>
+                            <button type="button" class="x-btn-text bar_load" ng-click="search();">&nbsp;</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="upload" title="上传excel" style="display: none">
+    <div class="layer-cont">
+        <form id="uploadForm">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tab_noBorder">
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="file" name="file" id="uploadFile" style="width: 100%; border: 1px solid #CCCCCC;"/>
+                    </td>
+                </tr>
+                <tr id="progress">
+                    <td>
+                        <input type="text" class="bar" name="progress" style="width:0%;color: #ffffff" title="上传进度"/>
+                    </td>
+                </tr>
+                <tr id="parse-progress">
+                    <td>
+                        <input type="text" class="bar" name="parse-progress" style="width:0%;color: #ffffff"
+                               title="解析数据进度"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</div>
