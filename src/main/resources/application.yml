@@ -1,8 +1,10 @@
 spring:
     application:
         name: superWorld
-    messages:
-      basename: com.ws.i18n
+#    redis:
+#      host: localhost
+#      port: 6379
+#      database: 0
 #    datasource:
 #        driverClassName: com.mysql.jdbc.Driver
 #        url: jdbc:mysql://localhost/test

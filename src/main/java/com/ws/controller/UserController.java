@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by gl on 2017/9/18.
  */
 @Controller
+@ResponseBody
 public class UserController extends BaseController {
 
 
@@ -19,9 +20,13 @@ public class UserController extends BaseController {
 
 
     @RequestMapping("/")
-    @ResponseBody
     public JsonResponse home() {
         return response(()->"Hello World!");
+    }
+
+    @RequestMapping("/login")
+    public JsonResponse login() {
+        return response(()->"login");
     }
 
 
@@ -29,6 +34,7 @@ public class UserController extends BaseController {
     public String userIndex() {
         return "user index";
     }
+
 
 
 }
