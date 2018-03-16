@@ -2,6 +2,7 @@ package com.ws.interceptor;
 
 import com.ws.config.EnvironmentHelper;
 import com.ws.exception.BusinessException;
+import com.ws.filter.RequestAttributes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,7 @@ public class GlobalController implements ErrorController {
      */
     @RequestMapping(value = ERROR_PATH)
     public JsonResponse handle404Error(HttpServletRequest request, HttpServletResponse response) {
+
         return  response(HttpStatus.NOT_FOUND.value(), request, response, null);
 
     }
@@ -105,7 +107,11 @@ public class GlobalController implements ErrorController {
 
     private JsonResponse response(int httpState, HttpServletRequest request, HttpServletResponse response, Throwable e){
 
-        LOGGER.error("httpState[{}],  uri[{}]", httpState, request.getRequestURI());
+        //handle404时， request.getRequestURI() 得到/error
+        LOGGER.error("sessionId[{}], httpState[{}],  uri[{}]",
+                request.getSession().getId(),
+                httpState,
+                request.getAttribute(RequestAttributes.ORIGIN_REQUEST_URI));
 
         response.setStatus(httpState);
 
