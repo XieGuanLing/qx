@@ -1,7 +1,7 @@
 package com.ws.controller;
 
 import com.ws.exception.ValidationException;
-import com.ws.interceptor.JsonResponse;
+import com.ws.advice.JsonResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

@@ -1,4 +1,4 @@
-package com.ws.interceptor;
+package com.ws.advice;
 
 public class JsonResponse<R> {
 

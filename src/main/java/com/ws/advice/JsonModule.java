@@ -1,4 +1,4 @@
-package com.ws.interceptor;
+package com.ws.advice;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;

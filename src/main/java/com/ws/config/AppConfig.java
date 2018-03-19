@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.ws.interceptor.JsonModule;
+import com.ws.advice.JsonModule;
 import com.ws.platform.DateUtil;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

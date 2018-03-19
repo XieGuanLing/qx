@@ -1,4 +1,4 @@
-package com.ws.interceptor;
+package com.ws.advice;
 
 import com.ws.config.EnvironmentHelper;
 import com.ws.exception.BusinessException;
@@ -44,7 +44,7 @@ public class GlobalController implements ErrorController {
 
     @InitBinder
     private void initBinder(WebDataBinder dataBinder) {
-        dataBinder.setDisallowedFields("company", "companyId", "dateCreated", "lastUpdated");
+        dataBinder.setDisallowedFields("dateCreated", "lastUpdated");
     }
 
 
