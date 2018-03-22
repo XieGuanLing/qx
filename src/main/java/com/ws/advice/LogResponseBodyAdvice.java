@@ -10,10 +10,9 @@ import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 @ControllerAdvice
@@ -34,7 +33,7 @@ public class LogResponseBodyAdvice implements ResponseBodyAdvice {
     public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType,
                                   Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
 
-        String uri = (String)((HttpServletRequest)request).getAttribute(RequestAttributes.ORIGIN_REQUEST_URI);
+        String uri = (String)((ServletServerHttpRequest)request).getServletRequest().getAttribute(RequestAttributes.ORIGIN_REQUEST_URI);
 
         try {
             logger.debug("uri={} | responseBody={}", uri, objectMapper.writeValueAsString(body));
