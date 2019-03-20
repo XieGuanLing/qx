@@ -9,5 +9,5 @@ public interface UserService {
 
     void save(UserEntry userEntry);
 
-    void say();
+    void findByUserName();
 }

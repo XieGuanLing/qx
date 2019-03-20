@@ -1,6 +1,8 @@
 package com.ws.service;
 
 import com.ws.bean.UserEntry;
+import com.ws.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,14 +10,19 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public void save(UserEntry userEntry) {
         System.out.println("v1");
     }
 
     @Override
-    public void say(){
-        System.out.println("v1");
+    public void findByUserName(){
+        System.out.println(userRepository.findByUserName("a"));
     }
 
 }

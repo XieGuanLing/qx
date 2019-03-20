@@ -1,6 +1,7 @@
-package com.ws.controller;
+package com.ws.user;
 
 import com.ws.advice.JsonResponse;
+import com.ws.misc.BaseController;
 import com.ws.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +32,8 @@ public class UserController extends BaseController {
 
 
     @RequestMapping("/user/index")
-    public String userIndex() {
-        return "user index";
+    public JsonResponse userIndex() {
+        return responseVoid(()->userService.findByUserName());
     }
 
 

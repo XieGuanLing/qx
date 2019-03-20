@@ -1,4 +1,4 @@
-package com.ws.controller;
+package com.ws.misc;
 
 import com.ws.exception.ValidationException;
 import com.ws.advice.JsonResponse;
