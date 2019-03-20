@@ -73,7 +73,7 @@ public class AppConfig {
     public FlywayMigrationInitializer flywayInitializer(DataSource dataSource) {
         Flyway flyway = Flyway.configure()
                 .dataSource(dataSource)
-                .locations("db.migration")
+                .locations("db.migration", "com.ws.db.migration")
                 .outOfOrder(true)
                 .baselineOnMigrate(true)
                 .load();
