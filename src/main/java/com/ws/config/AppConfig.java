@@ -6,14 +6,16 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ws.advice.JsonModule;
+import com.ws.misc.AutowireHelper;
 import com.ws.platform.DateUtil;
+import org.flywaydb.core.Flyway;
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+
+import javax.sql.DataSource;
 
 /**
  * Created by gl on 2017/9/18.
@@ -37,6 +39,48 @@ public class AppConfig {
         messageSource.setBasename("classpath:i18n/base-messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
+    }
+
+    @Bean
+    public AutowireHelper autowireHelper() {
+        return AutowireHelper.getInstance();
+    }
+
+
+
+    @Bean
+    public DataSource dataSource() {
+        org.apache.tomcat.jdbc.pool.DataSource ds  = new org.apache.tomcat.jdbc.pool.DataSource();
+        ds.setUrl("jdbc:mysql://127.0.0.1:3307/qx");
+        ds.setUsername("root");
+        ds.setPassword("root");
+        ds.setInitialSize(1);
+        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setMaxActive(1200);
+        ds.setMinEvictableIdleTimeMillis(3600000);
+        ds.setTimeBetweenEvictionRunsMillis(3600000);
+        ds.setNumTestsPerEvictionRun(3);
+        ds.setTestOnBorrow(true);
+        ds.setTestWhileIdle(true);
+        ds.setTestOnReturn(false);
+        ds.setValidationQuery("SELECT 1");
+        ds.setDefaultTransactionIsolation(2);
+        return ds;
+    }
+
+
+    @Bean
+    public FlywayMigrationInitializer flywayInitializer(DataSource dataSource) {
+        Flyway flyway = Flyway.configure()
+                .dataSource(dataSource)
+                .locations("db.migration")
+                .outOfOrder(true)
+                .baselineOnMigrate(true)
+                .load();
+        return new FlywayMigrationInitializer(
+                flyway,
+                null
+        );
     }
 
 
