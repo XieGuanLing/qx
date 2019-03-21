@@ -37,5 +37,10 @@ public class UserController extends BaseController {
     }
 
 
+    @RequestMapping("/user/findByGroupName")
+    public JsonResponse findByGroupName() {
+        return responseVoid(()->userService.findByGroupName());
+    }
+
 
 }

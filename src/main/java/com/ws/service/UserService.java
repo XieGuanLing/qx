@@ -10,4 +10,7 @@ public interface UserService {
     void save(UserEntry userEntry);
 
     void findByUserName();
+
+    void findByGroupName();
+
 }

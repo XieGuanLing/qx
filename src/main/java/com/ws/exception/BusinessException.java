@@ -8,10 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * User: Franklyn
- * Date: 14-8-20
- * Time: 下午2:20
- * Email: lovefree103@gmail.com
  */
 public class BusinessException extends BaseException {
 
