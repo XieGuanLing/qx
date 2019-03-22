@@ -76,7 +76,7 @@ public class Swagger2Config {
     @Bean
     public UiConfiguration uiConfig() {
         return new UiConfiguration(
-                "validatorUrl",// url
+                "",// url
                 "list",       // docExpansion          => none | list
                 "alpha",      // apiSorter             => alpha
                 "schema",     // defaultModelRendering => schema

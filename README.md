@@ -14,6 +14,8 @@ curl -XPOST http://127.0.0.1:9000/user/findByGroupName
 
 curl -XGET http://127.0.0.1:9000/html/inside/ads.html
 
+curl -XGET http://127.0.0.1:9000/swagger-ui.html
+
 
 
 
