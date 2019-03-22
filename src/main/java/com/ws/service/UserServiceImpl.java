@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by gl on 2017/9/16.
  */
@@ -15,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    HttpServletRequest request;
 
     @Override
     public void save(UserEntry userEntry) {
@@ -32,6 +38,10 @@ public class UserServiceImpl implements UserService {
         userRepository.findByGroupName();
     }
 
+    @Override
+    public void login(){
+        HttpSession session = request.getSession(true);
+    }
 
 
 }

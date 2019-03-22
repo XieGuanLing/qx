@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @ResponseBody
 @Api("用户管理")
+@RequestMapping("/user")
 public class UserController extends BaseController {
 
 
@@ -24,25 +25,20 @@ public class UserController extends BaseController {
     private UserService userService;
 
 
-    @RequestMapping("/")
-    public JsonResponse home() {
-        return response(()->"Hello World!");
-    }
-
     @ApiOperation("用户登录")
     @RequestMapping("/login")
     public JsonResponse login(@RequestBody LoginCommand command) {
-        return response(()->"login");
+        return responseVoid(()->userService.login());
     }
 
 
-    @RequestMapping("/user/index")
+    @RequestMapping("/index")
     public JsonResponse userIndex() {
         return responseVoid(()->userService.findByUserName());
     }
 
 
-    @RequestMapping("/user/findByGroupName")
+    @RequestMapping("/findByGroupName")
     public JsonResponse findByGroupName() {
         return responseVoid(()->userService.findByGroupName());
     }

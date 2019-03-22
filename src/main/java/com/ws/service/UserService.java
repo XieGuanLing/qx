@@ -13,4 +13,6 @@ public interface UserService {
 
     void findByGroupName();
 
+    void login();
+
 }
