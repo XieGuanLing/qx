@@ -19,7 +19,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
     @Override
     public UserEntity findByGroupName() {
-        jdbcTemplate.execute("SELECT * FROM sm_user where user_id = ?");
+        jdbcTemplate.execute("SELECT * FROM sm_user where user_id = 1");
         return null;
     }
 }

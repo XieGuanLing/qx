@@ -24,10 +24,10 @@ public class EnvironmentHelper {
             switch (profile){
                 case "prod":
                     return "prod";
-                case "prod-pre":
-                    return "prod-pre";
-                case "prod-test":
-                    return "prod-test";
+                case "pre":
+                    return "pre";
+                case "test":
+                    return "test";
                 case "dev":
                     return "dev";
                 case "local":

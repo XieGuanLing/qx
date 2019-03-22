@@ -5,28 +5,30 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.ws.advice.JsonModule;
 import com.ws.misc.AutowireHelper;
 import com.ws.platform.DateUtil;
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.sql.DataSource;
 
 /**
  * Created by gl on 2017/9/18.
- *
- * 如果不加@ComponentScan(basePackages = "com.ws") ，
- * idea 会提示 "JsonModule， EnvironmentHelper " not found
+ * @Configuration 中所有带 @Bean 注解的方法都会被动态代理，因此调用该方法返回的都是同一个实例。
+ * @Component 注解并没有通过 cglib 来代理@Bean 方法的调用
  */
 
 @Configuration
-@ComponentScan(basePackages = "com.ws")
+@EnableSwagger2
 public class AppConfig {
+
 
     /**
      * ReloadableResourceBundleMessageSource不能使用正则匹配
@@ -36,7 +38,7 @@ public class AppConfig {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:i18n/base-messages");
+        messageSource.setBasenames("classpath:i18n/base-messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
@@ -82,6 +84,7 @@ public class AppConfig {
                 null
         );
     }
+
 
 
     @Bean

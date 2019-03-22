@@ -1,4 +1,4 @@
-package com.ws.advice;
+package com.ws.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.ws.advice.JsonResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +17,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * User: Frank Tang <br/>
- * Date: 15/12/23<br/>                                               ·
- * Time: 下午4:21<br/>
- * Email: lovefree103@gmail.com<br/>
  */
 @Component
 public class JsonModule extends SimpleModule {

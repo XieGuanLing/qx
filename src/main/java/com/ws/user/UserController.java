@@ -3,8 +3,11 @@ package com.ws.user;
 import com.ws.advice.JsonResponse;
 import com.ws.misc.BaseController;
 import com.ws.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @ResponseBody
+@Api("用户管理")
 public class UserController extends BaseController {
 
 
@@ -25,8 +29,9 @@ public class UserController extends BaseController {
         return response(()->"Hello World!");
     }
 
+    @ApiOperation("用户登录")
     @RequestMapping("/login")
-    public JsonResponse login() {
+    public JsonResponse login(@RequestBody LoginCommand command) {
         return response(()->"login");
     }
 
