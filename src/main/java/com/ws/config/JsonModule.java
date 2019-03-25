@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.ws.advice.JsonResponse;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -24,6 +25,18 @@ public class JsonModule extends SimpleModule {
 
     public JsonModule() {
 
+        addSerializer(Page.class, new JsonSerializer<Page>() {
+            @Override
+            public void serialize(Page value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+                gen.writeStartObject();
+                gen.writeNumberField("total", value.getTotalElements());
+                gen.writeFieldName("rows");
+                serializers.defaultSerializeValue(value.getContent(), gen);
+                gen.writeEndObject();
+            }
+        });
+
+
         addSerializer(Date.class, new JsonSerializer<Date>() {
 
             private final DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
@@ -33,6 +46,7 @@ public class JsonModule extends SimpleModule {
                 gen.writeString(df.format(value));
             }
         });
+
         addSerializer(JsonResponse.class, new JsonSerializer<JsonResponse>() {
             @Override
             public void serialize(JsonResponse value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
