@@ -7,7 +7,7 @@ spring:
         username: root
         password: root
     jpa:
-      show-sql: false
+      show-sql: true
       hibernate:
         naming:
           physical-strategy: com.ws.misc.PhysicalNamingStrategyStandardImpl
@@ -25,6 +25,8 @@ spring:
        database: 0
        timeout: 5000
 
+logging:
+  file: /logs/${spring.application.name}.log
 
 
 server:
@@ -35,7 +37,8 @@ interceptor:
     excludeSessionUrls:
     - /error
     - /html/.*
-    - /user/login
+#    - /user/login
+    - /user/.*
     - /swagger-resources/?.*
     - /webjars/?.*
     - /swagger-ui.html

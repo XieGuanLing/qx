@@ -2,8 +2,11 @@ spring boot 整合示例
 =======================
 
 
+1. 分页
+
 gradle dependencies
 gradle build --refresh-dependencies 
+
 
 
 
@@ -18,6 +21,7 @@ curl -XGET http://127.0.0.1:9000/swagger-ui.html
 
 
 
+mysql -h127.0.0.1 -P3307  -uroot -proot -Dqx -A
 
 redis-cli -h 192.168.1.251
 redis-cli -h 127.0.0.1

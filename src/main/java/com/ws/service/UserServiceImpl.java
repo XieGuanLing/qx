@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void findByUserName(){
         System.out.println(userRepository.findByUserName("a"));
+        userRepository.delete(3L);
     }
 
     @Transactional

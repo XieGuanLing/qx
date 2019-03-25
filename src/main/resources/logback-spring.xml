@@ -54,14 +54,19 @@
         </triggeringPolicy>
     </appender>
 
-    <!--不同环境的配置-->
+    <!--非生产环境的配置-->
     <springProfile name="!prod">
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="FILE"/>
         </root>
+
+        <logger name="org.hibernate.type" level="trace"/>
+        <logger name="org.hibernate.SQL" level="trace"/>
+
     </springProfile>
 
+    <!--生产环境的配置-->
     <springProfile name="prod">
         <root level="INFO">
             <appender-ref ref="FILE"/>
