@@ -1,3 +1,6 @@
+import java.nio.file.Files
+import java.nio.file.attribute.BasicFileAttributes
+
 group 'com.gl'
 version '1.0-SNAPSHOT'
 
@@ -70,4 +73,81 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.7'
     compile 'org.reflections:reflections:0.9.11'
 
+}
+
+
+processResources.doFirst {
+
+    List<File> files = []
+
+    Map<String,String> versionedMap = [:]
+
+    fileTree(dir: "${projectDir}/src/main/resources/db/migration").exclude({
+        def prefixed = isFilePrefixed(it.file)
+        if(prefixed)
+            versionedMap.put(it.file.name.substring(20),it.file.name)
+        return prefixed
+    }).each { file ->
+        def versionedFile = versionedMap.get(file.name)
+        if(versionedFile)
+            throw new RuntimeException("检测到冲突脚本\n脚本文件:" +
+                    "\n\t\t$file.absolutePath \n\t\t$file.parentFile.absolutePath${file.separator}$versionedFile " +
+                    "\n建议:" +
+                    "\n\t\t1.如果脚本内容一致请删除$file.absolutePath " +
+                    "\n\t\t2.如果脚本内容不一致请重命名脚本文件$file.absolutePath")
+        files << file
+    }
+
+    fileTree(dir: "${projectDir}/src/main/java/com/ys/scs/db/migration").exclude({
+        def prefixed = isFilePrefixed(it.file)
+        if(prefixed)
+            versionedMap.put(it.file.name.substring(20),it.file.name)
+        return prefixed
+    }).each { file ->
+        def versionedFile = versionedMap.get(file.name)
+        if(versionedFile)
+            throw new RuntimeException("检测到冲突脚本\n脚本文件:" +
+                    "\n\t\t$file.absolutePath \n\t\t$file.parentFile.absolutePath${file.separator}$versionedFile " +
+                    "\n建议:" +
+                    "\n\t\t1.如果脚本内容一致请删除$file.absolutePath " +
+                    "\n\t\t2.如果脚本内容不一致请重命名脚本文件$file.absolutePath")
+        files << file
+    }
+
+    files.sort({ f1, f2 ->
+        BasicFileAttributes attr1 = Files.readAttributes(f1.toPath(), BasicFileAttributes.class)
+        BasicFileAttributes attr2 = Files.readAttributes(f2.toPath(), BasicFileAttributes.class)
+        return attr1.creationTime() <=> attr2.creationTime()
+    })
+
+    def removeOldFile = {file->
+        try{
+            Runtime.getRuntime().exec("git rm ${file.getAbsolutePath()}")
+        }catch (Throwable e){
+            //ignore
+        }
+    }
+
+    files.each { file ->
+        def timestamp = new Date().format('yyyyMMddHHmmssSSS', TimeZone.getTimeZone('GMT+8'))
+        if (file.name.endsWith(".sql")) {
+            println "Renaming $file.name to ${timestamp}__$file.name"
+            file.renameTo("$file.parentFile.absolutePath${file.separator}V${timestamp}__$file.name")
+            removeOldFile(file)
+        } else if (file.name.endsWith(".java")) {
+            def oldName = file.name
+            def newName = "V${timestamp}__$file.name"
+            println "Renaming $oldName to $newName"
+            file.text = file.text.replace(oldName - '.java', newName - '.java')
+            file.renameTo("$file.parentFile.absolutePath${file.separator}$newName")
+            removeOldFile(file)
+        }
+        // Sleep for a moment to avoid prefix conflicts when renaming multiple files
+        sleep(1 * 1000)
+    }
+
+}
+
+def isFilePrefixed(file) {
+    return (file.name ==~ '^V\\d+__.*\\.(sql|java)\$')
 }
