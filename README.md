@@ -8,6 +8,9 @@ gradle dependencies
 gradle build --refresh-dependencies 
 
 
+2.SimpleJpaRepository 的 delete(ID id) 会先查找，再删除
+如果自定义实现，只执行删除操作，可能造成nativeQuery 与 hql 在同一个@transaction中更新，会出现更新状态不一致
+
 
 
 测试URL

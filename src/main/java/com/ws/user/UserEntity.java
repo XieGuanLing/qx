@@ -1,18 +1,13 @@
 package com.ws.user;
 
 import com.ws.misc.BaseEntity;
-import com.ws.misc.DataFilterConstans;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "sm_user")
-@EntityListeners(AuditingEntityListener.class)
-@Where(clause = DataFilterConstans.NOT_SOFT_DELETE_CONDITION)
 @SQLDelete(sql = "update sm_user t set t.deleted = now() where t.user_id=?")
 public class UserEntity extends BaseEntity implements Serializable {
 
@@ -39,8 +34,15 @@ public class UserEntity extends BaseEntity implements Serializable {
     private String password;
 
 
-    public Long getId() {
-        return userId;
+    @ManyToOne
+    private UserGroupEntity userGroup;
+
+    public UserGroupEntity getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(UserGroupEntity userGroup) {
+        this.userGroup = userGroup;
     }
 
 

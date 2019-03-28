@@ -127,6 +127,7 @@ public class GlobalController implements ErrorController {
             }
 
         }
+        System.out.println(getStackTraceString(e));
         return jsonResponse;
     }
 

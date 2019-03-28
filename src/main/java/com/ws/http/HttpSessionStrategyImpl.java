@@ -56,8 +56,7 @@ public class HttpSessionStrategyImpl implements HttpSessionStrategy {
             return;
         }
 
-        if (logger.isDebugEnabled())
-            logger.debug("new session created.session id:" + session.getId());
+        logger.debug("new session created.session id:" + session.getId());
 
         sessionIdsWritten.add(session.getId());
 
