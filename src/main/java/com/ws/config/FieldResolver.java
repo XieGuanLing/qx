@@ -3,6 +3,9 @@ package com.ws.config;
 import java.util.Locale;
 
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public interface FieldResolver {
     /**
      *

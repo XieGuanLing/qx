@@ -13,7 +13,7 @@ import org.springframework.transaction.support.TransactionSynchronizationManager
 import javax.persistence.EntityManager;
 
 /**
- *
+ * Created by gl on 2019/4/1.
  */
 //@Aspect
 //@Component

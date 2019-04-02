@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
 /**
+ * Created by gl on 2019/4/1.
  */
 @Component
 @ConfigurationProperties(prefix = "interceptor.session")

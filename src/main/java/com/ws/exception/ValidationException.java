@@ -7,6 +7,9 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class ValidationException extends BaseException {
 
     private Errors errors;

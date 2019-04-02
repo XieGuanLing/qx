@@ -14,7 +14,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
-*/
+ * Created by gl on 2019/4/1.
+ */
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"dateCreated", "lastUpdated"}, allowGetters = true)
 @Filter(name = DataFilterConstants.NOT_SOFT_DELETE_FILTER_NAME)

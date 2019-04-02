@@ -1,7 +1,7 @@
 package com.ws.bean;
 
 /**
- * Created by gl on 2017/9/16.
+ * Created by gl on 2019/4/1.
  */
 public class UserEntry {
 

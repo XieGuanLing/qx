@@ -20,7 +20,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.sql.DataSource;
 
 /**
- * Created by gl on 2017/9/18.
+ * Created by gl on 2019/4/1.
+ *
  * @Configuration 中所有带 @Bean 注解的方法都会被动态代理，因此调用该方法返回的都是同一个实例。
  * @Component 注解并没有通过 cglib 来代理@Bean 方法的调用
  */

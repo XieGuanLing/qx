@@ -1,6 +1,9 @@
 package com.ws.exception;
 
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class BaseException extends RuntimeException{
 
     Object resultObject;

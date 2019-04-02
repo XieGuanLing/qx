@@ -17,7 +17,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+
 /**
+ * Created by gl on 2019/4/1.
  */
 @Component
 public class SessionInterceptor extends HandlerInterceptorAdapter {

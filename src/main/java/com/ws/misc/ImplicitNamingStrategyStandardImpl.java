@@ -5,6 +5,9 @@ import org.hibernate.boot.model.naming.ImplicitJoinColumnNameSource;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategy;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class ImplicitNamingStrategyStandardImpl extends ImplicitNamingStrategyJpaCompliantImpl {
 
 

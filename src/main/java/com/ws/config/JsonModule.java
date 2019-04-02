@@ -18,6 +18,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
+ * Created by gl on 2019/4/1.
  */
 @Component
 public class JsonModule extends SimpleModule {

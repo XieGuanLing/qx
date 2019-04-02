@@ -2,6 +2,9 @@ package com.ws.exception;
 
 import org.springframework.http.HttpStatus;
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class BadSessionException extends BaseException {
 
     private String code;

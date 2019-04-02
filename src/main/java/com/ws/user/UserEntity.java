@@ -6,6 +6,9 @@ import org.hibernate.annotations.SQLDelete;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 @Entity
 @Table(name = "sm_user")
 @SQLDelete(sql = "update sm_user t set t.deleted = now() where t.user_id=?")

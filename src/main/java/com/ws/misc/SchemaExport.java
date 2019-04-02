@@ -9,6 +9,9 @@ import org.reflections.Reflections;
 import java.util.EnumSet;
 import java.util.Set;
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class SchemaExport {
     public static void main(String[] args) {
 

@@ -4,6 +4,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public final class AutowireHelper implements ApplicationContextAware {
 
     private static final AutowireHelper INSTANCE = new AutowireHelper();

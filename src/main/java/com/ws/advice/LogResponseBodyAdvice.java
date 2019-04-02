@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 @ControllerAdvice
 public class LogResponseBodyAdvice implements ResponseBodyAdvice {
 

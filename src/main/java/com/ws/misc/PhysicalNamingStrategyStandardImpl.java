@@ -7,6 +7,9 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 import java.io.Serializable;
 import java.util.Locale;
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class PhysicalNamingStrategyStandardImpl implements PhysicalNamingStrategy, Serializable {
 
     public static final PhysicalNamingStrategyStandardImpl INSTANCE = new PhysicalNamingStrategyStandardImpl();

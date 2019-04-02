@@ -9,7 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class DateUtil {
 
     public static final String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";

@@ -10,6 +10,9 @@ import org.springframework.validation.BindingResult;
 import java.util.Locale;
 import java.util.function.Supplier;
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 public class BaseController {
 
     private static final Logger logger = Logger.getLogger(BaseController.class);

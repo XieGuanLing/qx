@@ -7,7 +7,9 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+
 /**
+ * Created by gl on 2019/4/1.
  */
 @Component
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {

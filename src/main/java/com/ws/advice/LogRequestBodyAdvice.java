@@ -17,6 +17,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 
+/**
+ * Created by gl on 2019/4/1.
+ */
 @ControllerAdvice
 public class LogRequestBodyAdvice implements RequestBodyAdvice {
 

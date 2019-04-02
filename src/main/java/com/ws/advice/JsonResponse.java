@@ -1,5 +1,9 @@
 package com.ws.advice;
 
+
+/**
+ *   Created by gl on 2019/4/1.
+ */
 public class JsonResponse<R> {
 
     public JsonResponse() {

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
+ * Created by gl on 2019/4/1.
+ *
  * Allows customizing the response after the execution of an @ResponseBody or a ResponseEntity
  * controller method but before the body is written with an HttpMessageConverter.
  *
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * ExceptionHandlerExceptionResolver or more likely annotated with @ControllerAdvice in which
  * case they will be auto-detected by both.
  */
+
 @Order(0)
 @ControllerAdvice
 public class JsonResponseAdvice implements ResponseBodyAdvice<JsonResponse> {
