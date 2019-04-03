@@ -1,5 +1,6 @@
 package com.ws.misc;
 
+import com.ws.BootApplication;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Environment;
@@ -24,7 +25,7 @@ public class SchemaExport {
                             .build()
                      );
 
-            Reflections reflections = new Reflections("com.ws");
+            Reflections reflections = new Reflections(BootApplication.class.getPackage().getName());
             Set<Class<?>> annotated = reflections.getTypesAnnotatedWith(javax.persistence.Entity.class);
             System.out.println(annotated);
             annotated.forEach(clazz ->{

@@ -18,7 +18,7 @@ import java.util.Date;
  */
 @MappedSuperclass
 @JsonIgnoreProperties(value = {"dateCreated", "lastUpdated"}, allowGetters = true)
-@Filter(name = DataFilterConstants.NOT_SOFT_DELETE_FILTER_NAME)
+@Filter(name = DataFilterConstants.NOT_SOFT_DELETE_FILTER_NAME, condition = DataFilterConstants.NOT_SOFT_DELETE_CONDITION)
 @EntityListeners(AuditingEntityListener.class)
 @Where(clause = DataFilterConstants.NOT_SOFT_DELETE_CONDITION)
 public abstract class BaseEntity implements Serializable {

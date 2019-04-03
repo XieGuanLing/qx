@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.ws.BootApplication;
 import com.ws.misc.AutowireHelper;
 import com.ws.platform.DateUtil;
 import org.flywaydb.core.Flyway;
@@ -76,7 +77,7 @@ public class AppConfig {
     public FlywayMigrationInitializer flywayInitializer(DataSource dataSource) {
         Flyway flyway = Flyway.configure()
                 .dataSource(dataSource)
-                .locations("db.migration", "com.ws.db.migration")
+                .locations("db.migration", BootApplication.class.getPackage().getName() + ".db.migration")
                 .outOfOrder(true)
                 .baselineOnMigrate(true)
                 .load();
