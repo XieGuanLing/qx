@@ -7,38 +7,43 @@ spring:
         username: root
         password: root
     jpa:
-      show-sql: true
-      hibernate:
-        naming:
-          physical-strategy: com.ws.misc.PhysicalNamingStrategyStandardImpl
-          implicit-strategy: com.ws.misc.ImplicitNamingStrategyStandardImpl
-        ddl-auto: none
-      open-in-view: true
-      properties.hibernate.format_sql: true
-      database-platform: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
+        hibernate:
+            naming:
+                physical-strategy: com.ws.misc.PhysicalNamingStrategyStandardImpl
+                implicit-strategy: com.ws.misc.ImplicitNamingStrategyStandardImpl
+            ddl-auto: none
+        open-in-view: true
+        properties.hibernate.format_sql: true
+        database-platform: org.hibernate.dialect.MySQL5Dialect
     session:
-      store-type: redis
+        store-type: redis
     redis:
-       host: 127.0.0.1
+        host: 127.0.0.1
 #       host: 192.168.1.251
-       port: 6379
-       database: 0
-       timeout: 5000
-
+        port: 6379
+        database: 0
+        timeout: 5000
+# Multiple Spring Data modules found
+    data:
+        redis:
+            repositories:
+                enabled: false
 logging:
-  file: /logs/${spring.application.name}.log
+    file: /logs/${spring.application.name}.log
 
 
 server:
     port: 9000
 
 interceptor:
-  session:
-    excludeSessionUrls:
-    - /error
-    - /html/.*
-#    - /user/login
-    - /user/.*
-    - /swagger-resources/?.*
-    - /webjars/?.*
-    - /swagger-ui.html
+    session:
+        excludeSessionUrls:
+        - /error
+        - /html/.*
+        - /test/.*
+    #    - /user/login
+        - /user/.*
+        - /swagger-resources/?.*
+        - /webjars/?.*
+        - /swagger-ui.html

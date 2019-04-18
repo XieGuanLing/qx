@@ -6,10 +6,17 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ws.BootApplication;
+import com.ws.cache.RedisProperties;
 import com.ws.misc.AutowireHelper;
 import com.ws.platform.DateUtil;
 import org.flywaydb.core.Flyway;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.redisson.config.ReadMode;
+import org.redisson.config.SingleServerConfig;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,13 +60,13 @@ public class AppConfig {
 
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource(DataSourceProperties dataSourceProperties) {
         org.apache.tomcat.jdbc.pool.DataSource ds  = new org.apache.tomcat.jdbc.pool.DataSource();
-        ds.setUrl("jdbc:mysql://127.0.0.1:3307/qx");
-        ds.setUsername("root");
-        ds.setPassword("root");
+        ds.setUrl(dataSourceProperties.getUrl());
+        ds.setUsername(dataSourceProperties.getUsername());
+        ds.setPassword(dataSourceProperties.getPassword());
         ds.setInitialSize(1);
-        ds.setDriverClassName("com.mysql.jdbc.Driver");
+        ds.setDriverClassName(dataSourceProperties.getDriverClassName());
         ds.setMaxActive(1200);
         ds.setMinEvictableIdleTimeMillis(3600000);
         ds.setTimeBetweenEvictionRunsMillis(3600000);
@@ -87,7 +94,38 @@ public class AppConfig {
         );
     }
 
-
+    /**
+     * 主从：手动切换master-slave
+     * sentinel: 自动切换master-slave
+     *
+     * 默认建立32条连接
+     *
+     * @param redisProperties
+     * @return
+     */
+    @Bean
+    public RedissonClient redissonClient(RedisProperties redisProperties) {
+        Config config = new Config();
+        if (redisProperties.getSentinel() == null) {
+            SingleServerConfig singleServerConfig = config.useSingleServer();
+            singleServerConfig.setConnectTimeout(10000);
+            singleServerConfig.setTimeout(10000);
+            String address = "redis://"+ redisProperties.getHost() + ":" + redisProperties.getPort();
+            singleServerConfig.setAddress(address);
+            singleServerConfig.setDatabase(redisProperties.getDatabase());
+            if (redisProperties.getPassword() != null){
+                singleServerConfig.setPassword(redisProperties.getPassword());
+            }
+        } else if (redisProperties.getSentinel() != null) {
+            config.useSentinelServers()
+                    .setDatabase(redisProperties.getDatabase())
+                    .setMasterName(redisProperties.getSentinel().getMaster())
+                    .setReadMode(ReadMode.MASTER)
+                    .setPassword(redisProperties.getPassword())
+                    .addSentinelAddress(redisProperties.getSentinel().getNodes());
+        }
+        return Redisson.create(config);
+    }
 
     @Bean
     @Primary
