@@ -15,6 +15,7 @@ lib
 !solr/extra/lib
 classes
 *.class
+export.sql
 
 # default HSQL database files for production mode
 /prodDb.*
